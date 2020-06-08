@@ -62,11 +62,11 @@ namespace Ex03.GarageLogic
             {
                 if (customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
                 {
-                    for (int i = 0; i < currentCustomer.vehicle.vehicleWheels.Count; i++)
+                    List<Wheel> wheelsToInflate = customer.vehicle.Wheels;
+                    foreach(Wheel wheel in wheelsToInflate)
                     {
-                        currentCustomer.vehicle.vehicleWheels[i].WheelAirBlowing(currentCustomer.vehicle.vehicleWheels[i].MaxAirPressure - currentCustomer.vehicle.vehicleWheels[i].CurrentAirPressure);
+                        wheel.Inflate(wheel.MaxAirPressure - wheel.CurrentAirPressure); // inflates to the max 
                     }
-
                 }
             }
         }

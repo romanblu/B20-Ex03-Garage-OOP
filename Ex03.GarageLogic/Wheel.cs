@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
 
         public string ManufacturerName { get{ return this.manufacturerName; } set { this.manufacturerName = value; } }
         public float CurrentAirPressure { get { return this.currentAirPressure; } set { this.currentAirPressure = value; } }
-        public float MaxAirPressure { get { return this.maxAirPressure; } set { this.maxAirPressure = value; }}
+        public float MaxAirPressure { get { return this.maxAirPressure; } set { this.maxAirPressure = value; } }
 
         public Wheel(float i_MaxAirPressure)
         {
@@ -23,18 +23,10 @@ namespace Ex03.GarageLogic
             this.manufacturerName = "Wheeliams and sons";
         }
 
-        // check if good? -
-        public void Inflate(float i_AirPressureToAdd)
+
+        public  void Inflate(float i_AirPressureToAdd)
         {
             // the method wiil change the current air pressure while its not acceding the max air pressure.
-            if ((int)this.currentAirPressure != (int)this.maxAirPressure && i_AirPressureToAdd + this.currentAirPressure <= this.maxAirPressure)
-            {
-                this.currentAirPressure += i_AirPressureToAdd;
-            }
-            else
-            {
-                return;
-            }
         }
     }
 }
