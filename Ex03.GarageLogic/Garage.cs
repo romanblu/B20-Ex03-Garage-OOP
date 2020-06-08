@@ -10,6 +10,7 @@ namespace Ex03.GarageLogic
     {
         private List<GarageCustomer> customersList = new List<GarageCustomer>();
 
+        //Method - insert a new vehicle to the garage 
         public void InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
         {
 
@@ -38,11 +39,14 @@ namespace Ex03.GarageLogic
             }
             
         }
+
+        //present a list of license plats of the vehicles in the garage
         public void LicenseList()
         {
 
         }
 
+        //Method - changes the status of the specific vehicke in the garage - by license plate
         public void ChangeStatus(int i_LicenseNumber, Status i_NewStatus)
         {
             GarageCustomer currentCustomer = new GarageCustomer();//check
@@ -54,6 +58,7 @@ namespace Ex03.GarageLogic
                 }
             }
         }
+
 
         public void InflateToMax(int i_LicenseNumber)
         {
