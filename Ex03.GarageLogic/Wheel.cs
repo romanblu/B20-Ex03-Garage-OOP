@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
             this.manufacturerName = "Wheeliams and sons";
         }
 
-
+        // check if good? -
         public void Inflate(float i_AirPressureToAdd)
         {
             // the method wiil change the current air pressure while its not acceding the max air pressure.
