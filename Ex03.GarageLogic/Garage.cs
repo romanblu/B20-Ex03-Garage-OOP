@@ -38,6 +38,43 @@ namespace Ex03.GarageLogic
             }
             
         }
+        public void LicenseList()
+        {
+
+        }
+
+        public void ChangeStatus(int i_LicenseNumber, Status i_NewStatus)
+        {
+            GarageCustomer currentCustomer = new GarageCustomer();//check
+            foreach (GarageCustomer customer in this.customersList)
+            {
+                if (customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
+                {
+                    currentCustomer.status = i_NewStatus;
+                }
+            }
+        }
+
+        public void InflateToMax(int i_LicenseNumber)
+        {
+            GarageCustomer currentCustomer = new GarageCustomer();//check - לבדוק האם הכלי רכב יכול להיות גם רכב וגם אופנוע
+            foreach (GarageCustomer customer in this.customersList)
+            {
+                if (customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
+                {
+                    for (int i = 0; i < currentCustomer.vehicle.vehicleWheels.Count; i++)
+                    {
+                        currentCustomer.vehicle.vehicleWheels[i].WheelAirBlowing(currentCustomer.vehicle.vehicleWheels[i].MaxAirPressure - currentCustomer.vehicle.vehicleWheels[i].CurrentAirPressure);
+                    }
+
+                }
+            }
+        }
+
+        public void Refuel(int i_LicensePlate, string i_FuelType, float i_FuelToAdd)
+        {
+
+        }
 
         struct GarageCustomer
         {
