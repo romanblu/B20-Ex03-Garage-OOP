@@ -14,7 +14,7 @@ namespace Ex03.GarageLogic
         private List<Wheel> wheels;
         
         public string Model { get { return this.modelName; } set { this.modelName = value; } }//The method returns and sets the value of modelName
-        public string LicencePlate { get { return licensePlate; } set { licensePlate = value; } }// The method returns and sets the value of licencePlate
+        public string LicensePlate { get { return licensePlate; } set { licensePlate = value; } }// The method returns and sets the value of licencePlate
 
         public Vehicle(string I_ModelName, string i_LicenseNumber, float i_EnergyLeft)
         {
