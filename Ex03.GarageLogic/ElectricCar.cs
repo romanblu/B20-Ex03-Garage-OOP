@@ -12,7 +12,7 @@ namespace Ex03.GarageLogic
        
         private DoorsAmount numberOfDoors;
         private Battery battery = new Battery(2.1f);
-        private List<Wheel> wheels = new List<Wheel>();
+        //private List<Wheel> wheels = new List<Wheel>();
 
         public Color CarColor { get { return carColor; } set { this.carColor = value; } }
         
@@ -27,7 +27,7 @@ namespace Ex03.GarageLogic
 
             for (int i = 0; i < 4; i++)
             {
-                wheels.Add(new Wheel(32));
+                base.Wheels.Add(new Wheel(32));
             }
             
         }

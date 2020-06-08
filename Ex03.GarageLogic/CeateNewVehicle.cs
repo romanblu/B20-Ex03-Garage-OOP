@@ -9,8 +9,8 @@ namespace Ex03.GarageLogic
     class CreateNewVehicle
     {
         private eVehicleType vehicle;
-
-      /*  public Vehicle CreateVehicle(string i_ModelName, string i_LicensePlate, float i_EnergyLeft,
+        /*
+        public Vehicle CreateVehicle(string i_ModelName, string i_LicensePlate, float i_EnergyLeft,
             string i_VehicleType, List<string> i_VehicleExtraData)
         {
             Vehicle newVehicle = null;
@@ -42,10 +42,10 @@ namespace Ex03.GarageLogic
             return newVehicle;
 
         }
-      */
+      
+        */
 
-
-        public Car CreateCar(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, string i_AmountOfDoors)
+        public Car CreateCar(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, int i_AmountOfDoors)
         {
             return new Car( i_ModelName, i_LicensePlate, i_EnergyLeft, i_CarColor,i_AmountOfDoors);
         }

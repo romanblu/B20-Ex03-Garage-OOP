@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private Color carColor;
         private DoorsAmount amountOfDoors;
         private GasTank gasTank = new GasTank(GasTank.Gas.Octan96, 60);
-        private List<Wheel> wheels = new List<Wheel>();
+        
         public Color CarColor{ get{return carColor;}set{this.carColor = value;} }
         public DoorsAmount NumberOfDoors { get { return this.amountOfDoors; } set { this.amountOfDoors = value; } }
 
@@ -27,9 +27,9 @@ namespace Ex03.GarageLogic
             
             for(int i = 0; i < 4; i++)
             {
-                wheels.Add(new Wheel(32));
+               
+                base.Wheels.Add(new Wheel(32));
             }
-
         }
 
         

@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private License licenseType;
         private int engineVolume;
         private GasTank gasTank = new GasTank(GasTank.Gas.Octan95, 7);
-        private List<Wheel> wheels = new List<Wheel>();
+        //private List<Wheel> wheels = new List<Wheel>();
 
         public License LicenseType{ get { return this.licenseType; } set { this.licenseType = value; }  }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
 
             for (int i = 0; i < 2; i++)
             {
-                wheels.Add(new Wheel(30));
+                base.Wheels.Add(new Wheel(30));
             }
         }
 

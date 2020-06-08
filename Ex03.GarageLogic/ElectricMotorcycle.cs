@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private License licenseType;
         private int engineVolume;
         private Battery battery = new Battery(1.2f);
-        private List<Wheel> wheels = new List<Wheel>();
+        //private List<Wheel> wheels = new List<Wheel>();
 
         public License LicenseType { get { return this.licenseType; } set { this.licenseType = value; } }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
@@ -21,6 +21,11 @@ namespace Ex03.GarageLogic
         {
             this.licenseType = licenseType;
             this.engineVolume = engineVolume;
+
+            for (int i = 0; i < 2; i++)
+            {
+                base.Wheels.Add(new Wheel(30));
+            }
         }
 
         public enum License

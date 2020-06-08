@@ -26,7 +26,15 @@ namespace Ex03.GarageLogic
 
         public  void Inflate(float i_AirPressureToAdd)
         {
-            // the method wiil change the current air pressure while its not acceding the max air pressure.
+            if(currentAirPressure + i_AirPressureToAdd <= maxAirPressure)
+            {
+                currentAirPressure += i_AirPressureToAdd;
+            }
+            else
+            {
+                //throw exception 
+
+            }
         }
     }
 }

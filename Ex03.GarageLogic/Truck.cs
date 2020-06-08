@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private bool dangerousSubstances;
         private int trunkCapacity;
         private GasTank gasTank = new GasTank(GasTank.Gas.Soler, 120);
-        private List<Wheel> wheels = new List<Wheel>();
+        //private List<Wheel> wheels = new List<Wheel>();
         public bool DangerousSubstances { get { return this.dangerousSubstances} set { this.dangerousSubstances = value; } }
         public int TrunkCapacity { get { return this.trunkCapacity; } set { this.trunkCapacity = value; } }
 
@@ -23,7 +23,7 @@ namespace Ex03.GarageLogic
 
             for(int i = 0; i < 16; i++)
             {
-                wheels.Add(new Wheel(28));
+                base.Wheels.Add(new Wheel(28));
             }
 
         }
