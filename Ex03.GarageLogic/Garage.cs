@@ -34,6 +34,7 @@ namespace Ex03.GarageLogic
                 currentCustomer.phoneNumber = i_PhoneNumber;
                 currentCustomer.status = i_Status;
                 customersList.Add(currentCustomer);
+
             }
             
         }
