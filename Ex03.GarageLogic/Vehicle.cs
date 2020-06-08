@@ -16,12 +16,12 @@ namespace Ex03.GarageLogic
         public string Model { get { return this.modelName; } set { this.modelName = value; } }//The method returns and sets the value of modelName
         public string LicencePlate { get { return licensePlate; } set { licensePlate = value; } }// The method returns and sets the value of licencePlate
 
-        public Vehicle(string I_ModelName, string i_LicenseNumber, float i_EnergyLeft, List<Wheel> i_Wheels)
+        public Vehicle(string I_ModelName, string i_LicenseNumber, float i_EnergyLeft)
         {
             this.modelName = I_ModelName;
             this.licensePlate = i_LicenseNumber;
             this.energyLeft = i_EnergyLeft;
-            this.wheels = i_Wheels;
+            
         }
     }
 }

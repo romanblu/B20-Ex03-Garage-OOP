@@ -11,13 +11,13 @@ namespace Ex03.GarageLogic
         private Color carColor;
         private DoorsAmount numberOfDoors;
         private GasTank gasTank = new GasTank(GasTank.Gas.Octan96, 60);
-
+        private List<Wheel> wheels;
         public Color CarColor{ get{return carColor;}set{this.carColor = value;} }
         public DoorsAmount NumberOfDoors { get { return this.numberOfDoors; } set { this.numberOfDoors = value; } }
 
         
-        public Car(string model, string licenseNumber, float energyLeft, List<Wheel> wheels, Color color, DoorsAmount numberOfDoors)
-            : base(model, licenseNumber, energyLeft, wheels)
+        public Car(string model, string licenseNumber, float energyLeft, Color color, DoorsAmount numberOfDoors)
+            : base(model, licenseNumber, energyLeft)
         {
             this.carColor = color;
             this.numberOfDoors = numberOfDoors;

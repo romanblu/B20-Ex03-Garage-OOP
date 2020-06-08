@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
             Vehicle newVehicle = null;
             if (i_VehicleType == "Car")
             {
-                newVehicle = new Car(i_ModelName, i_LicensePlate, i_EnergyLeft, i_Wheels);
+                newVehicle = new Car(i_ModelName, i_LicensePlate, i_EnergyLeft);
             }
             else if (i_VehicleType == "Electric Car")
             {
