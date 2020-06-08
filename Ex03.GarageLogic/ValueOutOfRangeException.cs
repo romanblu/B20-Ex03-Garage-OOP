@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class ValueOutOfRangeException
+    class ValueOutOfRangeException : Exception
     {
+        private float MaxValue;
+        private float MinValue;
     }
 }
