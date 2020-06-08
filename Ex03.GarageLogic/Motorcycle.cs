@@ -15,15 +15,15 @@ namespace Ex03.GarageLogic
         public License LicenseType{ get { return this.licenseType; } set { this.licenseType = value; }  }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
 
-        public Motorcycle(string model, string licenseNumber, float energyLeft, List<Wheel> wheels, License licenseType, int engineVolume)
-            :base(model,licenseNumber,energyLeft,wheels)
+        public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, List<Wheel> i_Wheels, License i_LicenseType, int i_EngineVolume)
+            :base(i_ModelName, i_LicenseNumber, i_EnergyLeft, i_Wheels)
         {
-            this.licenseType = licenseType;
-            this.engineVolume = engineVolume;
+            this.licenseType = i_LicenseType;
+            this.engineVolume = i_EngineVolume;
 
             for (int i = 0; i < 2; i++)
             {
-                wheels.Add(new Wheel(30));
+                i_Wheels.Add(new Wheel(30));
             }
         }
 

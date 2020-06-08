@@ -12,16 +12,18 @@ namespace Ex03.GarageLogic
         private float currentAirPressure;//The current air pressure there is in the wheels
         private float maxAirPressure;//The maximum air pressure that the manufacturer determined for the wheels 
 
-        public Wheel(float maxAirPressure)
+        public Wheel(float i_MaxAirPressure)
         {
             this.currentAirPressure = maxAirPressure; 
-            this.maxAirPressure = maxAirPressure;
+            this.maxAirPressure = i_MaxAirPressure;
         }
-        public Wheel(float currentAirPressure, float maxAirPressure, string manufacturerName)
+
+        //Construct a wheel
+        public Wheel(float i_CurrentAirPressure, float i_MaxAirPressure, string i_ManufacturerName)
         {
-            this.currentAirPressure = currentAirPressure;
-            this.maxAirPressure = maxAirPressure;
-            this.manufacturerName = manufacturerName;
+            this.currentAirPressure = i_CurrentAirPressure;
+            this.maxAirPressure = i_MaxAirPressure;
+            this.manufacturerName = i_ManufacturerName;
         }
         public static void Inflate(float i_AirPressureToAdd)
         {
