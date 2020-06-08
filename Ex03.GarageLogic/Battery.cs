@@ -21,12 +21,12 @@ namespace Ex03.GarageLogic
         }
 
         public bool Recharged(float i_HoursAmount) 
-        { 
-            if(timeLeft + i_HoursAmount <= this.timeCapacity)
+        {
+            if (timeLeft + i_HoursAmount <= this.timeCapacity)
             {
                 this.timeLeft += i_HoursAmount;
                 return true;
-            }
+            }   
             return false;
         }
 
