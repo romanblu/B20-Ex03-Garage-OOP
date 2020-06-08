@@ -16,10 +16,10 @@ namespace Ex03.GarageLogic
         public License LicenseType { get { return this.licenseType; } set { this.licenseType = value; } }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
 
-        public ElectricMotorcycle(string model, string licenseNumber, float energyLeft, License licenseType, int engineVolume)
+        public ElectricMotorcycle(string model, string licenseNumber, float energyLeft, string licenseType, int engineVolume)
             : base(model, licenseNumber, energyLeft )
         {
-            this.licenseType = licenseType;
+            this.licenseType = (License)Enum.Parse(typeof(License), licenseType);
             this.engineVolume = engineVolume;
 
             for (int i = 0; i < 2; i++)

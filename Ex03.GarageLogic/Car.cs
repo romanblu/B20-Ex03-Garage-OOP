@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             Red, 
             White,
             Black,
-            Silver,
+            Silver
         }
     }
 }

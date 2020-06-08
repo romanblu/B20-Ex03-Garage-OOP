@@ -50,10 +50,16 @@ namespace Ex03.GarageLogic
             return new Car( i_ModelName, i_LicensePlate, i_EnergyLeft, i_CarColor,i_AmountOfDoors);
         }
 
-        public Motorcycle CreateMotorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, Motorcycle.License i_LicenseType, int i_EngineVolume)
+        public Motorcycle CreateMotorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, string i_LicenseType, int i_EngineVolume)
         {
             return new Motorcycle(i_ModelName, i_LicenseNumber, i_EnergyLeft, i_LicenseType, i_EngineVolume);
         }
+
+        public ElectricMotorcycle CreateElectricMotorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, string i_LicenseType, int i_EngineVolume)
+        {
+            return new ElectricMotorcycle(i_ModelName, i_LicenseNumber, i_EnergyLeft, i_LicenseType, i_EngineVolume);
+        }
+
         public enum eVehicleType
         {
             Car,

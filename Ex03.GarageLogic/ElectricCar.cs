@@ -18,11 +18,11 @@ namespace Ex03.GarageLogic
         
         public DoorsAmount NumberOfDoors { get { return this.numberOfDoors; } set { this.numberOfDoors = value; } }
         
-        public ElectricCar(string model, string licenseNumber, float energyLeft, Color color, DoorsAmount numberOfDoors)
+        public ElectricCar(string model, string licenseNumber, float energyLeft, string color, int numberOfDoors)
             : base(model, licenseNumber, energyLeft)
         {
-            this.carColor = color;
-            this.numberOfDoors = numberOfDoors;
+            this.carColor = (Color)Enum.Parse(typeof(Color) ,color);
+            this.numberOfDoors = (DoorsAmount)numberOfDoors;
             
 
             for (int i = 0; i < 4; i++)
@@ -47,7 +47,7 @@ namespace Ex03.GarageLogic
             Red,
             White,
             Black,
-            Silver
+            Silver 
         }
     }
 }
