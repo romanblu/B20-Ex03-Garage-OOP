@@ -11,19 +11,20 @@ namespace Ex03.GarageLogic
         private License licenseType;
         private int engineVolume;
         private GasTank gasTank = new GasTank(GasTank.Gas.Octan95, 7);
+        private List<Wheel> wheels = new List<Wheel>();
 
         public License LicenseType{ get { return this.licenseType; } set { this.licenseType = value; }  }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
 
-        public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, List<Wheel> i_Wheels, License i_LicenseType, int i_EngineVolume)
-            :base(i_ModelName, i_LicenseNumber, i_EnergyLeft, i_Wheels)
+        public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, License i_LicenseType, int i_EngineVolume)
+            :base(i_ModelName, i_LicenseNumber, i_EnergyLeft)
         {
             this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
 
             for (int i = 0; i < 2; i++)
             {
-                i_Wheels.Add(new Wheel(30));
+                wheels.Add(new Wheel(30));
             }
         }
 

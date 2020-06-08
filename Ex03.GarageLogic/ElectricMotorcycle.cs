@@ -11,12 +11,13 @@ namespace Ex03.GarageLogic
         private License licenseType;
         private int engineVolume;
         private Battery battery = new Battery(1.2f);
+        private List<Wheel> wheels = new List<Wheel>();
 
         public License LicenseType { get { return this.licenseType; } set { this.licenseType = value; } }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
 
-        public ElectricMotorcycle(string model, string licenseNumber, float energyLeft, List<Wheel> wheels, License licenseType, int engineVolume)
-            : base(model, licenseNumber, energyLeft, wheels)
+        public ElectricMotorcycle(string model, string licenseNumber, float energyLeft, License licenseType, int engineVolume)
+            : base(model, licenseNumber, energyLeft )
         {
             this.licenseType = licenseType;
             this.engineVolume = engineVolume;

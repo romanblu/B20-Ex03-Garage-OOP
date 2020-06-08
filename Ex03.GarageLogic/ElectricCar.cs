@@ -9,16 +9,17 @@ namespace Ex03.GarageLogic
     class ElectricCar : Vehicle
     {
         private Color carColor;
-        private List<Wheel> wheels;
+       
         private DoorsAmount numberOfDoors;
         private Battery battery = new Battery(2.1f);
+        private List<Wheel> wheels = new List<Wheel>();
 
         public Color CarColor { get { return carColor; } set { this.carColor = value; } }
         
         public DoorsAmount NumberOfDoors { get { return this.numberOfDoors; } set { this.numberOfDoors = value; } }
         
-        public ElectricCar(string model, string licenseNumber, float energyLeft, List<Wheel> wheels, Color color, DoorsAmount numberOfDoors)
-            : base(model, licenseNumber, energyLeft, wheels)
+        public ElectricCar(string model, string licenseNumber, float energyLeft, Color color, DoorsAmount numberOfDoors)
+            : base(model, licenseNumber, energyLeft)
         {
             this.carColor = color;
             this.numberOfDoors = numberOfDoors;

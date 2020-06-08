@@ -11,13 +11,13 @@ namespace Ex03.GarageLogic
         private Color carColor;
         private DoorsAmount amountOfDoors;
         private GasTank gasTank = new GasTank(GasTank.Gas.Octan96, 60);
-
+        private List<Wheel> wheels = new List<Wheel>();
         public Color CarColor{ get{return carColor;}set{this.carColor = value;} }
         public DoorsAmount NumberOfDoors { get { return this.amountOfDoors; } set { this.amountOfDoors = value; } }
 
         
-        public Car(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, List<Wheel> i_Wheels, string i_CarColor, string i_AmountOfDoors)
-            : base(i_ModelName, i_LicensePlate, i_EnergyLeft, i_Wheels)
+        public Car(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, string i_AmountOfDoors)
+            : base(i_ModelName, i_LicensePlate, i_EnergyLeft)
         {
             this.carColor = (Color)Enum.Parse(typeof(Color), i_CarColor);
             this.amountOfDoors = (DoorsAmount)Enum.Parse(typeof(DoorsAmount), i_AmountOfDoors);
@@ -25,7 +25,7 @@ namespace Ex03.GarageLogic
             
             for(int i = 0; i < 4; i++)
             {
-                i_Wheels.Add(new Wheel(32));
+                wheels.Add(new Wheel(32));
             }
 
         }

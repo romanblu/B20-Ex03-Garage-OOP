@@ -11,12 +11,12 @@ namespace Ex03.GarageLogic
         private bool dangerousSubstances;
         private int trunkCapacity;
         private GasTank gasTank = new GasTank(GasTank.Gas.Soler, 120);
-
+        private List<Wheel> wheels = new List<Wheel>();
         public bool DangerousSubstances { get { return this.dangerousSubstances} set { this.dangerousSubstances = value; } }
         public int TrunkCapacity { get { return this.trunkCapacity; } set { this.trunkCapacity = value; } }
 
-        public Truck(string model, string licenseNumber, float energyLeft, List<Wheel> wheels, bool dangerousSubstances, int trunkCapacity)
-        : base(model, licenseNumber, energyLeft, wheels)
+        public Truck(string model, string licenseNumber, float energyLeft, bool dangerousSubstances, int trunkCapacity)
+        : base(model, licenseNumber, energyLeft)
         {
             this.dangerousSubstances = dangerousSubstances;
             this.trunkCapacity = trunkCapacity;
