@@ -12,6 +12,7 @@ namespace Ex03.GarageLogic
 
         public void InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
         {
+
             bool carExists = false;
             GarageCustomer currentCustomer = new GarageCustomer();
             foreach (GarageCustomer customer in customersList)
