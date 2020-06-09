@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -66,17 +67,18 @@ namespace Ex03.GarageLogic
             return customers;
         }
 
-        //3 -Method - changes the status of the specific vehicke in the garage - by license plate
+        //3 -Method - changes the status of the specific vehicle in the garage - by license plate
         public void ChangeStatus(int i_LicenseNumber, Status i_NewStatus)
         {
             GarageCustomer currentCustomer = new GarageCustomer();//check
+
             foreach (GarageCustomer customer in this.customersList)
             {
                 if (customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
                 {
                     currentCustomer.status = i_NewStatus;
                 }
-            }
+            } // add exception for which theres no such plate number 
         }
 
         public void InflateToMax(int i_LicenseNumber)
@@ -96,23 +98,16 @@ namespace Ex03.GarageLogic
         }
 
         // 5- The method refuel vehicle on gas
-        public void Refuel(int i_LicenseNumber, string i_FuelType, float i_FuelToAdd)
+        public void Refuel(string i_LicenseNumber, string i_FuelType, float i_FuelToAdd)
         {
-            GarageCustomer currentCustomer = new GarageCustomer();
-            foreach (GarageCustomer customer in this.customersList) 
-            { 
-              if (customer.vehicle is Car && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString())) // if the current vehicle is A car on fuel
-              {
-                 
-              }
-              else if (currentCustomer.vehicle is Motorcycle && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
-              {
+            GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
+            if (customer.vehicle.GasVehicle)
+            {
 
-              }
-              else if (currentCustomer.vehicle is Truck && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
-              {
-
-              }
+            }
+            else
+            {
+                // throw wrong car exeption
             }
         }
 
@@ -132,6 +127,24 @@ namespace Ex03.GarageLogic
                 }
             }
         }
+
+        private  GarageCustomer FindCarInGarage(string i_LicensePlate)
+        {
+            GarageCustomer customerToReturn;
+            foreach(GarageCustomer customer in customersList)
+            {
+                if(customer.vehicle.LicensePlate == i_LicensePlate)
+                {
+                    customerToReturn = customer;
+                }
+            }
+
+            throw new Exception();
+            // throw customer not found exception
+            
+        }
+
+
         struct GarageCustomer
         {
             public Vehicle vehicle;

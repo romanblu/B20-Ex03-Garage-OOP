@@ -11,8 +11,6 @@ namespace Ex03.GarageLogic
         private Color carColor;
        
         private DoorsAmount numberOfDoors;
-        private Battery battery = new Battery(2.1f);
-        //private List<Wheel> wheels = new List<Wheel>();
 
         public Color CarColor { get { return carColor; } set { this.carColor = value; } }
         
@@ -21,9 +19,10 @@ namespace Ex03.GarageLogic
         public ElectricCar(string model, string licenseNumber, float energyLeft, string color, int numberOfDoors)
             : base(model, licenseNumber, energyLeft)
         {
+            base.GasVehicle = false;
             this.carColor = (Color)Enum.Parse(typeof(Color) ,color);
             this.numberOfDoors = (DoorsAmount)numberOfDoors;
-            
+            base.Battery = new Battery(2.1f);            
 
             for (int i = 0; i < 4; i++)
             {

@@ -12,7 +12,14 @@ namespace Ex03.GarageLogic
         private string licensePlate;// The specific license plate of the vehicle
         private float energyLeft;// The amount of energy left in the vehicle
         private List<Wheel> wheels;
-        
+        private bool gasVehicle;
+        private GasTank gasTank;
+        private Battery battery;
+
+        public GasTank GasTank { get { return gasTank; } set { gasTank = value; } }
+        public Battery Battery { get { return battery; } set { battery = value; } }
+        public bool GasVehicle { get { return gasVehicle; } set { gasVehicle = value; } }
+
         public List<Wheel> Wheels { get { return this.wheels; }  }
 
         public string Model { get { return this.modelName; } set { this.modelName = value; } }//The method returns and sets the value of modelName
