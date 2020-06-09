@@ -9,9 +9,9 @@ namespace Ex03.GarageLogic
     class CreateNewVehicle
     {
         private eVehicleType vehicle;
-        /*
+        
         public Vehicle CreateVehicle(string i_ModelName, string i_LicensePlate, float i_EnergyLeft,
-            string i_VehicleType, List<string> i_VehicleExtraData)
+            string i_VehicleType, List<object> i_VehicleExtraData)
         {
             Vehicle newVehicle = null;
             if (i_VehicleType == "Car")
@@ -52,8 +52,8 @@ namespace Ex03.GarageLogic
             Truck
 
         }
-        */
-
+        
+        /*
         public Car CreateCar(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, int i_AmountOfDoors)
         {
             return new Car( i_ModelName, i_LicensePlate, i_EnergyLeft, i_CarColor,i_AmountOfDoors);
@@ -77,6 +77,6 @@ namespace Ex03.GarageLogic
             return new Truck(i_ModelName, i_LicenseNumber, i_EnergyLeft, i_DangerousSubstances, i_TrunkCapacity);
         }
 
-        
+        */
     }
 }

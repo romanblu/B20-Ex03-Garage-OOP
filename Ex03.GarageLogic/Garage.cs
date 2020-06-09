@@ -11,9 +11,9 @@ namespace Ex03.GarageLogic
         private List<GarageCustomer> customersList = new List<GarageCustomer>();
 
         //1 -Method - insert a new vehicle to the garage 
-        public void InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
+        public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
         {
-
+            // we didnt insert the car successfully , well show a message in the UI
             bool carExists = false;
             GarageCustomer currentCustomer = new GarageCustomer();
             foreach (GarageCustomer customer in customersList)
@@ -27,6 +27,7 @@ namespace Ex03.GarageLogic
             if (carExists == true)
             {
                 currentCustomer.status = Status.Repairing;
+                return false; 
             }
             else
             {
@@ -35,15 +36,34 @@ namespace Ex03.GarageLogic
                 currentCustomer.phoneNumber = i_PhoneNumber;
                 currentCustomer.status = i_Status;
                 customersList.Add(currentCustomer);
+                return true;
 
             }
             
         }
 
         //2 -present a list of license plats of the vehicles in the garage
-        public void LicenseList()
+        public List<string> LicenseList(Status i_Status)
         {
-
+            List<string> customers = new List<string>();
+            if(i_Status != null)
+            {
+                foreach(GarageCustomer customer in customersList)
+                {
+                    if(customer.status == i_Status)
+                    {
+                        customers.Add(customer.vehicle.LicensePlate);
+                    }
+                }
+            }
+            else
+            {
+                foreach(GarageCustomer customer in customersList)
+                {
+                    customers.Add(customer.vehicle.LicensePlate);
+                }
+            }
+            return customers;
         }
 
         //3 -Method - changes the status of the specific vehicke in the garage - by license plate
@@ -59,7 +79,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        // 4-
         public void InflateToMax(int i_LicenseNumber)
         {
             GarageCustomer currentCustomer = new GarageCustomer();//check - לבדוק האם הכלי רכב יכול להיות גם רכב וגם אופנוע
