@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
     {
         private List<GarageCustomer> customersList = new List<GarageCustomer>();
 
-        //Method - insert a new vehicle to the garage 
+        //1 -Method - insert a new vehicle to the garage 
         public void InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
         {
 
@@ -40,13 +40,13 @@ namespace Ex03.GarageLogic
             
         }
 
-        //present a list of license plats of the vehicles in the garage
+        //2 -present a list of license plats of the vehicles in the garage
         public void LicenseList()
         {
 
         }
 
-        //Method - changes the status of the specific vehicke in the garage - by license plate
+        //3 -Method - changes the status of the specific vehicke in the garage - by license plate
         public void ChangeStatus(int i_LicenseNumber, Status i_NewStatus)
         {
             GarageCustomer currentCustomer = new GarageCustomer();//check
@@ -59,7 +59,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-
+        // 4-
         public void InflateToMax(int i_LicenseNumber)
         {
             GarageCustomer currentCustomer = new GarageCustomer();//check - לבדוק האם הכלי רכב יכול להיות גם רכב וגם אופנוע
@@ -76,11 +76,43 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public void Refuel(int i_LicensePlate, string i_FuelType, float i_FuelToAdd)
+        // 5- The method refuel vehicle on gas
+        public void Refuel(int i_LicenseNumber, string i_FuelType, float i_FuelToAdd)
         {
+            GarageCustomer currentCustomer = new GarageCustomer();
+            foreach (GarageCustomer customer in this.customersList) 
+            { 
+              if (customer.vehicle is Car && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString())) // if the current vehicle is A car on fuel
+              {
+                 
+              }
+              else if (currentCustomer.vehicle is Motorcycle && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
+              {
 
+              }
+              else if (currentCustomer.vehicle is Truck && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
+              {
+
+              }
+            }
         }
 
+        // 6 - the method recharges the specific vehicle
+        public void Recharged(int i_LicenseNumber, float i_FuelToAdd)
+        {
+            GarageCustomer currentCustomer = new GarageCustomer();
+            foreach (GarageCustomer customer in this.customersList)
+            {
+                if (customer.vehicle is ElectricCar && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString())) // if the current vehicle is A car on fuel
+                {
+
+                }
+                else if (currentCustomer.vehicle is ElectricMotorcycle && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
+                {
+
+                }
+            }
+        }
         struct GarageCustomer
         {
             public Vehicle vehicle;

@@ -14,6 +14,7 @@ namespace Ex03.GarageLogic
         
         public Color CarColor{ get{return carColor;}set{this.carColor = value;} }
         public DoorsAmount NumberOfDoors { get { return this.amountOfDoors; } set { this.amountOfDoors = value; } }
+        public GasTank GasTank { get { return gasTank; } set{ gasTank = value;} }
 
         
         public Car(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, int i_AmountOfDoors)
@@ -39,7 +40,7 @@ namespace Ex03.GarageLogic
             Two = 2,
             Three = 3,
             Four = 4,
-            Five = 5,
+            Five = 5
         }
 
         public enum Color
