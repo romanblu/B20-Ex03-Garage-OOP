@@ -81,19 +81,13 @@ namespace Ex03.GarageLogic
             } // add exception for which theres no such plate number 
         }
 
-        public void InflateToMax(int i_LicenseNumber)
+        public void InflateToMax(string i_LicenseNumber)
         {
-            GarageCustomer currentCustomer = new GarageCustomer();//check - לבדוק האם הכלי רכב יכול להיות גם רכב וגם אופנוע
-            foreach (GarageCustomer customer in this.customersList)
+            GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
+            List<Wheel> wheelsToInflate = customer.vehicle.Wheels;
+            foreach(Wheel wheel in wheelsToInflate)
             {
-                if (customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
-                {
-                    List<Wheel> wheelsToInflate = customer.vehicle.Wheels;
-                    foreach(Wheel wheel in wheelsToInflate)
-                    {
-                        wheel.Inflate(wheel.MaxAirPressure - wheel.CurrentAirPressure); // inflates to the max 
-                    }
-                }
+                wheel.Inflate(wheel.MaxAirPressure - wheel.CurrentAirPressure); // inflates to the max 
             }
         }
 
@@ -101,30 +95,48 @@ namespace Ex03.GarageLogic
         public void Refuel(string i_LicenseNumber, string i_FuelType, float i_FuelToAdd)
         {
             GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
-            if (customer.vehicle.GasVehicle)
+            GasTank gasTank = customer.vehicle.GasTank;
+            if (gasTank != null)
             {
-
+                if ((string)Enum.Parse(typeof(GasTank.Gas), gasTank.GasType) != i_FuelToAdd) 
+                {
+                    // throw wrong gas exception
+                }
+               if(gasTank.Amount + i_FuelToAdd <= gasTank.Capacity)
+                {
+                    gasTank.Amount += i_FuelToAdd;
+                }
+                else
+                {
+                    //throw too much gas exception
+                }
             }
             else
             {
-                // throw wrong car exeption
+                // throw wrong car exception
             }
         }
 
         // 6 - the method recharges the specific vehicle
-        public void Recharged(int i_LicenseNumber, float i_FuelToAdd)
+        public void Recharged(string i_LicenseNumber, float i_TimeToAdd)
         {
-            GarageCustomer currentCustomer = new GarageCustomer();
-            foreach (GarageCustomer customer in this.customersList)
+            GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
+            Battery battery = customer.vehicle.Battery;
+            if (battery != null)
             {
-                if (customer.vehicle is ElectricCar && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString())) // if the current vehicle is A car on fuel
+                
+                if (battery.TimeLeft + i_TimeToAdd <= battery.TimeCapacity)
                 {
-
+                    battery.TimeLeft += i_TimeToAdd;
                 }
-                else if (currentCustomer.vehicle is ElectricMotorcycle && customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
+                else
                 {
-
+                    //throw overcharge exception
                 }
+            }
+            else
+            {
+                // throw wrong car exception
             }
         }
 
@@ -141,7 +153,6 @@ namespace Ex03.GarageLogic
 
             throw new Exception();
             // throw customer not found exception
-            
         }
 
 
