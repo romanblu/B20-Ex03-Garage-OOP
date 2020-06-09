@@ -24,7 +24,7 @@ namespace Ex03.GarageLogic
         }
 
 
-        public  void Inflate(float i_AirPressureToAdd)
+        public void Inflate(float i_AirPressureToAdd)
         {
             if(currentAirPressure + i_AirPressureToAdd <= maxAirPressure)
             {

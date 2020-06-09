@@ -8,9 +8,9 @@ namespace Ex03.GarageLogic
 {
     abstract class Vehicle
     {
-        private string modelName;
-        private string licensePlate;
-        private float energyLeft;
+        private string modelName;// The specific model name of the vehicle
+        private string licensePlate;// The specific license plate of the vehicle
+        private float energyLeft;// The amount of energy left in the vehicle
         private List<Wheel> wheels;
         
         public List<Wheel> Wheels { get { return this.wheels; }  }
