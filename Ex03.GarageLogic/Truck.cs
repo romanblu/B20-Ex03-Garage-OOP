@@ -9,11 +9,11 @@ namespace Ex03.GarageLogic
     class Truck : Vehicle
     {
         private bool dangerousSubstances;
-        private int trunkCapacity;
+        private float trunkCapacity;
         public bool DangerousSubstances { get { return this.dangerousSubstances; } set { this.dangerousSubstances = value; } }
-        public int TrunkCapacity { get { return this.trunkCapacity; } set { this.trunkCapacity = value; } }
+        public float TrunkCapacity { get { return this.trunkCapacity; } set { this.trunkCapacity = value; } }
 
-        public Truck(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, bool i_DangerousSubstances, int i_TrunkCapacity)
+        public Truck(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, bool i_DangerousSubstances, float i_TrunkCapacity)
         : base(i_ModelName, i_LicenseNumber, i_EnergyLeft)
         {
             base.GasVehicle = true;
