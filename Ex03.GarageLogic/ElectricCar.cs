@@ -9,7 +9,6 @@ namespace Ex03.GarageLogic
     class ElectricCar : Vehicle
     {
         private Color carColor;
-       
         private DoorsAmount amountOfDoors;
 
         public Color CarColor { get { return carColor; } set { this.carColor = value; } }

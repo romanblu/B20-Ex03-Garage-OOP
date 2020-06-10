@@ -10,7 +10,7 @@ namespace Ex03.GarageLogic
     {
         private bool dangerousSubstances;
         private int trunkCapacity;
-        public bool DangerousSubstances { get { return this.dangerousSubstances} set { this.dangerousSubstances = value; } }
+        public bool DangerousSubstances { get { return this.dangerousSubstances; } set { this.dangerousSubstances = value; } }
         public int TrunkCapacity { get { return this.trunkCapacity; } set { this.trunkCapacity = value; } }
 
         public Truck(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, bool i_DangerousSubstances, int i_TrunkCapacity)

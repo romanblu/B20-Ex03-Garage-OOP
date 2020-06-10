@@ -10,8 +10,9 @@ namespace Ex03.GarageLogic
     {
         private eVehicleType vehicle;
         
+        //אם עשינו כבר שינוי לסטרינג במחלקות של רכב אופנוע וכו אז אין צורך שהרשימה  vehicleextradata  תיהיה מסוג object
         public Vehicle CreateVehicle(string i_ModelName, string i_LicensePlate, float i_EnergyLeft,
-            string i_VehicleType, List<object> i_VehicleExtraData)
+            string i_VehicleType, List<string> i_VehicleExtraData)
         {
             Vehicle newVehicle = null;
             if (i_VehicleType == "Car")
