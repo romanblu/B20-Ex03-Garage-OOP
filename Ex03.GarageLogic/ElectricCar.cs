@@ -10,18 +10,18 @@ namespace Ex03.GarageLogic
     {
         private Color carColor;
        
-        private DoorsAmount numberOfDoors;
+        private DoorsAmount amountOfDoors;
 
         public Color CarColor { get { return carColor; } set { this.carColor = value; } }
         
-        public DoorsAmount NumberOfDoors { get { return this.numberOfDoors; } set { this.numberOfDoors = value; } }
+        public DoorsAmount NumberOfDoors { get { return this.amountOfDoors; } set { this.amountOfDoors = value; } }
         
-        public ElectricCar(string model, string licenseNumber, float energyLeft, string color, int numberOfDoors)
-            : base(model, licenseNumber, energyLeft)
+        public ElectricCar(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, int i_AmountOfDoors)
+            : base(i_ModelName, i_LicensePlate, i_EnergyLeft)
         {
             base.GasVehicle = false;
-            this.carColor = (Color)Enum.Parse(typeof(Color) ,color);
-            this.numberOfDoors = (DoorsAmount)numberOfDoors;
+            this.carColor = (Color)Enum.Parse(typeof(Color) , i_CarColor);
+            this.amountOfDoors = (DoorsAmount)i_AmountOfDoors;
             base.Battery = new Battery(2.1f);            
 
             for (int i = 0; i < 4; i++)

@@ -14,10 +14,10 @@ namespace Ex03.GarageLogic
         public float TimeLeft { get { return timeLeft; } set { timeLeft = value; } }
         public float TimeCapacity { get { return timeCapacity; } set { timeCapacity = value; } }
 
-        public Battery(float timeCapacity)
+        public Battery(float i_TimeCapacity)
         {
             this.timeLeft = timeCapacity; //the battery initializes with full capacity
-            this.timeCapacity = timeCapacity;
+            this.timeCapacity = i_TimeCapacity;
         }
 
         public bool Recharged(float i_HoursAmount) 

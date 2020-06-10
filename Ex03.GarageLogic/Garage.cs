@@ -98,18 +98,35 @@ namespace Ex03.GarageLogic
             GasTank gasTank = customer.vehicle.GasTank;
             if (gasTank != null)
             {
-                if ((string)Enum.Parse(typeof(GasTank.Gas), gasTank.GasType) != i_FuelToAdd) 
+                //(GasTank.Gas)Enum.Parse(typeof(GasTank.Gas), i_FuelType)
+                //gasTank.GetType != i_FuelToAdd
+                if (!gasTank.GasType.ToString().Equals(i_FuelType))
                 {
-                    // throw wrong gas exception
+                    throw new ArgumentException("Not the same fuel type", i_FuelType); // throw wrong gas exception
                 }
-               if(gasTank.Amount + i_FuelToAdd <= gasTank.Capacity)
-                {
-                    gasTank.Amount += i_FuelToAdd;
-                }
+
                 else
                 {
-                    //throw too much gas exception
+                    try
+                    {
+                        gasTank.CurrentAmount += i_FuelToAdd;
+                    }
+                    catch(ValueOutOfRangeException outOfRange)
+                    {
+                        outOfRange = new ValueOutOfRangeException(gasTank.MaxCapacity, 0);//check - i gave the max fuel of the vehicle with the min amount
+                        outOfRange.throwExceptionEror(i_FuelToAdd);// throws a message
+                    }
                 }
+              //  if(gasTank.Amount + i_FuelToAdd <= gasTank.Capacity)
+               // {
+                  //  try { 
+                   //     gasTank.Amount += i_FuelToAdd;
+                   // }
+                   // catch
+                   // {
+
+                   // }
+                //}
             }
             else
             {

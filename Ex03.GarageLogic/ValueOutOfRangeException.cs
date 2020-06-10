@@ -23,6 +23,11 @@ namespace Ex03.GarageLogic
         {
 
         }
+        public ValueOutOfRangeException(float i_MaxValue, float i_MinValue)//check
+        {
+            this.MaxValue = i_MaxValue;
+            this.MinValue = i_MinValue;
+        }
         public ValueOutOfRangeException(string message, float i_MaxValue, float i_MinValue) : this(message)
         {
             this.MaxValue = i_MaxValue;
