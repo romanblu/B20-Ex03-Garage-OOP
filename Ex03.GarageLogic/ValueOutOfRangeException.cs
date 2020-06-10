@@ -10,13 +10,9 @@ namespace Ex03.GarageLogic
     {
         private float MaxValue;
         private float MinValue;
-        public float MaxValueGet {get;} 
-        public float MinValueGet {get;}
+        public float MaxValueGet { get; } 
+        public float MinValueGet { get; }
 
-        public ValueOutOfRangeException()
-        {
-
-        }
 
         public ValueOutOfRangeException(string message) : base(message)
         {
@@ -29,7 +25,16 @@ namespace Ex03.GarageLogic
         }
         public ValueOutOfRangeException(string message, float i_MaxValue, float i_MinValue) : this(message)
         {
+            this.MaxValue = i_MaxValue;
+            this.MinValue = i_MinValue;
+        } 
 
+        public void throwExceptionEror(float i_CurrentValue)
+        {
+            if(i_CurrentValue < this.MinValue || i_CurrentValue > this.MaxValue)
+            {
+                throw new ValueOutOfRangeException("The value is out of range.", MaxValue, MinValue);
+            }
         } 
     }
 }

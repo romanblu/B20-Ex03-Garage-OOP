@@ -41,16 +41,6 @@
   <ItemGroup>
     <Compile Include="Battery.cs" />
     <Compile Include="CeateNewVehicle.cs" />
-    <Compile Include="ExceptionMassagesMax.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ExceptionMassagesMax.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ExceptionMassagesMin.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ExceptionMassagesMin.resx</DependentUpon>
-    </Compile>
     <Compile Include="Garage.cs" />
     <Compile Include="GasTank.cs" />
     <Compile Include="Motorcycle.cs" />
@@ -61,16 +51,6 @@
     <Compile Include="ValueOutOfRangeException.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="Wheel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ExceptionMassagesMax.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionMassagesMax.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ExceptionMassagesMin.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>ExceptionMassagesMin.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
