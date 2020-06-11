@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class Wheel
+    public class Wheel
     {
         private string manufacturerName;// The name of manufacturer of the wheels
         private float currentAirPressure;//The current air pressure there is in the wheels

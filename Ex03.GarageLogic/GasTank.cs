@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class GasTank
+    public class GasTank
     {
         private Gas gasType;
         private float currentAmount;

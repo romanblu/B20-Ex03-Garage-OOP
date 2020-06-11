@@ -7,9 +7,19 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class Garage
+    public class Garage
     {
         private List<GarageCustomer> customersList = new List<GarageCustomer>();
+
+        public bool VehicleExists(string i_LicenseNumber)
+        {
+            foreach( GarageCustomer customer in customersList)
+            {
+
+            }
+
+            return false;
+        }
 
         //1 -Method - insert a new vehicle to the garage 
         public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
@@ -44,10 +54,10 @@ namespace Ex03.GarageLogic
         }
 
         //2 -present a list of license plats of the vehicles in the garage
-        public List<string> LicenseList(Status i_Status)
+        public List<string> LicenseList(string i_Status)
         {
             List<string> customers = new List<string>();
-            if(i_Status != null)
+            if(i_Status != "")
             {
                 foreach(GarageCustomer customer in customersList)
                 {
@@ -68,17 +78,23 @@ namespace Ex03.GarageLogic
         }
 
         //3 -Method - changes the status of the specific vehicle in the garage - by license plate
-        public void ChangeStatus(int i_LicenseNumber, Status i_NewStatus)
+        public void ChangeStatus(string i_LicenseNumber, string i_NewStatus)
         {
-            GarageCustomer currentCustomer = new GarageCustomer();//check
-
-            foreach (GarageCustomer customer in this.customersList)
+            GarageCustomer currentCustomer = FindCarInGarage(i_LicenseNumber);
+            Status status;
+            if(!Enum.TryParse(i_NewStatus, out status))
             {
-                if (customer.vehicle.LicensePlate.Equals(i_LicenseNumber.ToString()))
-                {
-                    currentCustomer.status = i_NewStatus;
-                }
-            } // add exception for which theres no such plate number 
+                // wrong status value exception 
+            } 
+            
+            if (currentCustomer != null)
+            {
+                currentCustomer.status = i_NewStatus;
+            }
+            else
+            {
+                // throw exception 
+            }
         }
 
         public void InflateToMax(string i_LicenseNumber)
@@ -117,16 +133,7 @@ namespace Ex03.GarageLogic
                         outOfRange.throwExceptionEror(i_FuelToAdd);// throws a message
                     }
                 }
-              //  if(gasTank.Amount + i_FuelToAdd <= gasTank.Capacity)
-               // {
-                  //  try { 
-                   //     gasTank.Amount += i_FuelToAdd;
-                   // }
-                   // catch
-                   // {
 
-                   // }
-                //}
             }
             else
             {
@@ -135,7 +142,7 @@ namespace Ex03.GarageLogic
         }
 
         // 6 - the method recharges the specific vehicle
-        public void Recharged(string i_LicenseNumber, float i_TimeToAdd)
+        public void Recharge(string i_LicenseNumber, float i_TimeToAdd)
         {
             GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
             Battery battery = customer.vehicle.Battery;
@@ -157,7 +164,7 @@ namespace Ex03.GarageLogic
             }
         }
 
-        private  GarageCustomer FindCarInGarage(string i_LicensePlate)
+        public  GarageCustomer FindCarInGarage(string i_LicensePlate)
         {
             GarageCustomer customerToReturn;
             foreach(GarageCustomer customer in customersList)
@@ -167,19 +174,14 @@ namespace Ex03.GarageLogic
                     customerToReturn = customer;
                 }
             }
+            return null;
 
-            throw new Exception();
-            // throw customer not found exception
+            
         }
 
 
-        struct GarageCustomer
-        {
-            public Vehicle vehicle;
-            public string ownerName;
-            public string phoneNumber;
-            public Status status;
-        }
+
+        
         public enum Status
         {
             Repairing,

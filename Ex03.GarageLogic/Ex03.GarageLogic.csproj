@@ -42,6 +42,7 @@
     <Compile Include="Battery.cs" />
     <Compile Include="CeateNewVehicle.cs" />
     <Compile Include="Garage.cs" />
+    <Compile Include="GarageCustomer.cs" />
     <Compile Include="GasTank.cs" />
     <Compile Include="Motorcycle.cs" />
     <Compile Include="Car.cs" />

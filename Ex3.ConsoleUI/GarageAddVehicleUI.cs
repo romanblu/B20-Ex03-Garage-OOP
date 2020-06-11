@@ -17,29 +17,27 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("First lets register your vehicle, please enter the vehicle owner's name");
             string inputName = Console.ReadLine();
             vehicleData.Add(inputName);
-            // CLEAR SCREEN ................// clear screen after every input
-           // Ex3.ConsoleUI.ConsoleUtils.Screen.Clear();
+           
+           
             Console.WriteLine("Enter your phone number , in this pattern : 05?-1234567");
             string inputPhoneNumber = Console.ReadLine();
             vehicleData.Add(inputPhoneNumber);
-            // CLEAR SCREEN ................
-           // Ex3.ConsoleUI.ConsoleUtils.Screen.Clear();
+
             Console.WriteLine("Enter your license plate: a number between 6 to 8 digits");
             string inputLicensePlate = Console.ReadLine();
             vehicleData.Add(inputLicensePlate);
-            // CLEAR SCREEN ................
-           // Ex3.ConsoleUI.ConsoleUtils.Screen.Clear();
+
             Console.WriteLine("Enter your vehicle's model name:");
             string inputModedlName = Console.ReadLine();
             vehicleData.Add(inputModedlName);
-            // CLEAR SCREEN ................
-           // Ex3.ConsoleUI.ConsoleUtils.Screen.Clear();
-            Console.WriteLine("Enter the Car's remainig energy:");
+            
+            Console.WriteLine("Enter the vehicles remainig energy:");
             string inputRemainnigEnergy = Console.ReadLine();
             vehicleData.Add(inputRemainnigEnergy);
             // CLEAR SCREEN ................
            // Ex3.ConsoleUI.ConsoleUtils.Screen.Clear();
-            Console.WriteLine("Please choose your vehicle type and write it: Car(on fuel), Electric Car, Motorcycle(on fuel), Electric Motorcycle, Truck(on fuel)");
+            Console.WriteLine("Please choose your vehicle type from the list below:\n");
+            List<string> vehicleTypesGarage.GetVehiclesTypes();
             string inputVehicleType = Console.ReadLine();
             vehicleData.Add(inputVehicleType);
             // CLEAR SCREEN ................
