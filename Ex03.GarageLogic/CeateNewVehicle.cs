@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class CreateNewVehicle
+    public class CreateNewVehicle
     {
         private eVehicleType vehicle;
         
