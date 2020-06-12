@@ -14,7 +14,7 @@ namespace Ex3.ConsoleUI
         private eFunctions function;
         private List<string> currentVehicleData;
         Garage garage = new Garage();
-
+        CreateNewVehicle factory = new CreateNewVehicle();
         public GarageUI(List<string> i_CurrentVehicle)
         {
             currentVehicleData = i_CurrentVehicle;// gets a new of vehicles
@@ -86,8 +86,19 @@ namespace Ex3.ConsoleUI
             string input = Console.ReadLine();
             float energyLeft;
             float.TryParse(input, out energyLeft); // maybe change it to string and send to Logic to handle types, throw format exception
+            Console.WriteLine("Enter vehicle type");
+            string vehicleType = Console.ReadLine();
+            
+            factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft); // check if info is good 
 
-
+            List<string> extraData = factory.GetExtraData(vehicleType);
+            Console.WriteLine("Enter additional information about your " + vehicleType);
+            for(int i=0;i<extraData.Count;i++)
+            {
+                Console.WriteLine("Enter "+ extraData[i].ToLower());
+                extraData[i] = Console.ReadLine();
+            }
+            factory.FinishProduction(extraData);
 
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             input = Console.ReadLine();
