@@ -20,10 +20,11 @@ namespace Ex3.ConsoleUI
             currentVehicleData = i_CurrentVehicle;// gets a new of vehicles
         }
 
-        public void GarageFunctions() 
+        public void GarageFunctions()
         {
             Console.WriteLine("Welcome, please choose you option from the list below:");
-            Console.WriteLine("1 - to enter your car to the garage \n" +
+            Console.WriteLine("0 - Create you vehicle \n" +
+                "1 - to enter your car to the garage \n" +
                 "2 - List the vehicles in the garage \n" +
                 "3 - Change vehicle status, enter license number followed by the new status [Repairing, Fixed, Paid] \n" +
                 "4 - Inflate wheels to max \n" +
@@ -32,10 +33,13 @@ namespace Ex3.ConsoleUI
                 "7 - To get full info about your vehicle");
             string inputOption = Console.ReadLine();
             int option;
-            if(int.TryParse(inputOption,out option))
+            if (int.TryParse(inputOption, out option))
             {
                 switch (option)
                 {
+                    case 0:
+                        CreateVehicle();
+                        break;
                     case 1:
                         AddVehicle();
                         break;
@@ -71,8 +75,37 @@ namespace Ex3.ConsoleUI
         //TODO - add a new vehicle with all the new information from the userscreen
         //     - do the functions the user wants acording to his choise.
 
-        
-        public Vehicle CreateVehicle() { 
+
+        public Vehicle CreateVehicle()
+        {
+            Console.WriteLine("Enter model name");
+            string modelName = Console.ReadLine();
+            Console.WriteLine("Enter license number");
+            string licenseNumber = Console.ReadLine();
+            Console.WriteLine("Enter energy left");
+            string input = Console.ReadLine();
+            float energyLeft;
+            float.TryParse(input, out energyLeft); // maybe change it to string and send to Logic to handle types, throw format exception
+
+
+
+            Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
+            input = Console.ReadLine();
+            if(input == "yes")
+            {
+                Console.WriteLine("Enter air pressure for all wheels or enter if you want to change individually");
+                input = Console.ReadLine();
+                if (input == "")
+                {
+                    // change individually 
+                }
+                else
+                {
+                    // make garage func for changing wheel pressure
+                }
+
+            }
+             
         }
 
         private  void AddVehicle()
@@ -128,7 +161,7 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to inflate wheels");
             string licenseNumber = Console.ReadLine();
-            garage.FindCarInGarage(licenseNumber);
+            garage.FindVehicleInGarage(licenseNumber);
             // throw exception or handle it diffrenently 
         }
         public void Refuel()
@@ -163,7 +196,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter license number to get vehicle info");
             string licenseNumber = Console.ReadLine();
 
-            GarageCustomer customer = garage.FindCarInGarage(licenseNumber);
+            GarageCustomer customer = garage.FindVehicleInGarage(licenseNumber);
             // check whatever later 
             StringBuilder vehicleInfo = new StringBuilder();
             vehicleInfo.Append("License number: "+ licenseNumber+"\n");

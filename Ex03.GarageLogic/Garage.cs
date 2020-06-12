@@ -157,7 +157,10 @@ namespace Ex03.GarageLogic
 
             
         }
-
+        public void InflateWheel(List<Wheel> i_Wheels, float i_Pressure)
+        {
+            // Change all wheels pressure in the list to the value provided, throw exception if its a bad value  
+        }
     }
     public enum eStatus{ Repairing, Fixed, Paid }
     public enum eDoorsAmount{ Two = 2, Three = 3, Four = 4, Five = 5 }
