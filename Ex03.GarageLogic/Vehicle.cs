@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
      public abstract class Vehicle
     {
         private string modelName;// The specific model name of the vehicle
-        private string licensePlate;// The specific license plate of the vehicle
+        private string licenseNumber;// The specific license plate of the vehicle
         private float energyLeft;// The amount of energy left in the vehicle
         private List<Wheel> wheels;
         private bool gasVehicle;
@@ -23,12 +23,12 @@ namespace Ex03.GarageLogic
         public List<Wheel> Wheels { get { return this.wheels; }  }
 
         public string Model { get { return this.modelName; } set { this.modelName = value; } }//The method returns and sets the value of modelName
-        public string LicensePlate { get { return licensePlate; } set { licensePlate = value; } }// The method returns and sets the value of licencePlate
+        public string LicenseNumber { get { return licenseNumber; } set { licenseNumber = value; } }// The method returns and sets the value of licencePlate
 
         public Vehicle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft)
         {
             this.modelName = i_ModelName;
-            this.licensePlate = i_LicenseNumber;
+            this.licenseNumber = i_LicenseNumber;
             this.energyLeft = i_EnergyLeft;
             
         }

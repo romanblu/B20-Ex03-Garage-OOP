@@ -15,6 +15,8 @@ namespace Ex3.ConsoleUI
         private List<string> currentVehicleData;
         Garage garage = new Garage();
         CreateNewVehicle factory = new CreateNewVehicle();
+        List<Vehicle> userVehicles = new List<Vehicle>();
+
         public GarageUI(List<string> i_CurrentVehicle)
         {
             currentVehicleData = i_CurrentVehicle;// gets a new of vehicles
@@ -78,6 +80,7 @@ namespace Ex3.ConsoleUI
 
         public Vehicle CreateVehicle()
         {
+            Vehicle currentVehicle;
             Console.WriteLine("Enter model name");
             string modelName = Console.ReadLine();
             Console.WriteLine("Enter license number");
@@ -98,13 +101,13 @@ namespace Ex3.ConsoleUI
                 Console.WriteLine("Enter "+ extraData[i].ToLower());
                 extraData[i] = Console.ReadLine();
             }
-            factory.FinishProduction(extraData);
+            currentVehicle = factory.FinishProduction(extraData);
 
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             input = Console.ReadLine();
             if(input == "yes")
             {
-                Console.WriteLine("Enter air pressure for all wheels or enter if you want to change individually");
+                Console.WriteLine("Enter air pressure for all wheels or ENTER if you want to change individually");
                 input = Console.ReadLine();
                 if (input == "")
                 {
@@ -114,30 +117,58 @@ namespace Ex3.ConsoleUI
                 {
                     // make garage func for changing wheel pressure
                 }
-
+                
             }
-             
+
+            userVehicles.Add(currentVehicle);
+        }
+        private Vehicle GetUserVehicle(string i_LicenseNumber)
+        {
+            foreach(Vehicle vehicle in userVehicles)
+            {
+                if(vehicle.LicenseNumber == i_LicenseNumber)
+                {
+                    return vehicle;
+                }
+            }
+            return null;
         }
 
         private  void AddVehicle()
         {
+
+            Vehicle currentVehicle;
+      
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
-            Console.WriteLine("Enter owner name");
-            string ownerName = Console.ReadLine();
-            Console.WriteLine("Enter phone number");
-            string phoneNumber = Console.ReadLine();
-            if(garage.InsertVehicle(vehicle, ownerName, phoneNumber))
+
+            currentVehicle = GetUserVehicle(licenseNumber);
+
+            if (currentVehicle == null)
             {
-                Console.WriteLine("Vehicle was inserted successfuly");
-                // open options menu
+                Console.WriteLine("You didnt create such vehicle, press 0 and create it");
+                GarageFunctions();
+
             }
             else
             {
-                Console.WriteLine("Vehicle already in the garage, updated status to Repairing");
-                // open options menu
+                Console.WriteLine("Enter owner name");
+                string ownerName = Console.ReadLine();
+                Console.WriteLine("Enter phone number");
+                string phoneNumber = Console.ReadLine();
+                if (garage.InsertVehicle(currentVehicle, ownerName, phoneNumber))
+                {
+                    Console.WriteLine("Vehicle was inserted successfuly");
+                    // open options menu
+                    GarageFunctions();
+                }
+                else
+                {
+                    Console.WriteLine("Vehicle already in the garage, updated status to Repairing");
+                    // open options menu
+                    GarageFunctions();
+                }
             }
-
         }
         private void ShowVehicles()
         {
