@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
             base.GasVehicle = true;
             this.dangerousSubstances = i_DangerousSubstances;
             this.trunkCapacity = i_TrunkCapacity;
-            base.GasTank = new GasTank(GasTank.Gas.Soler, 120);
+            base.GasTank = new GasTank(eGasType.Soler, 120);
 
             for(int i = 0; i < 16; i++)
             {

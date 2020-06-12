@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             this.licenseType = (License)Enum.Parse(typeof(License), i_LicenseType);
             this.engineVolume = i_EngineVolume;
             base.GasVehicle = true;
-            base.GasTank = new GasTank(GasTank.Gas.Octan95, 7);
+            base.GasTank = new GasTank(eGasType.Octan95, 7);
             for (int i = 0; i < 2; i++)
             {
                 base.Wheels.Add(new Wheel(30));

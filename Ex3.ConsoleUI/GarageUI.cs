@@ -71,40 +71,45 @@ namespace Ex3.ConsoleUI
         //TODO - add a new vehicle with all the new information from the userscreen
         //     - do the functions the user wants acording to his choise.
 
-        public enum eFunctions
-        {
-            changeVehicleStatus = 1,
-            InflateTires = 2,
-            Refuel = 3,
-            Recharged = 4,
-            //FullData = 5
-        }
-        public Vehicle CreateVehicle()
-        {
-
+        
+        public Vehicle CreateVehicle() { 
         }
 
         private  void AddVehicle()
         {
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
-            GarageCustomer currentCustomer = garage.FindCarInGarage(licenseNumber);
-            if ( currentCustomer == null)
+            Console.WriteLine("Enter owner name");
+            string ownerName = Console.ReadLine();
+            Console.WriteLine("Enter phone number");
+            string phoneNumber = Console.ReadLine();
+            if(garage.InsertVehicle(vehicle, ownerName, phoneNumber))
             {
-                // Change cars status   
+                Console.WriteLine("Vehicle was inserted successfuly");
+                // open options menu
             }
             else
             {
-                garage.ChangeStatus(licenseNumber, "Repairing");
+                Console.WriteLine("Vehicle already in the garage, updated status to Repairing");
+                // open options menu
             }
+
         }
         private void ShowVehicles()
         {
             Console.WriteLine("Insert the status you want to screen by, or press enter");
+            eStatus status;
             string input = Console.ReadLine();
+            
+            List<string> customers;
             if (input.Equals(""))
             {
-                List<string> customers = garage.LicenseList(input);
+                customers = garage.LicenseList();
+            }
+            else
+            {
+                Enum.TryParse(input, out status);
+                customers = garage.LicenseList(status);
             }
         }
         private void ChangeStatus()
@@ -112,10 +117,11 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
             Console.WriteLine("Enter status");
-            string status = Console.ReadLine();
+            string input = Console.ReadLine();
+            eStatus status;
+            Enum.TryParse(input, out status);
             garage.ChangeStatus(licenseNumber, status);
 
-            // handle no such car and wrong status exceptions 
         }
             
         private void InflateWheelsToMax()
@@ -172,5 +178,13 @@ namespace Ex3.ConsoleUI
         }
         
 
+    }
+    public enum eFunctions
+    {
+        changeVehicleStatus = 1,
+        InflateTires = 2,
+        Refuel = 3,
+        Recharged = 4,
+        //FullData = 5
     }
 }

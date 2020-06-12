@@ -11,85 +11,65 @@ namespace Ex03.GarageLogic
     {
         private List<GarageCustomer> customersList = new List<GarageCustomer>();
 
-        public bool VehicleExists(string i_LicenseNumber)
-        {
-            foreach( GarageCustomer customer in customersList)
-            {
-
-            }
-
-            return false;
-        }
 
         //1 -Method - insert a new vehicle to the garage 
-        public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber, Status i_Status)
+        public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber)
         {
-            // we didnt insert the car successfully , well show a message in the UI
-            bool carExists = false;
-            GarageCustomer currentCustomer = new GarageCustomer();
-            foreach (GarageCustomer customer in customersList)
+            GarageCustomer currentCustomer = FindVehicleInGarage(i_Vehicle.LicensePlate);
+            if (currentCustomer == null)
             {
-                if (customer.vehicle.Model.Equals(i_Vehicle.Model))
-                {
-                    carExists = true;
-                    currentCustomer = customer;
-                }
-            }
-            if (carExists == true)
-            {
-                currentCustomer.status = Status.Repairing.ToString();
-                return false; 
+                currentCustomer = new GarageCustomer();
+                currentCustomer.Vehicle = i_Vehicle;
+                currentCustomer.OwnerName = i_OwnerName;
+                currentCustomer.PhoneNumber = i_PhoneNumber;
+                currentCustomer.Status = eStatus.Repairing;
+                customersList.Add(currentCustomer);
+                return true;
             }
             else
             {
-                currentCustomer.vehicle = i_Vehicle;
-                currentCustomer.ownerName = i_OwnerName;
-                currentCustomer.phoneNumber = i_PhoneNumber;
-                currentCustomer.status = i_Status.ToString();
-                customersList.Add(currentCustomer);
-                return true;
-
+                currentCustomer.Status = eStatus.Repairing;
+                return false;
             }
             
         }
 
         //2 -present a list of license plats of the vehicles in the garage
-        public List<string> LicenseList(string i_Status)
+        public List<string> LicenseList( )
         {
             List<string> customers = new List<string>();
-            if(i_Status != "")
+
+            foreach (GarageCustomer customer in customersList)
             {
-                foreach(GarageCustomer customer in customersList)
-                {
-                    if(customer.status == i_Status)
-                    {
-                        customers.Add(customer.vehicle.LicensePlate);
-                    }
-                }
+                customers.Add(customer.Vehicle.LicensePlate);
             }
-            else
-            {
-                foreach(GarageCustomer customer in customersList)
-                {
-                    customers.Add(customer.vehicle.LicensePlate);
-                }
-            }
+            
             return customers;
         }
 
-        //3 -Method - changes the status of the specific vehicle in the garage - by license plate
-        public void ChangeStatus(string i_LicenseNumber, string i_NewStatus)
+        public List<string> LicenseList(eStatus i_Status)
         {
-            GarageCustomer currentCustomer = FindCarInGarage(i_LicenseNumber);
-            Status status;
-            if(!Enum.TryParse(i_NewStatus, out status))
+            List<string> customers = new List<string>();
+          
+            foreach (GarageCustomer customer in customersList)
             {
-                // wrong status value exception 
-            } 
-            
+                if (customer.Status == i_Status)
+                {
+                    customers.Add(customer.Vehicle.LicensePlate);
+                }
+            }
+            return customers;
+
+        }
+        //3 -Method - changes the status of the specific vehicle in the garage - by license plate
+        public void ChangeStatus(string i_LicenseNumber, eStatus i_NewStatus)
+        {
+            GarageCustomer currentCustomer = FindVehicleInGarage(i_LicenseNumber);
+           
+           
             if (currentCustomer != null)
             {
-                currentCustomer.status = i_NewStatus;
+                currentCustomer.Status = i_NewStatus;
             }
             else
             {
@@ -99,8 +79,8 @@ namespace Ex03.GarageLogic
 
         public void InflateToMax(string i_LicenseNumber)
         {
-            GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
-            List<Wheel> wheelsToInflate = customer.vehicle.Wheels;
+            GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
+            List<Wheel> wheelsToInflate = customer.Vehicle.Wheels;
             foreach(Wheel wheel in wheelsToInflate)
             {
                 wheel.Inflate(wheel.MaxAirPressure - wheel.CurrentAirPressure); // inflates to the max 
@@ -110,8 +90,8 @@ namespace Ex03.GarageLogic
         // 5- The method refuel vehicle on gas
         public void Refuel(string i_LicenseNumber, string i_FuelType, float i_FuelToAdd)
         {
-            GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
-            GasTank gasTank = customer.vehicle.GasTank;
+            GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
+            GasTank gasTank = customer.Vehicle.GasTank;
             if (gasTank != null)
             {
                 //(GasTank.Gas)Enum.Parse(typeof(GasTank.Gas), i_FuelType)
@@ -144,8 +124,8 @@ namespace Ex03.GarageLogic
         // 6 - the method recharges the specific vehicle
         public void Recharge(string i_LicenseNumber, float i_TimeToAdd)
         {
-            GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
-            Battery battery = customer.vehicle.Battery;
+            GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
+            Battery battery = customer.Vehicle.Battery;
             if (battery != null)
             {   
                 if (battery.TimeLeft + i_TimeToAdd <= battery.TimeCapacity)
@@ -163,12 +143,12 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public  GarageCustomer FindCarInGarage(string i_LicensePlate)
+        public  GarageCustomer FindVehicleInGarage(string i_LicensePlate)
         {
             GarageCustomer customerToReturn;
             foreach(GarageCustomer customer in customersList)
             {
-                if(customer.vehicle.LicensePlate == i_LicensePlate)
+                if(customer.Vehicle.LicensePlate == i_LicensePlate)
                 {
                     customerToReturn = customer;
                 }

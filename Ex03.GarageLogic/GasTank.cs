@@ -8,21 +8,21 @@ namespace Ex03.GarageLogic
 {
     public class GasTank
     {
-        private Gas gasType;
+        private eGasType gasType;
         private float currentAmount;
         private float maxCapacity;
 
-        public Gas GasType { get { return this.gasType; } set { this.gasType = value; } }
+        public eGasType GasType { get { return this.gasType; } set { this.gasType = value; } }
         public float CurrentAmount { get { return this.currentAmount; } set { this.currentAmount = value; } }
         public float MaxCapacity { get { return this.maxCapacity; } set { this.maxCapacity = value; } }
         
-        public GasTank(Gas i_GasType, float i_MaxCapacity)
+        public GasTank(eGasType i_GasType, float i_MaxCapacity)
         {
             this.gasType = i_GasType;
             this.maxCapacity = i_MaxCapacity;
         }
 
-        public bool Refill(float i_FuelAmount, Gas i_GasType)
+        public bool Refill(float i_FuelAmount, eGasType i_GasType)
         {
             if(i_FuelAmount + this.currentAmount <= this.maxCapacity && i_GasType == this.gasType)
             {

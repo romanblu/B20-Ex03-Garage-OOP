@@ -9,15 +9,21 @@ namespace Ex03.GarageLogic
     public class GarageCustomer
     {
        
-        public Vehicle vehicle;
-        public string ownerName;
-        public string phoneNumber;
-        public string status;
-         public GarageCustomer()
+        private Vehicle vehicle;
+        private string ownerName;
+        private string phoneNumber;
+        private eStatus status;
+
+        public Vehicle Vehicle { get { return vehicle; } set { vehicle = value; } }
+        public string PhoneNumber { get { return this.phoneNumber; } set { phoneNumber = value; } }
+        public string OwnerName { get { return ownerName; } set { ownerName= value; } }
+        public eStatus Status { get { return this.status; } set { this.status = value; } }
+
+        public GarageCustomer()
         {
 
         }
-        public GarageCustomer(Vehicle vehicle, string ownerName, string phoneNumber, string status)
+        public GarageCustomer(Vehicle vehicle, string ownerName, string phoneNumber, eStatus status)
         {
             this.vehicle = vehicle;
             this.ownerName = ownerName;
