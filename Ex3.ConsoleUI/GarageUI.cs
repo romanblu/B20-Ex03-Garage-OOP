@@ -79,6 +79,10 @@ namespace Ex3.ConsoleUI
             Recharged = 4,
             //FullData = 5
         }
+        public Vehicle CreateVehicle()
+        {
+
+        }
 
         private  void AddVehicle()
         {
@@ -87,7 +91,7 @@ namespace Ex3.ConsoleUI
             GarageCustomer currentCustomer = garage.FindCarInGarage(licenseNumber);
             if ( currentCustomer == null)
             {
-                // Change cars status and return it  
+                // Change cars status   
             }
             else
             {
@@ -164,7 +168,9 @@ namespace Ex3.ConsoleUI
             vehicleInfo.Append("License number: " + licenseNumber + "\n"); // fuel and type of fuel
             vehicleInfo.Append("License number: " + licenseNumber + "\n"); // rest of the information for this vehicle
             // maybe add vehicle variable that holds adittional info for each type of vehicle
+            
         }
+        
 
     }
 }

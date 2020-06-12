@@ -32,14 +32,6 @@ namespace Ex03.GarageLogic
             return false;
         }
 
-        public enum Gas
-        {
-            Soler,
-            Octan95,
-            Octan96,
-            Octan98
-        }
-
 
     }
 }

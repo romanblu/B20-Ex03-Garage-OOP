@@ -37,7 +37,7 @@ namespace Ex03.GarageLogic
             }
             if (carExists == true)
             {
-                currentCustomer.status = Status.Repairing;
+                currentCustomer.status = Status.Repairing.ToString();
                 return false; 
             }
             else
@@ -45,7 +45,7 @@ namespace Ex03.GarageLogic
                 currentCustomer.vehicle = i_Vehicle;
                 currentCustomer.ownerName = i_OwnerName;
                 currentCustomer.phoneNumber = i_PhoneNumber;
-                currentCustomer.status = i_Status;
+                currentCustomer.status = i_Status.ToString();
                 customersList.Add(currentCustomer);
                 return true;
 
@@ -147,8 +147,7 @@ namespace Ex03.GarageLogic
             GarageCustomer customer = FindCarInGarage(i_LicenseNumber);
             Battery battery = customer.vehicle.Battery;
             if (battery != null)
-            {
-                
+            {   
                 if (battery.TimeLeft + i_TimeToAdd <= battery.TimeCapacity)
                 {
                     battery.TimeLeft += i_TimeToAdd;
@@ -179,15 +178,12 @@ namespace Ex03.GarageLogic
             
         }
 
-
-
-        
-        public enum Status
-        {
-            Repairing,
-            Fixed,
-            Paid
-        }
-
     }
+    public enum eStatus{ Repairing, Fixed, Paid }
+    public enum eDoorsAmount{ Two = 2, Three = 3, Four = 4, Five = 5 }
+    public enum eColor{ Red,White,Black,Silver }
+    public enum eLicense{ A, A1, AA, B }
+    public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
+    public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
+
 }

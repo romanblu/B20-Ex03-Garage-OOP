@@ -29,23 +29,7 @@ namespace Ex03.GarageLogic
                 base.Wheels.Add(new Wheel(32));
             }
         }
-
-        
-
-        public enum DoorsAmount
-        {
-            Two = 2,
-            Three = 3,
-            Four = 4,
-            Five = 5
-        }
-
-        public enum Color
-        {
-            Red, 
-            White,
-            Black,
-            Silver
-        }
+   
     }
+    
 }

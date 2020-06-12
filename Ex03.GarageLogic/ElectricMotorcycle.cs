@@ -28,13 +28,6 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public enum License
-        {
-            A,
-            A1,
-            AA,
-            B
-        }
 
     }
 }
