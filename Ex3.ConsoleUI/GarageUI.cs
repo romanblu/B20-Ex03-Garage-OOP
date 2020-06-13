@@ -74,10 +74,19 @@ namespace Ex3.ConsoleUI
             }
         }
 
-        //TODO - add a new vehicle with all the new information from the userscreen
-        //     - do the functions the user wants acording to his choise.
+        private Vehicle GetUserVehicle(string i_LicenseNumber)
+        {
+            foreach (Vehicle vehicle in userVehicles)
+            {
+                if (vehicle.LicenseNumber == i_LicenseNumber)
+                {
+                    return vehicle;
+                }
+            }
+            return null;
+        }
 
-
+        // function #0
         public void CreateVehicle()
         {
             Vehicle currentVehicle;
@@ -111,29 +120,33 @@ namespace Ex3.ConsoleUI
                 input = Console.ReadLine();
                 if (input == "")
                 {
-                    // change individually 
+                    for(int i = 0; i < currentVehicle.Wheels.Count; i++)
+                    {
+                        Console.WriteLine("Enter air pressure value for wheel #" + i + 1);
+                        float airPressure;
+                        float.TryParse(Console.ReadLine(), out airPressure);
+                        currentVehicle.Wheels[i].Inflate(airPressure);
+                    } 
                 }
                 else
                 {
-                    // make garage func for changing wheel pressure
+                    Console.WriteLine("Enter air pressure value for all wheels");
+                    float airPressure;
+                    float.TryParse(Console.ReadLine(), out airPressure);
+                    for(int i = 0; i < currentVehicle.Wheels.Count; i++)
+                    {
+                        currentVehicle.Wheels[i].Inflate(airPressure);
+                    }
                 }
-                
+
             }
 
             userVehicles.Add(currentVehicle);
         }
-        private Vehicle GetUserVehicle(string i_LicenseNumber)
-        {
-            foreach(Vehicle vehicle in userVehicles)
-            {
-                if(vehicle.LicenseNumber == i_LicenseNumber)
-                {
-                    return vehicle;
-                }
-            }
-            return null;
-        }
 
+        
+
+        // function #1
         private  void AddVehicle()
         {
 
@@ -146,7 +159,7 @@ namespace Ex3.ConsoleUI
 
             if (currentVehicle == null)
             {
-                Console.WriteLine("You didnt create such vehicle, press 0 and create it");
+                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it");
                 GarageFunctions();
 
             }
@@ -159,7 +172,7 @@ namespace Ex3.ConsoleUI
                 if (garage.InsertVehicle(currentVehicle, ownerName, phoneNumber))
                 {
                     Console.WriteLine("Vehicle was inserted successfuly");
-                    // open options menu
+                    
                     GarageFunctions();
                 }
                 else
