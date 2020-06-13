@@ -10,10 +10,6 @@ namespace Ex3.ConsoleUI
 {
     class GarageUI
     {
-
-
-        // this class should activate all the functions on the vehicle
-        private eFunctions function;
         private List<string> currentVehicleData;
         Garage garage = new Garage();
         CreateNewVehicle factory = new CreateNewVehicle();
@@ -320,29 +316,46 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to get vehicle info");
             string licenseNumber = Console.ReadLine();
-
-            GarageCustomer customer = garage.FindVehicleInGarage(licenseNumber);
-            // check whatever later 
+            
+            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            while (currentCustomer == null)
+            {
+                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
+                licenseNumber = Console.ReadLine();
+                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            }
+            Vehicle vehicle = currentCustomer.Vehicle;
+             
             StringBuilder vehicleInfo = new StringBuilder();
             vehicleInfo.Append("License number: "+ licenseNumber+"\n");
-            vehicleInfo.Append("License number: " + licenseNumber + "\n");// model name
-            vehicleInfo.Append("License number: " + licenseNumber + "\n");// owner name
-            vehicleInfo.Append("License number: " + licenseNumber + "\n");// status 
-            vehicleInfo.Append("License number: " + licenseNumber + "\n");// wheels info
-            vehicleInfo.Append("License number: " + licenseNumber + "\n"); // fuel and type of fuel
-            vehicleInfo.Append("License number: " + licenseNumber + "\n"); // rest of the information for this vehicle
-            // maybe add vehicle variable that holds adittional info for each type of vehicle
-            
-        }
-        
+            vehicleInfo.Append("Model name: " + vehicle.Model + "\n");// model name
+            vehicleInfo.Append("Owner name: " + currentCustomer.OwnerName + "\n");// owner name
+            vehicleInfo.Append("Status: " + currentCustomer.Status + "\n");// status 
+            for(int i = 0; i < vehicle.Wheels.Count; i++)
+            {
+                vehicleInfo.AppendFormat("Wheel #{0} - \n    ", i);
+                vehicleInfo.Append("Manufacturer name: " + vehicle.Wheels[i].ManufacturerName);
+                vehicleInfo.Append("\n    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
+                vehicleInfo.Append("\n    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
+                vehicleInfo.Append("\n");
+            }
 
+            if(currentCustomer.Vehicle.Battery != null){
+                vehicleInfo.AppendFormat("Time left: {0} hours \n", vehicle.Battery.TimeLeft);
+                vehicleInfo.AppendFormat("Time capacity: {0} hours \n", vehicle.Battery.TimeCapacity);
+            }
+            else
+            {
+                vehicleInfo.Append("Gas type: " + vehicle.GasTank.GasType);
+                vehicleInfo.AppendFormat("Gas amount: {0} liters",  vehicle.GasTank.CurrentAmount);
+                vehicleInfo.AppendFormat("Gas capacity: {0} liters" , vehicle.GasTank.MaxCapacity);
+            }
+
+            for (int i = 0; i < vehicle.ExtraData.Count; i++)
+            {
+                vehicleInfo.Append(vehicle.ExtraData.ElementAt(i).Key + ": " + vehicle.ExtraData.ElementAt(i).Value);
+            }
+        }
     }
-    public enum eFunctions
-    {
-        changeVehicleStatus = 1,
-        InflateTires = 2,
-        Refuel = 3,
-        Recharged = 4,
-        //FullData = 5
-    }
+    
 }
