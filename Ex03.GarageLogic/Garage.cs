@@ -103,9 +103,9 @@ namespace Ex03.GarageLogic
 
                 else
                 {
-                    if(gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity)
+                    if(gasTank.CurrentAmount + i_FuelToAdd < 0 || gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity)
                     {
-                        throw new ValueOutOfRangeException((gasTank.MaxCapacity - gasTank.CurrentAmount), 0);
+                        throw new ValueOutOfRangeException(gasTank.MaxCapacity, 0);//(gasTank.MaxCapacity - gasTank.CurrentAmount)
                     }
                     else
                     {
@@ -125,10 +125,10 @@ namespace Ex03.GarageLogic
             GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
             Battery battery = customer.Vehicle.Battery;
             if (battery != null)
-            {   
-                if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
+            {  
+                if(battery.TimeLeft  + i_TimeToAdd < 0 || battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
                 {
-                    throw new ValueOutOfRangeException((battery.TimeCapacity - battery.TimeLeft), 0);
+                    throw new ValueOutOfRangeException(battery.TimeCapacity, 0);//(battery.TimeCapacity - battery.TimeLeft)
                 }
                 else
                 {

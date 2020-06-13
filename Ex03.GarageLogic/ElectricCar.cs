@@ -8,8 +8,8 @@ namespace Ex03.GarageLogic
 {
     class ElectricCar : Vehicle
     {
-        private eColor carColor;
-        private eDoorsAmount amountOfDoors;
+        private eColor carColor;// The spesific color of the car's 
+        private eDoorsAmount amountOfDoors;//The amount of doors of the specific car
 
         public eColor CarColor { get { return carColor; } set { this.carColor = value; } }
         
@@ -19,7 +19,7 @@ namespace Ex03.GarageLogic
             : base(i_ModelName, i_LicensePlate, i_EnergyLeft)
         {
             base.GasVehicle = false;
-            this.carColor = (eColor)Enum.Parse(typeof(eColor) , i_CarColor);
+            this.carColor = (eColor)Enum.Parse(typeof(eColor) , i_CarColor);// formatexcecption
             this.amountOfDoors = (eDoorsAmount)i_AmountOfDoors;
             base.Battery = new Battery(2.1f);            
 

@@ -109,7 +109,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter energy left");
             string input = Console.ReadLine();
             float energyLeft;
-            float.TryParse(input, out energyLeft); // maybe change it to string and send to Logic to handle types, throw format exception
+            float.TryParse(input, out energyLeft); // maybe change it to string and send to Logic to handle types, throw format exception-------
             Console.WriteLine("Enter vehicle type");
             string vehicleType = Console.ReadLine();
             
@@ -136,7 +136,7 @@ namespace Ex3.ConsoleUI
                     {
                         Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
                         float airPressure;
-                        float.TryParse(Console.ReadLine(), out airPressure);
+                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption
                         currentVehicle.Wheels[i].Inflate(airPressure);
                     } 
                 }
@@ -144,8 +144,8 @@ namespace Ex3.ConsoleUI
                 {
                     Console.WriteLine("Enter air pressure value for all wheels");
                     float airPressure;
-                    float.TryParse(Console.ReadLine(), out airPressure);
-                    for(int i = 0; i < currentVehicle.Wheels.Count; i++)
+                    float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption
+                    for (int i = 0; i < currentVehicle.Wheels.Count; i++)
                     {
                         currentVehicle.Wheels[i].Inflate(airPressure);
                     }
@@ -207,7 +207,7 @@ namespace Ex3.ConsoleUI
             }
             else
             {
-                while(!Enum.TryParse(input , out status))
+                while(!Enum.TryParse(input , out status))// formatexcecption
                 {
                     Console.WriteLine("Wrong status value please choose from the options: " + Enum.GetNames(typeof(eStatus)));
                     input = Console.ReadLine();
@@ -231,7 +231,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter status");
             string input = Console.ReadLine();
             eStatus status;
-            while(!Enum.TryParse(input, out status))
+            while(!Enum.TryParse(input, out status))// formatexcecption
             {
                 Console.WriteLine("You enetered wrong status, please choose from the list: "+ listEnumOptions(status));
                 input = Console.ReadLine();
@@ -272,7 +272,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter fuel type");
             string input = Console.ReadLine();
             eGasType gasType;
-            while (!Enum.TryParse(input, out gasType))
+            while (!Enum.TryParse(input, out gasType))// formatexcecption
             {
                 Console.WriteLine("You enetered wrong gas type, please choose from the list: " + listEnumOptions(gasType));
                 input = Console.ReadLine();
@@ -282,7 +282,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter amount to fill");
             float amount;
             input = Console.ReadLine();
-            while(!float.TryParse(input, out amount))
+            while(!float.TryParse(input, out amount))// formatexcecption
             {
                 Console.WriteLine("Please enter a valid numerical value for the amount ");
                 input = Console.ReadLine();
@@ -308,7 +308,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter number of minutes you want to recharge");
             int numberOfMinutes;
             string input = Console.ReadLine();
-            while (!int.TryParse(input, out numberOfMinutes))
+            while (!int.TryParse(input, out numberOfMinutes))// formatexcecption
             {
                 Console.WriteLine("Enter valid integer");
                 input = Console.ReadLine();

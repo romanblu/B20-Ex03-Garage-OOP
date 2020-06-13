@@ -11,8 +11,8 @@ namespace Ex03.GarageLogic
         private string modelName;// The specific model name of the vehicle
         private string licenseNumber;// The specific license plate of the vehicle
         private float energyLeft;// The amount of energy left in the vehicle
-        private List<Wheel> wheels;
-        private bool gasVehicle;
+        private List<Wheel> wheels;//A list of the wheels of the specific vehicle
+        private bool gasVehicle;//Does the vehicle have a gas tank or not?
         private GasTank gasTank;
         private Battery battery;
         private Dictionary<string, string> extraTypeData;

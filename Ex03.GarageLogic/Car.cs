@@ -21,8 +21,8 @@ namespace Ex03.GarageLogic
             extraData.Add("Color", i_CarColor);
             extraData.Add("Number of doors", i_AmountOfDoors.ToString());
             base.ExtraTypeData = extraData;
-            this.carColor = (eColor)Enum.Parse(typeof(eColor), i_CarColor);
-            this.amountOfDoors = (eDoorsAmount)Enum.Parse(typeof(eDoorsAmount), i_AmountOfDoors.ToString());
+            this.carColor = (eColor)Enum.Parse(typeof(eColor), i_CarColor);// formatexcecption
+            this.amountOfDoors = (eDoorsAmount)Enum.Parse(typeof(eDoorsAmount), i_AmountOfDoors.ToString());// formatexcecption
             base.GasTank = new GasTank(eGasType.Octan96, 60);
             base.GasVehicle = true;
             
