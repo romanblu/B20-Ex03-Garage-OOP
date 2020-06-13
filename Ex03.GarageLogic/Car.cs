@@ -20,7 +20,7 @@ namespace Ex03.GarageLogic
             Dictionary<string, string> extraData = new Dictionary<string, string>();
             extraData.Add("Color", i_CarColor);
             extraData.Add("Number of doors", i_AmountOfDoors.ToString());
-            base.ExtraData = extraData;
+            base.ExtraTypeData = extraData;
             this.carColor = (eColor)Enum.Parse(typeof(eColor), i_CarColor);
             this.amountOfDoors = (eDoorsAmount)Enum.Parse(typeof(eDoorsAmount), i_AmountOfDoors.ToString());
             base.GasTank = new GasTank(eGasType.Octan96, 60);

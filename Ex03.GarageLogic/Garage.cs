@@ -31,7 +31,6 @@ namespace Ex03.GarageLogic
                 currentCustomer.Status = eStatus.Repairing;
                 return false;
             }
-            
         }
 
         //2 -present a list of license plats of the vehicles in the garage
@@ -77,6 +76,7 @@ namespace Ex03.GarageLogic
             }
         }
 
+        // 4 - Inflate wheels to max
         public void InflateToMax(string i_LicenseNumber)
         {
             GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
@@ -92,31 +92,30 @@ namespace Ex03.GarageLogic
         {
             GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
             GasTank gasTank = customer.Vehicle.GasTank;
+
             if (gasTank != null)
-            {
-                
+            {                
                 if (!gasTank.GasType.ToString().Equals(i_FuelType))
                 {
-                    throw new ArgumentException("Not the same fuel type", i_FuelType); // throw wrong gas exception
+                    
+                    throw new ArgumentException("Wrong fuel type", i_FuelType.ToString()); // throw wrong gas exception
                 }
 
                 else
                 {
-                    try
+                    if(gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity)
+                    {
+                        throw new ValueOutOfRangeException((gasTank.MaxCapacity - gasTank.CurrentAmount), 0);
+                    }
+                    else
                     {
                         gasTank.CurrentAmount += i_FuelToAdd;
                     }
-                    catch(ValueOutOfRangeException outOfRange)
-                    {
-                        outOfRange = new ValueOutOfRangeException(gasTank.MaxCapacity, 0);//check - i gave the max fuel of the vehicle with the min amount
-                        outOfRange.throwExceptionEror(i_FuelToAdd);// throws a message
-                    }
                 }
-
             }
             else
             {
-                // throw wrong car exception
+                throw new ArgumentException("Cannot refuel with gas an electric vehicle");
             }
         }
 
@@ -127,18 +126,18 @@ namespace Ex03.GarageLogic
             Battery battery = customer.Vehicle.Battery;
             if (battery != null)
             {   
-                if (battery.TimeLeft + i_TimeToAdd <= battery.TimeCapacity)
+                if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
                 {
-                    battery.TimeLeft += i_TimeToAdd;
+                    throw new ValueOutOfRangeException((battery.TimeCapacity - battery.TimeLeft), 0);
                 }
                 else
                 {
-                    //throw overcharge exception
+                    battery.TimeLeft += i_TimeToAdd;
                 }
             }
             else
             {
-                // throw wrong car exception
+                throw new ArgumentException("Cannot recharge gas vehicle");
             }
         }
 
@@ -152,17 +151,9 @@ namespace Ex03.GarageLogic
                     customerToReturn = customer;
                 }
             }
-            return null;
 
-            
+            return null;   
         }
-       /* public void InflateWheel(Wheel[] i_Wheels, float i_Pressure)
-        {
-            for(int i = 0; i < i_Wheels.Length; i++)
-            {
-                i_Wheels[i].Inflate(i_Pressure);
-            }  
-        }*/
     }
 
     public enum eStatus{ Repairing, Fixed, Paid }
