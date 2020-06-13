@@ -219,15 +219,29 @@ namespace Ex3.ConsoleUI
                 customers = garage.LicenseList(status);    
             }
         }
-
+        //function #3
         private void ChangeStatus()
         {
+
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
+            
+            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            while(currentCustomer == null)
+            {
+                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
+                licenseNumber = Console.ReadLine();
+                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            }
             Console.WriteLine("Enter status");
             string input = Console.ReadLine();
             eStatus status;
-            Enum.TryParse(input, out status);
+            while(!Enum.TryParse(input, out status))
+            {
+                Console.WriteLine("You enetered wrong status, please choose from the list: "+ listEnumOptions(status));
+                input = Console.ReadLine();
+
+            }
             garage.ChangeStatus(licenseNumber, status);
 
         }
