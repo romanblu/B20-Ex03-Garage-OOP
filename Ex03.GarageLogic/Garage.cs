@@ -70,7 +70,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new NoSuchVehicleException();
+                throw new ArgumentException("No such vehicle found");
             }
         }
 
@@ -101,9 +101,9 @@ namespace Ex03.GarageLogic
 
                 else
                 {
-                    if(gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity)
+                    if(gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity || gasTank.CurrentAmount + i_FuelToAdd < 0)
                     {
-                        throw new ValueOutOfRangeException((gasTank.MaxCapacity - gasTank.CurrentAmount), 0);
+                        throw new ValueOutOfRangeException(gasTank.MaxCapacity, 0);
                     }
                     else
                     {
@@ -124,9 +124,9 @@ namespace Ex03.GarageLogic
             Battery battery = customer.Vehicle.Battery;
             if (battery != null)
             {   
-                if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
+                if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity || battery.TimeLeft + i_TimeToAdd < 0)
                 {
-                    throw new ValueOutOfRangeException(battery.TimeCapacity - battery.TimeLeft, 0);
+                    throw new ValueOutOfRangeException(battery.TimeCapacity, 0);
                 }
                 else
                 {
@@ -160,10 +160,5 @@ namespace Ex03.GarageLogic
     public enum eLicense{ A, A1, AA, B }
     public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
     public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
-
-    public class NoSuchCarException
-    {
-
-    }
 
 }
