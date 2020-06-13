@@ -97,14 +97,13 @@ namespace Ex03.GarageLogic
         }
 
         // 5- The method refuel vehicle on gas
-        public void Refuel(string i_LicenseNumber, string i_FuelType, float i_FuelToAdd)
+        public void Refuel(string i_LicenseNumber, eGasType i_FuelType, float i_FuelToAdd)
         {
             GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
             GasTank gasTank = customer.Vehicle.GasTank;
             if (gasTank != null)
             {
-                //(GasTank.Gas)Enum.Parse(typeof(GasTank.Gas), i_FuelType)
-                //gasTank.GetType != i_FuelToAdd
+                
                 if (!gasTank.GasType.ToString().Equals(i_FuelType))
                 {
                     throw new ArgumentException("Not the same fuel type", i_FuelType); // throw wrong gas exception

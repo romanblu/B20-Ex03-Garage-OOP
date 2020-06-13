@@ -225,7 +225,6 @@ namespace Ex3.ConsoleUI
 
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
-            
             GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
             while(currentCustomer == null)
             {
@@ -250,32 +249,69 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to inflate wheels");
             string licenseNumber = Console.ReadLine();
-            garage.FindVehicleInGarage(licenseNumber);
-            // throw exception or handle it diffrenently 
+            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            while (currentCustomer == null)
+            {
+                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
+                licenseNumber = Console.ReadLine();
+                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            }
+            garage.InflateToMax(licenseNumber);
         }
         public void Refuel()
         {
             Console.WriteLine("Enter license number to refuel");
             string licenseNumber = Console.ReadLine();
+            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            while (currentCustomer == null)
+            {
+                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
+                licenseNumber = Console.ReadLine();
+                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            }
 
             Console.WriteLine("Enter fuel type");
-            string fuelType = Console.ReadLine();
+            string input = Console.ReadLine();
+            eGasType gasType;
+            while (!Enum.TryParse(input, out gasType))
+            {
+                Console.WriteLine("You enetered wrong gas type, please choose from the list: " + listEnumOptions(gasType));
+                input = Console.ReadLine();
+
+            }
 
             Console.WriteLine("Enter amount to fill");
-            float amount; 
-            float.TryParse(Console.ReadLine(), out amount);
+            float amount;
+            input = Console.ReadLine();
+            while(!float.TryParse(input, out amount))
+            {
+                Console.WriteLine("Please enter a valid numerical value for the amount ");
+                input = Console.ReadLine();
+            }
 
-            garage.Refuel(licenseNumber, fuelType, amount);
-
+            garage.Refuel(licenseNumber, gasType, amount);
         }
+
         public void Recharge()
         {
             Console.WriteLine("Enter license number to recharge");
             string licenseNumber = Console.ReadLine();
+            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            while (currentCustomer == null)
+            {
+                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
+                licenseNumber = Console.ReadLine();
+                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
+            }
 
             Console.WriteLine("Enter number of minutes you want to recharge");
             int numberOfMinutes;
-            int.TryParse(Console.ReadLine(), out numberOfMinutes);
+            string input = Console.ReadLine();
+            while (!int.TryParse(input, out numberOfMinutes))
+            {
+                Console.WriteLine("Enter valid integer");
+                input = Console.ReadLine();
+            }
 
             garage.Recharge(licenseNumber, (float)numberOfMinutes / 60);
 
