@@ -134,7 +134,7 @@ namespace Ex3.ConsoleUI
                 {
                     for(int i = 0; i < currentVehicle.Wheels.Count; i++)
                     {
-                        Console.WriteLine("Enter air pressure value for wheel #" + i + 1);
+                        Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
                         float airPressure;
                         float.TryParse(Console.ReadLine(), out airPressure);
                         currentVehicle.Wheels[i].Inflate(airPressure);
@@ -241,6 +241,7 @@ namespace Ex3.ConsoleUI
 
         }
             
+        // function #4
         private void InflateWheelsToMax()
         {
             Console.WriteLine("Enter license number to inflate wheels");
@@ -254,6 +255,8 @@ namespace Ex3.ConsoleUI
             }
             garage.InflateToMax(licenseNumber);
         }
+
+        // function #5 
         public void Refuel()
         {
             Console.WriteLine("Enter license number to refuel");
@@ -288,6 +291,8 @@ namespace Ex3.ConsoleUI
             garage.Refuel(licenseNumber, gasType, amount);
         }
 
+
+        // function #6
         public void Recharge()
         {
             Console.WriteLine("Enter license number to recharge");
@@ -312,6 +317,8 @@ namespace Ex3.ConsoleUI
             garage.Recharge(licenseNumber, (float)numberOfMinutes / 60);
 
         }
+
+        // function #7 
         public void ShowInfo()
         {
             Console.WriteLine("Enter license number to get vehicle info");
@@ -346,15 +353,18 @@ namespace Ex3.ConsoleUI
             }
             else
             {
-                vehicleInfo.Append("Gas type: " + vehicle.GasTank.GasType);
-                vehicleInfo.AppendFormat("Gas amount: {0} liters",  vehicle.GasTank.CurrentAmount);
-                vehicleInfo.AppendFormat("Gas capacity: {0} liters" , vehicle.GasTank.MaxCapacity);
+                vehicleInfo.Append("Gas type: \n" + vehicle.GasTank.GasType);
+                vehicleInfo.AppendFormat("Gas amount: {0} liters\n",  vehicle.GasTank.CurrentAmount);
+                vehicleInfo.AppendFormat("Gas capacity: {0} liters\n" , vehicle.GasTank.MaxCapacity);
             }
 
-            for (int i = 0; i < vehicle.ExtraData.Count; i++)
+            for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
-                vehicleInfo.Append(vehicle.ExtraData.ElementAt(i).Key + ": " + vehicle.ExtraData.ElementAt(i).Value);
+                vehicleInfo.Append(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
+                vehicleInfo.Append("\n");
             }
+
+            Console.WriteLine(vehicleInfo);
         }
     }
     

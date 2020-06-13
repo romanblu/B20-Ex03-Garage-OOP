@@ -15,9 +15,9 @@ namespace Ex03.GarageLogic
         private bool gasVehicle;
         private GasTank gasTank;
         private Battery battery;
-        private Dictionary<string, string> extraData;
+        private Dictionary<string, string> extraTypeData;
 
-        public Dictionary<string, string> ExtraData { get { return extraData; } set { extraData = value; } }
+        public Dictionary<string, string> ExtraTypeData { get { return extraTypeData; } set { extraTypeData = value; } }
         public GasTank GasTank { get { return gasTank; } set { gasTank = value; } }
         public Battery Battery { get { return battery; } set { battery = value; } }
         public bool GasVehicle { get { return gasVehicle; } set { gasVehicle = value; } }
