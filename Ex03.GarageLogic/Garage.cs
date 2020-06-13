@@ -152,6 +152,14 @@ namespace Ex03.GarageLogic
 
             return null;   
         }
+        public class NoSuchCarException : System.Exception
+        {
+            public NoSuchVehicleException() : base()
+            {
+
+            }
+
+        }
     }
 
     public enum eStatus{ Repairing, Fixed, Paid }
@@ -161,9 +169,6 @@ namespace Ex03.GarageLogic
     public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
     public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
 
-    public class NoSuchCarException
-    {
-
-    }
+    
 
 }
