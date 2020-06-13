@@ -64,15 +64,13 @@ namespace Ex03.GarageLogic
         public void ChangeStatus(string i_LicenseNumber, eStatus i_NewStatus)
         {
             GarageCustomer currentCustomer = FindVehicleInGarage(i_LicenseNumber);
-           
-           
             if (currentCustomer != null)
             {
                 currentCustomer.Status = i_NewStatus;
             }
             else
             {
-                // throw exception 
+                throw new NoSuchVehicleException();
             }
         }
 
@@ -103,9 +101,9 @@ namespace Ex03.GarageLogic
 
                 else
                 {
-                    if(gasTank.CurrentAmount + i_FuelToAdd < 0 || gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity)
+                    if(gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity)
                     {
-                        throw new ValueOutOfRangeException(gasTank.MaxCapacity, 0);//(gasTank.MaxCapacity - gasTank.CurrentAmount)
+                        throw new ValueOutOfRangeException((gasTank.MaxCapacity - gasTank.CurrentAmount), 0);
                     }
                     else
                     {
@@ -125,10 +123,10 @@ namespace Ex03.GarageLogic
             GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
             Battery battery = customer.Vehicle.Battery;
             if (battery != null)
-            {  
-                if(battery.TimeLeft  + i_TimeToAdd < 0 || battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
+            {   
+                if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
                 {
-                    throw new ValueOutOfRangeException(battery.TimeCapacity, 0);//(battery.TimeCapacity - battery.TimeLeft)
+                    throw new ValueOutOfRangeException(battery.TimeCapacity - battery.TimeLeft, 0);
                 }
                 else
                 {
@@ -162,5 +160,10 @@ namespace Ex03.GarageLogic
     public enum eLicense{ A, A1, AA, B }
     public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
     public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
+
+    public class NoSuchCarException
+    {
+
+    }
 
 }
