@@ -12,6 +12,7 @@ namespace Ex3.ConsoleUI
         // thoose messages will see the user every time a new coustomer comes
         public static void WellcomeToGarage()
         {
+            /*
             vehicleData = new List<string>();// a list of information about the vehicle
             Console.WriteLine("Wellcome to the garage");
             Console.WriteLine("First lets register your vehicle, please enter the vehicle owner's name");
@@ -124,11 +125,8 @@ namespace Ex3.ConsoleUI
             //else
             //{
                 // TODO - print the list of vehicles in the garage with an option not to see everyone
-           //* }
+           //* }*/
         }
-        public static string ValidInput(string i_StringInput)
-        {
-
-        }
+        
     }
 }

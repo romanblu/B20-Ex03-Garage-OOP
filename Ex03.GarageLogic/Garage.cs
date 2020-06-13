@@ -49,6 +49,14 @@ namespace Ex03.GarageLogic
 
         public List<string> LicenseList(eStatus i_Status)
         {
+            /*
+            eStatus status;
+            if(!Enum.TryParse(i_Status, out status))
+            {
+                throw new ArgumentException();
+            }
+            */
+
             List<string> customers = new List<string>();
           
             foreach (GarageCustomer customer in customersList)
@@ -61,6 +69,7 @@ namespace Ex03.GarageLogic
             return customers;
 
         }
+
         //3 -Method - changes the status of the specific vehicle in the garage - by license plate
         public void ChangeStatus(string i_LicenseNumber, eStatus i_NewStatus)
         {
