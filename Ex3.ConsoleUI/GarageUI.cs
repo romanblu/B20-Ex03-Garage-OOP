@@ -78,7 +78,7 @@ namespace Ex3.ConsoleUI
         //     - do the functions the user wants acording to his choise.
 
 
-        public Vehicle CreateVehicle()
+        public void CreateVehicle()
         {
             Vehicle currentVehicle;
             Console.WriteLine("Enter model name");

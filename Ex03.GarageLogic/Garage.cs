@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
         //1 -Method - insert a new vehicle to the garage 
         public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber)
         {
-            GarageCustomer currentCustomer = FindVehicleInGarage(i_Vehicle.LicensePlate);
+            GarageCustomer currentCustomer = FindVehicleInGarage(i_Vehicle.LicenseNumber);
             if (currentCustomer == null)
             {
                 currentCustomer = new GarageCustomer();
@@ -41,7 +41,7 @@ namespace Ex03.GarageLogic
 
             foreach (GarageCustomer customer in customersList)
             {
-                customers.Add(customer.Vehicle.LicensePlate);
+                customers.Add(customer.Vehicle.LicenseNumber);
             }
             
             return customers;
@@ -55,7 +55,7 @@ namespace Ex03.GarageLogic
             {
                 if (customer.Status == i_Status)
                 {
-                    customers.Add(customer.Vehicle.LicensePlate);
+                    customers.Add(customer.Vehicle.LicenseNumber);
                 }
             }
             return customers;
@@ -148,7 +148,7 @@ namespace Ex03.GarageLogic
             GarageCustomer customerToReturn;
             foreach(GarageCustomer customer in customersList)
             {
-                if(customer.Vehicle.LicensePlate == i_LicensePlate)
+                if(customer.Vehicle.LicenseNumber == i_LicensePlate)
                 {
                     customerToReturn = customer;
                 }
