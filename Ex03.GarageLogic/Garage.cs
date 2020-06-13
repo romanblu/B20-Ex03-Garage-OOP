@@ -64,15 +64,13 @@ namespace Ex03.GarageLogic
         public void ChangeStatus(string i_LicenseNumber, eStatus i_NewStatus)
         {
             GarageCustomer currentCustomer = FindVehicleInGarage(i_LicenseNumber);
-           
-           
             if (currentCustomer != null)
             {
                 currentCustomer.Status = i_NewStatus;
             }
             else
             {
-                // throw exception 
+                throw new NoSuchVehicleException();
             }
         }
 
@@ -128,7 +126,7 @@ namespace Ex03.GarageLogic
             {   
                 if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity)
                 {
-                    throw new ValueOutOfRangeException((battery.TimeCapacity - battery.TimeLeft), 0);
+                    throw new ValueOutOfRangeException(battery.TimeCapacity - battery.TimeLeft, 0);
                 }
                 else
                 {
@@ -162,5 +160,10 @@ namespace Ex03.GarageLogic
     public enum eLicense{ A, A1, AA, B }
     public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
     public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
+
+    public class NoSuchCarException
+    {
+
+    }
 
 }
