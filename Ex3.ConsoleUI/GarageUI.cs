@@ -282,7 +282,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter amount to fill");
             float amount;
             input = Console.ReadLine();
-            while(!float.TryParse(input, out amount))// formatexcecption
+            while(!float.TryParse(input, out amount))
             {
                 Console.WriteLine("Please enter a valid numerical value for the amount ");
                 input = Console.ReadLine();
@@ -308,7 +308,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter number of minutes you want to recharge");
             int numberOfMinutes;
             string input = Console.ReadLine();
-            while (!int.TryParse(input, out numberOfMinutes))// formatexcecption
+            while (!int.TryParse(input, out numberOfMinutes))
             {
                 Console.WriteLine("Enter valid integer");
                 input = Console.ReadLine();
