@@ -44,7 +44,6 @@
   <ItemGroup>
     <Compile Include="AddVehicle.cs" />
     <Compile Include="GarageUI.cs" />
-    <Compile Include="GarageVehiclesList.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="GarageAddVehicleUI.cs" />
   </ItemGroup>

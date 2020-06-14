@@ -18,6 +18,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Please enter status cunt : ");
             string input = Console.ReadLine();
             GarageUI ui = new GarageUI();
+            ui.GarageFunctions();
             while (!Enum.TryParse(input, out vehicle))
             {
                 string enumOptions = "";
