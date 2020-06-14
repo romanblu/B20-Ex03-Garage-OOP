@@ -10,16 +10,17 @@ namespace Ex3.ConsoleUI
 {
     class GarageUI
     {
-        private List<string> currentVehicleData;
         Garage garage = new Garage();
         CreateNewVehicle factory = new CreateNewVehicle();
         List<Vehicle> userVehicles = new List<Vehicle>();
         Validator validator = new Validator();
 
-        public GarageUI()
+        public GarageUI(Garage i_Garage)
         {
-            
+            this.garage = i_Garage;
         }
+
+        public GarageUI() { }
 
         public void GarageFunctions()
         {
@@ -114,21 +115,12 @@ namespace Ex3.ConsoleUI
             float energyLeft = validator.ValidateEnergyLeft(input);
 
             Console.WriteLine("Enter vehicle type");
-            input = Console.ReadLine(); // validate Enum type 
+            input = Console.ReadLine();  
             eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(input);
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
-            List<string> extraData = new List<string>();
-            extraData = factory.GetExtraData(vehicleType);
-            for (int i = 0; i < extraData.Count; i++)
-            {
-                Console.WriteLine("Enter additional information about your " + vehicleType);
-                Console.WriteLine("Enter " + extraData[i].ToLower());
-                extraData[i] = Console.ReadLine();
-            }
+            currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
 
-            currentVehicle = validator.ValidateExtraDataForVehicleType(extraData, factory, vehicleType);
-            
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             input = Console.ReadLine();
             if(input == "yes")
@@ -164,19 +156,13 @@ namespace Ex3.ConsoleUI
         // function #1
         private  void AddVehicle()
         {
-
             Vehicle currentVehicle;
-      
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
-
             currentVehicle = GetUserVehicle(licenseNumber);
-
             if (currentVehicle == null)
             {
                 Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it");
-                GarageFunctions();
-
             }
             else
             {
@@ -192,17 +178,16 @@ namespace Ex3.ConsoleUI
                 else
                 {
                     Console.WriteLine("Vehicle already in the garage, updated status to Repairing");
-                    GarageFunctions();
                 }
             }
+            GarageFunctions();
         }
+
         // function #2 
         private void ShowVehicles()
         {
-            Console.WriteLine("Insert the status you want to screen by, or press enter");
-            
+            Console.WriteLine("Insert the status you want to screen by, or press enter");            
             string input = Console.ReadLine();
-            eStatus status;
             List<string> customers;
             if (input.Equals(""))
             {
@@ -210,38 +195,34 @@ namespace Ex3.ConsoleUI
             }
             else
             {
-                while(!Enum.TryParse(input , out status))// formatexcecption
-                {
-                    Console.WriteLine("Wrong status value please choose from the options: " + Enum.GetNames(typeof(eStatus)));
-                    input = Console.ReadLine();
-                }
+                eStatus status = validator.ValidateEnumType<eStatus>(input);
                 customers = garage.LicenseList(status);    
             }
+            
+            StringBuilder customersList = new StringBuilder();
+            foreach(string licenseNumber in customers)
+            {
+                customersList.AppendLine(licenseNumber);
+            }
+            Console.WriteLine(customersList);
+            Console.WriteLine("Press anything to get back to main screen");
+            Console.ReadLine();
+            GarageFunctions();
         }
+
         //function #3
         private void ChangeStatus()
         {
-
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
-            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            while(currentCustomer == null)
-            {
-                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
-                licenseNumber = Console.ReadLine();
-                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            }
+            GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
             Console.WriteLine("Enter status");
             string input = Console.ReadLine();
-            eStatus status;
-            while(!Enum.TryParse(input, out status))
-            {
-                Console.WriteLine("You enetered wrong status, please choose from the list: "+ ListEnumOptions(status));
-                input = Console.ReadLine();
-
-            }
+            eStatus status = validator.ValidateEnumType<eStatus>(input);
             garage.ChangeStatus(licenseNumber, status);
-
+            Console.WriteLine("Status changed succesfully, Press anything to get back to main screen");
+            Console.ReadLine();
+            GarageFunctions();
         }
             
         // function #4
@@ -249,14 +230,11 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to inflate wheels");
             string licenseNumber = Console.ReadLine();
-            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            while (currentCustomer == null)
-            {
-                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
-                licenseNumber = Console.ReadLine();
-                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            }
+            GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
             garage.InflateToMax(licenseNumber);
+            Console.WriteLine("Wheels inflated succesfully, Press anything to get back to main screen");
+            Console.ReadLine();
+            GarageFunctions();
         }
 
         // function #5 
@@ -264,61 +242,65 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to refuel");
             string licenseNumber = Console.ReadLine();
-            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            while (currentCustomer == null)
-            {
-                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
-                licenseNumber = Console.ReadLine();
-                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            }
-
+            GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
             Console.WriteLine("Enter fuel type");
             string input = Console.ReadLine();
-            eGasType gasType;
-            while (!Enum.TryParse(input, out gasType))// formatexcecption
-            {
-                Console.WriteLine("You enetered wrong gas type, please choose from the list: " + ListEnumOptions(gasType));
-                input = Console.ReadLine();
-
-            }
-
+            eGasType gasType = validator.ValidateEnumType<eGasType>(input);
             Console.WriteLine("Enter amount to fill");
             float amount;
             input = Console.ReadLine();
-            while(!float.TryParse(input, out amount))
+            while (!float.TryParse(input, out amount) || amount < 0)
             {
                 Console.WriteLine("Please enter a valid numerical value for the amount ");
                 input = Console.ReadLine();
             }
-
-            garage.Refuel(licenseNumber, gasType, amount);
+            try 
+            {
+                garage.Refuel(licenseNumber, gasType, amount);
+            }
+            catch (ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Couldnt refuel vehicle");
+            }
+            finally
+            {
+                Console.WriteLine("Press anything to get back to main screen");
+                Console.ReadLine();
+                GarageFunctions();
+            }
         }
-
 
         // function #6
         public void Recharge()
         {
             Console.WriteLine("Enter license number to recharge");
             string licenseNumber = Console.ReadLine();
-            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            while (currentCustomer == null)
-            {
-                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
-                licenseNumber = Console.ReadLine();
-                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            }
-
+            GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
             Console.WriteLine("Enter number of minutes you want to recharge");
             int numberOfMinutes;
             string input = Console.ReadLine();
-            while (!int.TryParse(input, out numberOfMinutes))
+            while (!int.TryParse(input, out numberOfMinutes) || numberOfMinutes < 0)
             {
                 Console.WriteLine("Enter valid integer");
                 input = Console.ReadLine();
             }
 
-            garage.Recharge(licenseNumber, (float)numberOfMinutes / 60);
-
+            try
+            {
+                garage.Recharge(licenseNumber, (float)numberOfMinutes / 60);
+            }
+            catch(ArgumentException e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine("Couldnt recharge vehicle");
+            }
+            finally
+            {
+                Console.WriteLine("Press anything to get back to main screen");
+                Console.ReadLine();
+                GarageFunctions();
+            }
         }
 
         // function #7 
@@ -326,14 +308,9 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to get vehicle info");
             string licenseNumber = Console.ReadLine();
-            
-            GarageCustomer currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            while (currentCustomer == null)
-            {
-                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
-                licenseNumber = Console.ReadLine();
-                currentCustomer = garage.FindVehicleInGarage(licenseNumber);
-            }
+
+            GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
+
             Vehicle vehicle = currentCustomer.Vehicle;
             
             StringBuilder vehicleInfo = new StringBuilder();
@@ -368,6 +345,10 @@ namespace Ex3.ConsoleUI
             }
 
             Console.WriteLine(vehicleInfo);
+
+            Console.WriteLine("Press anything to get back to main screen");
+            Console.ReadLine();
+            GarageFunctions();
         }
     }
     

@@ -9,8 +9,6 @@ namespace Ex3.ConsoleUI
 {
     class Validator
     {
-        
-
         public float ValidateEnergyLeft(string i_InputToCheck)
         {
             float energyLeft;
@@ -44,28 +42,43 @@ namespace Ex3.ConsoleUI
             return parsedEnum;
         }
 
-        public Vehicle ValidateExtraDataForVehicleType(List<string> i_ExtraData, CreateNewVehicle i_Factory, eVehicleType i_VehicleType)
+        public GarageCustomer ValidateVehicleInGarage(string i_LicenseNumber, Garage i_Garage)
         {
+            GarageCustomer currentCustomer = i_Garage.FindVehicleInGarage(i_LicenseNumber);
+            while (currentCustomer == null)
+            { 
+                Console.WriteLine("Couldnt find a vehicle with this license number, enter again");
+                i_LicenseNumber = Console.ReadLine();
+                currentCustomer = i_Garage.FindVehicleInGarage(i_LicenseNumber);
+            }
+
+            return currentCustomer;
+        }
+
+        public Vehicle ValidateExtraDataForVehicleType( CreateNewVehicle i_Factory, eVehicleType i_VehicleType)
+        {
+            List<string> extraData = new List<string>();
             Vehicle currentVehicle = null;
             bool correctInput = false;
             while (!correctInput)
             {
                 correctInput = true;
-                i_ExtraData = i_Factory.GetExtraData(i_VehicleType);
-                for (int i = 0; i < i_ExtraData.Count; i++)
+                extraData = i_Factory.GetExtraData(i_VehicleType);
+                for (int i = 0; i < extraData.Count; i++)
                 {
                     Console.WriteLine("Enter additional information about your " + i_VehicleType);
-                    Console.WriteLine("Enter " + i_ExtraData[i].ToLower());
-                    i_ExtraData[i] = Console.ReadLine();
+                    Console.WriteLine("Enter " + extraData[i].ToLower());
+                    extraData[i] = Console.ReadLine();
                 }
 
                 try
                 {
-                    currentVehicle = i_Factory.FinishProduction(i_ExtraData);
+                    currentVehicle = i_Factory.FinishProduction(extraData);
                 }
                 catch (FormatException e)
                 {
                     Console.WriteLine(e.Message);
+                    Console.WriteLine("Try again");
                     correctInput = false;
                 }
 
