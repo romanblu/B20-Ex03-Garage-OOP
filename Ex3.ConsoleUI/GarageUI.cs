@@ -119,30 +119,16 @@ namespace Ex3.ConsoleUI
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             List<string> extraData = new List<string>();
-            int numberOfWheels = 0;
-            bool correctInput = false;
-            while (!correctInput)
+            extraData = factory.GetExtraData(vehicleType);
+            for (int i = 0; i < extraData.Count; i++)
             {
-                correctInput = true;
-                extraData = factory.GetExtraData(vehicleType);
-                for (int i = 0; i < extraData.Count; i++)
-                {                    
-                    Console.WriteLine("Enter additional information about your " + vehicleType);
-                    Console.WriteLine("Enter " + extraData[i].ToLower());
-                    extraData[i] = Console.ReadLine();
-                }
-
-                try
-                {
-                    currentVehicle = factory.FinishProduction(extraData);
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
-                    correctInput = false;
-                }
+                Console.WriteLine("Enter additional information about your " + vehicleType);
+                Console.WriteLine("Enter " + extraData[i].ToLower());
+                extraData[i] = Console.ReadLine();
             }
 
+            currentVehicle = validator.ValidateExtraDataForVehicleType(extraData, factory, vehicleType);
+            
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             input = Console.ReadLine();
             if(input == "yes")

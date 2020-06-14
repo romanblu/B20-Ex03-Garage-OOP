@@ -44,5 +44,35 @@ namespace Ex3.ConsoleUI
             return parsedEnum;
         }
 
+        public Vehicle ValidateExtraDataForVehicleType(List<string> i_ExtraData, CreateNewVehicle i_Factory, eVehicleType i_VehicleType)
+        {
+            Vehicle currentVehicle = null;
+            bool correctInput = false;
+            while (!correctInput)
+            {
+                correctInput = true;
+                i_ExtraData = i_Factory.GetExtraData(i_VehicleType);
+                for (int i = 0; i < i_ExtraData.Count; i++)
+                {
+                    Console.WriteLine("Enter additional information about your " + i_VehicleType);
+                    Console.WriteLine("Enter " + i_ExtraData[i].ToLower());
+                    i_ExtraData[i] = Console.ReadLine();
+                }
+
+                try
+                {
+                    currentVehicle = i_Factory.FinishProduction(i_ExtraData);
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    correctInput = false;
+                }
+
+               
+            }
+
+            return currentVehicle;
+        }
     }
 }
