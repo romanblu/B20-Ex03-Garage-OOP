@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="DiagramProject.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battery.cs" />
