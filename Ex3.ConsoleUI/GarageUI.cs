@@ -25,14 +25,17 @@ namespace Ex3.ConsoleUI
         public void GarageFunctions()
         {
             Console.WriteLine("Welcome, please choose you option from the list below:");
-            Console.WriteLine("0 - Create you vehicle \n" +
-                "1 - to enter your car to the garage \n" +
-                "2 - List the vehicles in the garage \n" +
-                "3 - Change vehicle status, enter license number followed by the new status [Repairing, Fixed, Paid] \n" +
-                "4 - Inflate wheels to max \n" +
-                "5 - Refuel gas vehicle \n" +
-                "6 - Recharge electric vehicle \n" +
-                "7 - To get full info about your vehicle");
+            StringBuilder functionsList = new StringBuilder();
+            functionsList.AppendLine("0 - Create you vehicle ");
+            functionsList.AppendLine("1 - to enter your car to the garage");
+            functionsList.AppendLine("2 - List the vehicles in the garage");
+            functionsList.AppendLine("3 - Change vehicle status from the list: " + ListEnumOptions(new eStatus()));
+            functionsList.AppendLine("4 - Inflate wheels to max");
+            functionsList.AppendLine("5 - Refuel gas vehicle");
+            functionsList.AppendLine("6 - Recharge electric vehicle");
+            functionsList.AppendLine("7 - To get full info about your vehicle");
+            Console.WriteLine(functionsList.ToString());
+
             string inputOption = Console.ReadLine();
             int option;
             if (int.TryParse(inputOption, out option))
