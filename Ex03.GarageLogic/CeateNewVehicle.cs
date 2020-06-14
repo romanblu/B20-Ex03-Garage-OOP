@@ -72,7 +72,7 @@ namespace Ex03.GarageLogic
                     {
                         throw new FormatException("Color can contain only the following values: " + ListEnumOptions(color));
                     }
-                    readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color.ToString(), (int)numberOfDoors);
+                    readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
                     break;
 
                 case eVehicleType.ElectricCar:
@@ -85,7 +85,7 @@ namespace Ex03.GarageLogic
                     {
                         throw new FormatException("Color can contain only the following values: " + ListEnumOptions(color));
                     }
-                    readyVehicle = new ElectricCar(this.modelName, this.licenseNumber, this.energyLeft, i_ExtraData[0], int.Parse(i_ExtraData[1]));
+                    readyVehicle = new ElectricCar(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
                     break;
                 case eVehicleType.Motorcycle:
                     eLicense licenseType;
@@ -98,7 +98,7 @@ namespace Ex03.GarageLogic
                     {
                         throw new FormatException("Bad value for engine volume. Enter integer value" );
                     }
-                    readyVehicle = new Motorcycle(this.modelName, this.licenseNumber, this.energyLeft, i_ExtraData[0], engineVolume);
+                    readyVehicle = new Motorcycle(this.modelName, this.licenseNumber, this.energyLeft, licenseType, engineVolume);
                     break;
 
                 case eVehicleType.ElectricMotorcycle:
@@ -112,7 +112,7 @@ namespace Ex03.GarageLogic
                     {
                         throw new FormatException("Bad value for engine volume. Enter integer value");
                     }
-                    readyVehicle = new ElectricMotorcycle(this.modelName, this.licenseNumber, this.energyLeft, i_ExtraData[0], engineVolume);
+                    readyVehicle = new ElectricMotorcycle(this.modelName, this.licenseNumber, this.energyLeft, licenseType, engineVolume);
                     break;
                 case eVehicleType.Truck:
                     bool dangerousSubstances;

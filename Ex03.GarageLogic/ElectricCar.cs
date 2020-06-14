@@ -15,12 +15,14 @@ namespace Ex03.GarageLogic
         
         public eDoorsAmount NumberOfDoors { get { return this.amountOfDoors; } set { this.amountOfDoors = value; } }
         
-        public ElectricCar(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, string i_CarColor, int i_AmountOfDoors)
+        public ElectricCar(string i_ModelName, string i_LicensePlate, float i_EnergyLeft, eColor i_CarColor, eDoorsAmount i_AmountOfDoors)
             : base(i_ModelName, i_LicensePlate, i_EnergyLeft)
         {
             base.GasVehicle = false;
-            this.carColor = (eColor)Enum.Parse(typeof(eColor) , i_CarColor);// formatexcecption
-            this.amountOfDoors = (eDoorsAmount)i_AmountOfDoors;
+            //this.carColor = (eColor)Enum.Parse(typeof(eColor) , i_CarColor);// formatexcecption
+            //this.amountOfDoors = (eDoorsAmount)i_AmountOfDoors;
+            this.carColor = i_CarColor;
+            this.amountOfDoors = i_AmountOfDoors;
             base.Battery = new Battery(2.1f);            
 
             for (int i = 0; i < 4; i++)

@@ -8,16 +8,17 @@ namespace Ex03.GarageLogic
 {
     class Motorcycle : Vehicle
     {
-        private License licenseType;
+        private eLicense licenseType;
         private int engineVolume;
 
-        public License LicenseType{ get { return this.licenseType; } set { this.licenseType = value; }  }
+        public eLicense LicenseType{ get { return this.licenseType; } set { this.licenseType = value; }  }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
 
-        public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, string i_LicenseType, int i_EngineVolume)
+        public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, eLicense i_LicenseType, int i_EngineVolume)
             :base(i_ModelName, i_LicenseNumber, i_EnergyLeft)
         {
-            this.licenseType = (License)Enum.Parse(typeof(License), i_LicenseType);// formatexcecption
+            //this.licenseType = (License)Enum.Parse(typeof(License), i_LicenseType);// formatexcecption
+            this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
             base.GasVehicle = true;
             base.GasTank = new GasTank(eGasType.Octan95, 7);

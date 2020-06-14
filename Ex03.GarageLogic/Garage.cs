@@ -91,6 +91,7 @@ namespace Ex03.GarageLogic
         {
             GarageCustomer customer = FindVehicleInGarage(i_LicenseNumber);
             GasTank gasTank = customer.Vehicle.GasTank;
+            
 
             if (gasTank != null)
             {                
@@ -102,7 +103,8 @@ namespace Ex03.GarageLogic
 
                 else
                 {
-                    if(gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity || gasTank.CurrentAmount + i_FuelToAdd < 0)
+
+                    if (gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity || gasTank.CurrentAmount + i_FuelToAdd < 0)
                     {
                         throw new ValueOutOfRangeException(gasTank.MaxCapacity, 0);
                     }
