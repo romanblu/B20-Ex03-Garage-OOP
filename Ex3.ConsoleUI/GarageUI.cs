@@ -14,6 +14,7 @@ namespace Ex3.ConsoleUI
         Garage garage = new Garage();
         CreateNewVehicle factory = new CreateNewVehicle();
         List<Vehicle> userVehicles = new List<Vehicle>();
+        Validator validator = new Validator();
 
         public GarageUI()
         {
@@ -62,16 +63,18 @@ namespace Ex3.ConsoleUI
                         ShowInfo();
                         break;
                     default:
-                        // Enter good value
+                        Console.WriteLine("Please enter a number from 0 to 7");
+                        GarageFunctions();
                         break;
                 }
             }
             else
             {
-
+                Console.WriteLine("Please enter a number from 0 to 7");
+                GarageFunctions();
             }
         }
-        public string listEnumOptions(Enum i_Enum)
+        public string ListEnumOptions(Enum i_Enum)
         {
             StringBuilder enumListing = new StringBuilder();
 
@@ -108,21 +111,37 @@ namespace Ex3.ConsoleUI
             string licenseNumber = Console.ReadLine();
             Console.WriteLine("Enter energy left");
             string input = Console.ReadLine();
-            float energyLeft;
-            float.TryParse(input, out energyLeft); // maybe change it to string and send to Logic to handle types, throw format exception-------
-            Console.WriteLine("Enter vehicle type");
-            string vehicleType = Console.ReadLine();
-            
-            factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft); // check if info is good 
+            float energyLeft = validator.ValidateEnergyLeft(input);
 
-            List<string> extraData = factory.GetExtraData(vehicleType);
-            Console.WriteLine("Enter additional information about your " + vehicleType);
-            for(int i=0;i<extraData.Count;i++)
+            Console.WriteLine("Enter vehicle type");
+            input = Console.ReadLine(); // validate Enum type 
+            eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(input);
+            
+            factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
+            List<string> extraData = new List<string>();
+            int numberOfWheels = 0;
+            bool correctInput = false;
+            while (!correctInput)
             {
-                Console.WriteLine("Enter "+ extraData[i].ToLower());
-                extraData[i] = Console.ReadLine();
+                correctInput = true;
+                extraData = factory.GetExtraData(vehicleType);
+                for (int i = 0; i < extraData.Count; i++)
+                {                    
+                    Console.WriteLine("Enter additional information about your " + vehicleType);
+                    Console.WriteLine("Enter " + extraData[i].ToLower());
+                    extraData[i] = Console.ReadLine();
+                }
+
+                try
+                {
+                    currentVehicle = factory.FinishProduction(extraData);
+                }
+                catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    correctInput = false;
+                }
             }
-            currentVehicle = factory.FinishProduction(extraData);
 
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             input = Console.ReadLine();
@@ -155,8 +174,6 @@ namespace Ex3.ConsoleUI
 
             userVehicles.Add(currentVehicle);
         }
-
-        
 
         // function #1
         private  void AddVehicle()
@@ -231,9 +248,9 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter status");
             string input = Console.ReadLine();
             eStatus status;
-            while(!Enum.TryParse(input, out status))// formatexcecption
+            while(!Enum.TryParse(input, out status))
             {
-                Console.WriteLine("You enetered wrong status, please choose from the list: "+ listEnumOptions(status));
+                Console.WriteLine("You enetered wrong status, please choose from the list: "+ ListEnumOptions(status));
                 input = Console.ReadLine();
 
             }
@@ -274,7 +291,7 @@ namespace Ex3.ConsoleUI
             eGasType gasType;
             while (!Enum.TryParse(input, out gasType))// formatexcecption
             {
-                Console.WriteLine("You enetered wrong gas type, please choose from the list: " + listEnumOptions(gasType));
+                Console.WriteLine("You enetered wrong gas type, please choose from the list: " + ListEnumOptions(gasType));
                 input = Console.ReadLine();
 
             }
@@ -332,7 +349,7 @@ namespace Ex3.ConsoleUI
                 currentCustomer = garage.FindVehicleInGarage(licenseNumber);
             }
             Vehicle vehicle = currentCustomer.Vehicle;
-             
+            
             StringBuilder vehicleInfo = new StringBuilder();
             vehicleInfo.Append("License number: "+ licenseNumber+"\n");
             vehicleInfo.Append("Model name: " + vehicle.Model + "\n");// model name

@@ -72,6 +72,7 @@ namespace Ex03.GarageLogic
             {
                 throw new ArgumentException("No such vehicle found");
             }
+            
         }
 
         // 4 - Inflate wheels to max
