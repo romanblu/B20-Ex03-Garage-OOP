@@ -317,34 +317,34 @@ namespace Ex3.ConsoleUI
             Vehicle vehicle = currentCustomer.Vehicle;
             
             StringBuilder vehicleInfo = new StringBuilder();
-            vehicleInfo.Append("License number: "+ licenseNumber+"\n");
-            vehicleInfo.Append("Model name: " + vehicle.Model + "\n");// model name
-            vehicleInfo.Append("Owner name: " + currentCustomer.OwnerName + "\n");// owner name
-            vehicleInfo.Append("Status: " + currentCustomer.Status + "\n");// status 
+            vehicleInfo.Append("License number: "+ licenseNumber + Environment.NewLine);
+            vehicleInfo.Append("Model name: " + vehicle.Model + Environment.NewLine);// model name
+            vehicleInfo.Append("Owner name: " + currentCustomer.OwnerName + Environment.NewLine);// owner name
+            vehicleInfo.Append("Status: " + currentCustomer.Status + Environment.NewLine);// status 
             for(int i = 0; i < vehicle.Wheels.Count; i++)
             {
-                vehicleInfo.AppendFormat("Wheel #{0} - \n    ", i);
+                vehicleInfo.AppendFormat("Wheel #{0} -     " + Environment.NewLine, i);//chack change
                 vehicleInfo.Append("Manufacturer name: " + vehicle.Wheels[i].ManufacturerName);
-                vehicleInfo.Append("\n    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
-                vehicleInfo.Append("\n    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
-                vehicleInfo.Append("\n");
+                vehicleInfo.Append(Environment.NewLine + "    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
+                vehicleInfo.Append(Environment.NewLine + "    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
+                vehicleInfo.Append(Environment.NewLine);
             }
 
             if(currentCustomer.Vehicle.Battery != null){
-                vehicleInfo.AppendFormat("Time left: {0} hours \n", vehicle.Battery.TimeLeft);
-                vehicleInfo.AppendFormat("Time capacity: {0} hours \n", vehicle.Battery.TimeCapacity);
+                vehicleInfo.AppendFormat("Time left: {0} hours " + Environment.NewLine, vehicle.Battery.TimeLeft);
+                vehicleInfo.AppendFormat("Time capacity: {0} hours " + Environment.NewLine, vehicle.Battery.TimeCapacity);
             }
             else
             {
-                vehicleInfo.Append("Gas type: \n" + vehicle.GasTank.GasType);
-                vehicleInfo.AppendFormat("Gas amount: {0} liters\n",  vehicle.GasTank.CurrentAmount);
-                vehicleInfo.AppendFormat("Gas capacity: {0} liters\n" , vehicle.GasTank.MaxCapacity);
+                vehicleInfo.Append("Gas type: "+ Environment.NewLine + vehicle.GasTank.GasType);
+                vehicleInfo.AppendFormat("Gas amount: {0} liters" + Environment.NewLine,  vehicle.GasTank.CurrentAmount);
+                vehicleInfo.AppendFormat("Gas capacity: {0} liters" + Environment.NewLine, vehicle.GasTank.MaxCapacity);
             }
 
             for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
                 vehicleInfo.Append(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
-                vehicleInfo.Append("\n");
+                vehicleInfo.Append(Environment.NewLine);//chack change
             }
 
             Console.WriteLine(vehicleInfo);

@@ -23,7 +23,7 @@ namespace Ex3.ConsoleUI
         public TEnum ValidateEnumType<TEnum>(string i_InputToCheck) where TEnum : struct
         {
             TEnum parsedEnum;
-            while (!Enum.TryParse<TEnum>(i_InputToCheck, out parsedEnum))// formatexcecption
+            while (!Enum.TryParse<TEnum>(i_InputToCheck, out parsedEnum))// formatexcecption?
             {
                 StringBuilder enumListing = new StringBuilder();
 

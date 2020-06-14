@@ -38,6 +38,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="DiagramProject.cd" />
+    <None Include="GarageDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Battery.cs" />
