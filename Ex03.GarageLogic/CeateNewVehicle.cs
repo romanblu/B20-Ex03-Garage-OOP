@@ -62,16 +62,17 @@ namespace Ex03.GarageLogic
             switch (this.vehicleType)
             {
                 case eVehicleType.Car:
+                    eColor color;
+                    if (!Enum.TryParse(i_ExtraData[0], out color))
+                    {
+                        throw new FormatException("Color can contain only the following values: " + ListEnumOptions(color));
+                    }
                     eDoorsAmount numberOfDoors;
                     if(!Enum.TryParse(i_ExtraData[1], out numberOfDoors))
                     {
                         throw new FormatException("Doors amount can only contain the following values: " + ListEnumOptions(numberOfDoors));
                     }
-                    eColor color;
-                    if(!Enum.TryParse(i_ExtraData[0], out color))
-                    {
-                        throw new FormatException("Color can contain only the following values: " + ListEnumOptions(color));
-                    }
+                    
                     readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
                     break;
 

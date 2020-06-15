@@ -24,7 +24,6 @@ namespace Ex03.GarageLogic
         public bool GasVehicle { get { return gasVehicle; } set { gasVehicle = value; } }
 
         public List<Wheel> Wheels { get { return this.wheels; }  }
-
         public string Model { get { return this.modelName; } set { this.modelName = value; } }//The method returns and sets the value of modelName
         public string LicenseNumber { get { return licenseNumber; } set { licenseNumber = value; } }// The method returns and sets the value of licencePlate
 
