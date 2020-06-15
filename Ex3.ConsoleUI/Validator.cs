@@ -69,7 +69,7 @@ namespace Ex3.ConsoleUI
                     Console.WriteLine("Enter additional information about your " + i_VehicleType);
                     Console.WriteLine("Enter " + extraData[i].ToLower());
                     extraData[i] = Console.ReadLine();
-
+                }
                    
                     try
                     {
@@ -82,7 +82,7 @@ namespace Ex3.ConsoleUI
                        // extraData[i] = Console.ReadLine();
                         correctInput = false;
                     }
-                }
+                
 
                
             }
