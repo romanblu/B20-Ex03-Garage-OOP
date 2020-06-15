@@ -114,46 +114,54 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter license number");
             string licenseNumber = Console.ReadLine();
             Console.WriteLine("Enter energy left");
-            string input = Console.ReadLine();
-            float energyLeft = validator.ValidateEnergyLeft(input);
+            string inputString = Console.ReadLine();
+            float energyLeft = validator.ValidateEnergyLeft(inputString);
 
             Console.WriteLine("Enter vehicle type");
-            input = Console.ReadLine();  
-            eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(input);
+            inputString = Console.ReadLine();  
+            eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(inputString);
+            //// if i press a number it should throw an error
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
 
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
-            input = Console.ReadLine();
-            if(input == "yes")
-            {
-                Console.WriteLine("Enter air pressure for all wheels or ENTER if you want to change individually");
-                input = Console.ReadLine();
-                if (input == "")
+            inputString = Console.ReadLine();
+            if(inputString == "yes")
+            { 
+                Console.WriteLine("To change air pressure to all wheels press All or press Enter to change individually");
+                inputString = Console.ReadLine();
+                if (inputString == "")
                 {
                     for(int i = 0; i < currentVehicle.Wheels.Count; i++)
                     {
                         Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
                         float airPressure;
-                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption
+                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
                         currentVehicle.Wheels[i].Inflate(airPressure);
                     } 
                 }
                 else
                 {
-                    Console.WriteLine("Enter air pressure value for all wheels");
-                    float airPressure;
-                    float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption
-                    for (int i = 0; i < currentVehicle.Wheels.Count; i++)
+                    if(inputString == "All")
                     {
-                        currentVehicle.Wheels[i].Inflate(airPressure);
+                        Console.WriteLine("Enter air pressure value for all wheels");
+                        float airPressure;
+                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
+                        for (int i = 0; i < currentVehicle.Wheels.Count; i++)
+                        {
+                            currentVehicle.Wheels[i].Inflate(airPressure);
+                        }
                     }
+                    
                 }
 
             }
 
             userVehicles.Add(currentVehicle);
+            Console.WriteLine("The vehicle added successfully" + Environment.NewLine);
+            //Clean screen
+            GarageFunctions();
         }
 
         // function #1

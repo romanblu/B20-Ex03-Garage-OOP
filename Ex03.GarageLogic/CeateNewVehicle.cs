@@ -49,9 +49,7 @@ namespace Ex03.GarageLogic
                     extraData.Add("Trunk Volume");
                     break;
                 default:
-                    throw new ArgumentException();
-                    
-
+                    throw new ArgumentException();/// - checkkk
             }
             return extraData;
         }
@@ -62,26 +60,27 @@ namespace Ex03.GarageLogic
             switch (this.vehicleType)
             {
                 case eVehicleType.Car:
-                    eDoorsAmount numberOfDoors;
-                    if(!Enum.TryParse(i_ExtraData[1], out numberOfDoors))
-                    {
-                        throw new FormatException("Doors amount can only contain the following values: " + ListEnumOptions(numberOfDoors));
-                    }
                     eColor color;
-                    if(!Enum.TryParse(i_ExtraData[0], out color))
+                    if (!Enum.TryParse(i_ExtraData[0], out color) || !Enum.IsDefined(typeof(eColor), color))
                     {
                         throw new FormatException("Color can contain only the following values: " + ListEnumOptions(color));
                     }
-                    readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
-                    break;
-
-                case eVehicleType.ElectricCar:
-                    if (!Enum.TryParse(i_ExtraData[1], out numberOfDoors))
+                    eDoorsAmount numberOfDoors;
+                    if(!Enum.TryParse(i_ExtraData[1], out numberOfDoors) || !Enum.IsDefined(typeof(eDoorsAmount), numberOfDoors))
                     {
                         throw new FormatException("Doors amount can only contain the following values: " + ListEnumOptions(numberOfDoors));
                     }
                     
-                    if (!Enum.TryParse(i_ExtraData[0], out color))
+                    readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
+                    break;
+
+                case eVehicleType.ElectricCar:
+                    if (!Enum.TryParse(i_ExtraData[1], out numberOfDoors) || !Enum.IsDefined(typeof(eDoorsAmount), numberOfDoors))
+                    {
+                        throw new FormatException("Doors amount can only contain the following values: " + ListEnumOptions(numberOfDoors));
+                    }
+                    
+                    if (!Enum.TryParse(i_ExtraData[0], out color) || !Enum.IsDefined(typeof(eColor), color))
                     {
                         throw new FormatException("Color can contain only the following values: " + ListEnumOptions(color));
                     }
@@ -89,7 +88,7 @@ namespace Ex03.GarageLogic
                     break;
                 case eVehicleType.Motorcycle:
                     eLicense licenseType;
-                    if (!Enum.TryParse(i_ExtraData[0], out licenseType))
+                    if (!Enum.TryParse(i_ExtraData[0], out licenseType) || !Enum.IsDefined(typeof(eLicense), licenseType))
                     {
                         throw new FormatException("License type can only contain the following values: " + ListEnumOptions(licenseType));
                     }
@@ -100,10 +99,9 @@ namespace Ex03.GarageLogic
                     }
                     readyVehicle = new Motorcycle(this.modelName, this.licenseNumber, this.energyLeft, licenseType, engineVolume);
                     break;
-
                 case eVehicleType.ElectricMotorcycle:
                    
-                    if (!Enum.TryParse(i_ExtraData[0], out licenseType))
+                    if (!Enum.TryParse(i_ExtraData[0], out licenseType) || !Enum.IsDefined(typeof(eLicense), licenseType))
                     {
                         throw new FormatException("License type can only contain the following values: " + ListEnumOptions(licenseType));
                     }

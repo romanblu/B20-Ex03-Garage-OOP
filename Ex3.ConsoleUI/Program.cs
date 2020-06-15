@@ -10,7 +10,6 @@ namespace Ex3.ConsoleUI
 {
    public class Program
     {
-
         public static void Main()
         {
            GarageUI ui = new GarageUI();
