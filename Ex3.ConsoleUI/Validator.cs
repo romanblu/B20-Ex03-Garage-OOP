@@ -70,17 +70,19 @@ namespace Ex3.ConsoleUI
                     Console.WriteLine("Enter " + extraData[i].ToLower());
                     extraData[i] = Console.ReadLine();
                 }
-
-                try
-                {
-                    currentVehicle = i_Factory.FinishProduction(extraData);
-                }
-                catch (FormatException e)
-                {
-                    Console.WriteLine(e.Message);
-                    Console.WriteLine("Try again");
-                    correctInput = false;
-                }
+                   
+                    try
+                    {
+                        currentVehicle = i_Factory.FinishProduction(extraData);
+                    }
+                    catch (FormatException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine("Try again");
+                       // extraData[i] = Console.ReadLine();
+                        correctInput = false;
+                    }
+                
 
                
             }
