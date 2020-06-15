@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class ElectricCar : Vehicle
+    internal class ElectricCar : Vehicle
     {
-        private eColor carColor;// The spesific color of the car's 
+        private eColor carColor;// The spesific color of the car 
         private eDoorsAmount amountOfDoors;//The amount of doors of the specific car
 
         public eColor CarColor { get { return carColor; } set { this.carColor = value; } }

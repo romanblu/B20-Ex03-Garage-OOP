@@ -8,7 +8,7 @@ using Ex03.GarageLogic;
 
 namespace Ex3.ConsoleUI
 {
-    class GarageUI
+   public  class GarageUI
     {
         Garage garage = new Garage();
         CreateNewVehicle factory = new CreateNewVehicle();

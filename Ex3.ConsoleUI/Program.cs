@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Ex3.ConsoleUI
 {
-    class Program
+   public class Program
     {
 
         public static void Main()

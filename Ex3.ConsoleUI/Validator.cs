@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ex3.ConsoleUI
 {
-    class Validator
+    class Validator//?
     {
         public float ValidateEnergyLeft(string i_InputToCheck)
         {

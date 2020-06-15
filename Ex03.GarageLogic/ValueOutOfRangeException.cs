@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class ValueOutOfRangeException : Exception
+    public class ValueOutOfRangeException : Exception
     {
         private float MaxValue;
         private float MinValue;
@@ -25,19 +25,19 @@ namespace Ex03.GarageLogic
             this.MinValue = i_MinValue;
         }
 
-      //  public ValueOutOfRangeException(string i_Message, float i_MaxValue, float i_MinValue) : this(i_Message)
-      //  {
-       //     this.MaxValue = i_MaxValue;
+        //  public ValueOutOfRangeException(string i_Message, float i_MaxValue, float i_MinValue) : this(i_Message)
+        //  {
+        //     this.MaxValue = i_MaxValue;
         //    this.MinValue = i_MinValue;
-      //  }
+        //  }
 
-       
-      // public void throwExceptionEror(float i_CurrentValue)
-     //  {
-         //  if(i_CurrentValue < this.MinValue || i_CurrentValue > this.MaxValue)
-         //  {
-          //      throw new ValueOutOfRangeException(MaxValue, MinValue);
-          // }
-      //} 
+        public void throwExceptionEror(float i_CurrentValue)
+        {
+            if (i_CurrentValue < this.MinValue || i_CurrentValue > this.MaxValue)
+            {
+                throw new ValueOutOfRangeException(MaxValue, MinValue);
+            }
+
+        }
     }
 }

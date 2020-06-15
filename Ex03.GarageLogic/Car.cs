@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ex03.GarageLogic
 {
-    class Car : Vehicle
+    internal class Car : Vehicle
     {
         private eColor color;
         private eDoorsAmount amountOfDoors;
