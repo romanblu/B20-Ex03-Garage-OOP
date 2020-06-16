@@ -94,11 +94,12 @@ namespace Ex03.GarageLogic
             
 
             if (gasTank != null)
-            {                
-                if (!gasTank.GasType.ToString().Equals(i_FuelType))
+            {
+                
+                if (!gasTank.GasType.ToString().Equals(i_FuelType.ToString()))
                 {
                     
-                    throw new ArgumentException("Wrong fuel type", i_FuelType.ToString()); // throw wrong gas exception
+                    throw new ArgumentException("Wrong fuel type"); // throw wrong gas exception.  
                 }
 
                 else

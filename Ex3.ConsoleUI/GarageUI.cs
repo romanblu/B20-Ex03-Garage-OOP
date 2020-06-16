@@ -174,7 +174,7 @@ namespace Ex3.ConsoleUI
             currentVehicle = GetUserVehicle(licenseNumber);
             if (currentVehicle == null)
             {
-                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it");
+                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it" + Environment.NewLine);
             }
             else
             {

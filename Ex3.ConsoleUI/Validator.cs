@@ -23,7 +23,7 @@ namespace Ex3.ConsoleUI
         public TEnum ValidateEnumType<TEnum>(string i_InputToCheck) where TEnum : struct
         {
             TEnum parsedEnum;
-            while (!Enum.TryParse<TEnum>(i_InputToCheck, out parsedEnum))// formatexcecption?
+            while (!Enum.TryParse<TEnum>(i_InputToCheck, out parsedEnum) || !Enum.IsDefined(typeof(TEnum), parsedEnum))
             {
                 StringBuilder enumListing = new StringBuilder();
 
@@ -44,6 +44,7 @@ namespace Ex3.ConsoleUI
 
         public GarageCustomer ValidateVehicleInGarage(string i_LicenseNumber, Garage i_Garage)
         {
+            
             GarageCustomer currentCustomer = i_Garage.FindVehicleInGarage(i_LicenseNumber);
             while (currentCustomer == null)
             { 
