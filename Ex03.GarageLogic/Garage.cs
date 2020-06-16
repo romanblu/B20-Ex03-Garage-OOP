@@ -160,7 +160,7 @@ namespace Ex03.GarageLogic
 
     public enum eStatus{ Repairing, Fixed, Paid }
     public enum eDoorsAmount{ Two = 2, Three = 3, Four = 4, Five = 5 }
-    public enum eColor{ Red,White,Black,Silver }
+    public enum eColor{ Red, White, Black, Silver }
     public enum eLicense{ A, A1, AA, B }
     public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
     public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
