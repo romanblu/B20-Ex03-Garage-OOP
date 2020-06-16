@@ -8,8 +8,8 @@ namespace Ex03.GarageLogic
 {
     internal class ElectricMotorcycle : Vehicle
     {
-        private eLicense licenseType;
-        private int engineVolume;
+        private eLicense licenseType;// The specific type of the licence 
+        private int engineVolume;//The engine capacity of the motorcycle
 
         public eLicense LicenseType { get { return this.licenseType; } set { this.licenseType = value; } }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
@@ -19,7 +19,6 @@ namespace Ex03.GarageLogic
         {
             base.Battery = new Battery(1.2f);
             base.GasVehicle = false;
-            //this.licenseType = (eLicense)Enum.Parse(typeof(eLicense), i_LicenseType);// formatexcecption
             this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
 

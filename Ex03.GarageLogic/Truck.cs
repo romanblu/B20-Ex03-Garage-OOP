@@ -8,8 +8,8 @@ namespace Ex03.GarageLogic
 {
     internal class Truck : Vehicle
     {
-        private bool dangerousSubstances;
-        private float trunkCapacity;
+        private bool dangerousSubstances;// Does the truck carry Hazardous Materials?yes/no
+        private float trunkCapacity;//The engine capacity of the truck
         public bool DangerousSubstances { get { return this.dangerousSubstances; } set { this.dangerousSubstances = value; } }
         public float TrunkCapacity { get { return this.trunkCapacity; } set { this.trunkCapacity = value; } }
 

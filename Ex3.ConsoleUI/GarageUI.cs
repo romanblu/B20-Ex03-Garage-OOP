@@ -120,10 +120,10 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter vehicle type");
             inputString = Console.ReadLine();  
             eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(inputString);
-            //// if i press a number it should throw an error
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
+          
 
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             inputString = Console.ReadLine();
@@ -160,7 +160,7 @@ namespace Ex3.ConsoleUI
 
             userVehicles.Add(currentVehicle);
             Console.WriteLine("The vehicle added successfully" + Environment.NewLine);
-            //Clean screen
+            //Clean screen?-------------------------------------------------------------------------------------
             GarageFunctions();
         }
 
@@ -173,7 +173,7 @@ namespace Ex3.ConsoleUI
             currentVehicle = GetUserVehicle(licenseNumber);
             if (currentVehicle == null)
             {
-                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it");
+                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it" + Environment.NewLine);
             }
             else
             {
@@ -183,7 +183,7 @@ namespace Ex3.ConsoleUI
                 string phoneNumber = Console.ReadLine();
                 if (garage.InsertVehicle(currentVehicle, ownerName, phoneNumber))
                 {
-                    Console.WriteLine("Vehicle was inserted successfuly");
+                    Console.WriteLine("Vehicle was inserted successfuly" + Environment.NewLine);
                     GarageFunctions();
                 }
                 else
@@ -351,8 +351,8 @@ namespace Ex3.ConsoleUI
 
             for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
-                vehicleInfo.Append(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
-                vehicleInfo.Append(Environment.NewLine);//chack change
+                vehicleInfo.AppendLine(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
+                vehicleInfo.Append(Environment.NewLine);
             }
 
             Console.WriteLine(vehicleInfo);

@@ -19,8 +19,6 @@ namespace Ex03.GarageLogic
             : base(i_ModelName, i_LicensePlate, i_EnergyLeft)
         {
             base.GasVehicle = false;
-            //this.carColor = (eColor)Enum.Parse(typeof(eColor) , i_CarColor);// formatexcecption
-            //this.amountOfDoors = (eDoorsAmount)i_AmountOfDoors;
             this.carColor = i_CarColor;
             this.amountOfDoors = i_AmountOfDoors;
             base.Battery = new Battery(2.1f);            

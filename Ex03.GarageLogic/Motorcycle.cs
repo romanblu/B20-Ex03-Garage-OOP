@@ -8,8 +8,8 @@ namespace Ex03.GarageLogic
 {
     internal class Motorcycle : Vehicle
     {
-        private eLicense licenseType;
-        private int engineVolume;
+        private eLicense licenseType;// The specific type of the licence 
+        private int engineVolume;//The engine capacity of the motorcycle
 
         public eLicense LicenseType{ get { return this.licenseType; } set { this.licenseType = value; }  }
         public int EngineVolume { get { return this.engineVolume; } set { this.engineVolume = value; } }
@@ -17,7 +17,6 @@ namespace Ex03.GarageLogic
         public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, eLicense i_LicenseType, int i_EngineVolume)
             :base(i_ModelName, i_LicenseNumber, i_EnergyLeft)
         {
-            //this.licenseType = (License)Enum.Parse(typeof(License), i_LicenseType);// formatexcecption
             this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
             base.GasVehicle = true;
