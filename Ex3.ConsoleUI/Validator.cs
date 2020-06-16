@@ -42,7 +42,7 @@ namespace Ex3.ConsoleUI
             return parsedEnum;
         }
 
-        public GarageCustomer ValidateVehicleInGarage(string i_LicenseNumber, Garage i_Garage)
+        public GarageCustomer ValidateVehicleInGarage(string i_LicenseNumber, Garage i_Garage)/////check end of a function
         {
             
             GarageCustomer currentCustomer = i_Garage.FindVehicleInGarage(i_LicenseNumber);

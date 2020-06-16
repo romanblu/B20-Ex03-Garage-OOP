@@ -11,7 +11,6 @@ namespace Ex03.GarageLogic
     {
         private List<GarageCustomer> customersList = new List<GarageCustomer>();
 
-
         //1 -Method - insert a new vehicle to the garage 
         public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber)
         {
@@ -34,7 +33,7 @@ namespace Ex03.GarageLogic
         }
 
         //2 -present a list of license plats of the vehicles in the garage
-        public List<string> LicenseList( )
+        public List<string> LicenseList()
         {
             List<string> customers = new List<string>();
 

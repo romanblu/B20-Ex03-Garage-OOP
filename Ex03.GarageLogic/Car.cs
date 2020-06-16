@@ -24,9 +24,6 @@ namespace Ex03.GarageLogic
             base.ExtraTypeData = extraData;
             base.GasTank = new GasTank(eGasType.Octan96, 60);
             base.GasVehicle = true;
-
-            //this.color = (eColor)Enum.Parse(typeof(eColor), i_CarColor);// formatexcecption
-            //this.amountOfDoors = (eDoorsAmount)Enum.Parse(typeof(eDoorsAmount), i_AmountOfDoors.ToString());// formatexcecption
             this.color = i_CarColor;
             this.amountOfDoors = i_AmountOfDoors;
             for (int i = 0; i < 4; i++)

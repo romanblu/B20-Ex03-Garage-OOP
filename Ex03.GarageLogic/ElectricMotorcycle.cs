@@ -19,7 +19,6 @@ namespace Ex03.GarageLogic
         {
             base.Battery = new Battery(1.2f);
             base.GasVehicle = false;
-            //this.licenseType = (eLicense)Enum.Parse(typeof(eLicense), i_LicenseType);// formatexcecption
             this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
 

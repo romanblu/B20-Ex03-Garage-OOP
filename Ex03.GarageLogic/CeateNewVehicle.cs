@@ -14,16 +14,14 @@ namespace Ex03.GarageLogic
         float energyLeft;
         eVehicleType vehicleType;
 
+        // we first start the vehicle production, then by the type of the car we will update the next data then create the vehicle
         public void VehicleInProduction(eVehicleType i_VehicleType, string i_ModelName, string i_LicenseNumber, float i_EnergyLeft)
-        {
-            // we first start the vehicle production, then by the type of the car we will update the next data then create the vehicle 
+        { 
             vehicleType = i_VehicleType;
             modelName = i_ModelName;
             licenseNumber = i_LicenseNumber;
             energyLeft = i_EnergyLeft;
         }
-
-       // List<string> extraData = new List<string>();
 
         public List<string> GetExtraData(eVehicleType i_VehicleType)
         {
@@ -50,7 +48,7 @@ namespace Ex03.GarageLogic
                     extraData.Add("Trunk Volume");
                     break;
                 default:
-                    throw new ArgumentException();/// - checkkk
+                    throw new ArgumentException();
             }
             return extraData;
         }

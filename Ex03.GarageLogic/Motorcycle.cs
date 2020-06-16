@@ -17,7 +17,6 @@ namespace Ex03.GarageLogic
         public Motorcycle(string i_ModelName, string i_LicenseNumber, float i_EnergyLeft, eLicense i_LicenseType, int i_EngineVolume)
             :base(i_ModelName, i_LicenseNumber, i_EnergyLeft)
         {
-            //this.licenseType = (License)Enum.Parse(typeof(License), i_LicenseType);// formatexcecption
             this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
             base.GasVehicle = true;
