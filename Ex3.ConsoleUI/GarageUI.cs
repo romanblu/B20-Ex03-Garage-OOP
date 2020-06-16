@@ -349,7 +349,7 @@ namespace Ex3.ConsoleUI
                 vehicleInfo.AppendFormat("Gas capacity: {0} liters" + Environment.NewLine, vehicle.GasTank.MaxCapacity);
             }
 
-            for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)//check
+            for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
                 vehicleInfo.AppendLine(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
                 vehicleInfo.Append(Environment.NewLine);

@@ -15,7 +15,7 @@ namespace Ex03.GarageLogic
         private bool gasVehicle;//Does the vehicle have a gas tank or not?
         private GasTank gasTank;
         private Battery battery;
-        private Dictionary<string, string> extraTypeData;
+        private Dictionary<string, string> extraTypeData = new Dictionary<string, string>();
         private int field;
 
         public Dictionary<string, string> ExtraTypeData { get { return extraTypeData; } set { extraTypeData = value; } }
