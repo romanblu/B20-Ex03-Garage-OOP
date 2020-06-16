@@ -64,13 +64,13 @@ namespace Ex3.ConsoleUI
             {
                 correctInput = true;
                 extraData = i_Factory.GetExtraData(i_VehicleType);
-                for (int i = 0; i < extraData.Count; i++)
+                for (int i = 0; i < 2; i++)//extraData.Count
                 {
                     Console.WriteLine("Enter additional information about your " + i_VehicleType);
                     Console.WriteLine("Enter " + extraData[i].ToLower());
                     extraData[i] = Console.ReadLine();
+
                 }
-                   
                     try
                     {
                         currentVehicle = i_Factory.FinishProduction(extraData);
@@ -82,8 +82,8 @@ namespace Ex3.ConsoleUI
                        // extraData[i] = Console.ReadLine();
                         correctInput = false;
                     }
-                
 
+                
                
             }
 

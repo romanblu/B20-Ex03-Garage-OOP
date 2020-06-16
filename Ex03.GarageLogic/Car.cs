@@ -8,9 +8,9 @@ namespace Ex03.GarageLogic
 {
     internal class Car : Vehicle
     {
-        private eColor color;
-        private eDoorsAmount amountOfDoors;
-        
+        private eColor color;// The color of the specific car
+        private eDoorsAmount amountOfDoors;// The number of doors the car have
+
         public eColor Color{ get{return color;}set{ color = value;} }
         public eDoorsAmount NumberOfDoors { get { return this.amountOfDoors; } set { this.amountOfDoors = value; } }
         

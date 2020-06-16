@@ -124,6 +124,7 @@ namespace Ex3.ConsoleUI
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
+          
 
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             inputString = Console.ReadLine();
@@ -183,7 +184,7 @@ namespace Ex3.ConsoleUI
                 string phoneNumber = Console.ReadLine();
                 if (garage.InsertVehicle(currentVehicle, ownerName, phoneNumber))
                 {
-                    Console.WriteLine("Vehicle was inserted successfuly");
+                    Console.WriteLine("Vehicle was inserted successfuly" + Environment.NewLine);
                     GarageFunctions();
                 }
                 else
