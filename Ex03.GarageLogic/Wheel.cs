@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
 
         public Wheel(float i_MaxAirPressure)
         {
-            this.currentAirPressure = maxAirPressure; 
+            this.currentAirPressure = i_MaxAirPressure; 
             this.maxAirPressure = i_MaxAirPressure;
             this.manufacturerName = "Wheeliams and sons";
         }
