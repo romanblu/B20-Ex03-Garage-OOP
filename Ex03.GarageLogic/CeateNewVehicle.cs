@@ -23,11 +23,12 @@ namespace Ex03.GarageLogic
             energyLeft = i_EnergyLeft;
         }
 
-        List<string> extraData = new List<string>();
+       // List<string> extraData = new List<string>();
 
         public List<string> GetExtraData(eVehicleType i_VehicleType)
         {
-            switch(i_VehicleType){
+            List<string> extraData = new List<string>();
+            switch (i_VehicleType){
                 case eVehicleType.Car:
                     extraData.Add("Color");
                     extraData.Add("Number Of Doors");
@@ -73,6 +74,7 @@ namespace Ex03.GarageLogic
                     
                     readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
                     break;
+                    
 
                 case eVehicleType.ElectricCar:
                     if (!Enum.TryParse(i_ExtraData[1], out numberOfDoors) || !Enum.IsDefined(typeof(eDoorsAmount), numberOfDoors))

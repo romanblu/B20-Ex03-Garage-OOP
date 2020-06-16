@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Ex3.ConsoleUI
 {
-    class Validator//?
+   public class Validator
     {
         public float ValidateEnergyLeft(string i_InputToCheck)
         {
@@ -55,6 +55,9 @@ namespace Ex3.ConsoleUI
             return currentCustomer;
         }
 
+
+    
+
         public Vehicle ValidateExtraDataForVehicleType( CreateNewVehicle i_Factory, eVehicleType i_VehicleType)
         {
             List<string> extraData = new List<string>();
@@ -62,31 +65,28 @@ namespace Ex3.ConsoleUI
             bool correctInput = false;
             while (!correctInput)
             {
-                correctInput = true;
+               correctInput = true;
                 extraData = i_Factory.GetExtraData(i_VehicleType);
-                for (int i = 0; i < 2; i++)//extraData.Count
+                for (int i = 0; i < extraData.Count; i++)//extraData.Count
                 {
                     Console.WriteLine("Enter additional information about your " + i_VehicleType);
                     Console.WriteLine("Enter " + extraData[i].ToLower());
                     extraData[i] = Console.ReadLine();
 
                 }
-                    try
-                    {
-                        currentVehicle = i_Factory.FinishProduction(extraData);
-                    }
-                    catch (FormatException e)
-                    {
-                        Console.WriteLine(e.Message);
-                        Console.WriteLine("Try again");
-                       // extraData[i] = Console.ReadLine();
-                        correctInput = false;
-                    }
-
-                
-               
+                try
+                {
+                    currentVehicle = i_Factory.FinishProduction(extraData);
+                }
+               catch (FormatException e)
+                {
+                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Try again");
+                    // extraData[i] = Console.ReadLine();
+                    correctInput = false;
+                }  
+            
             }
-
             return currentVehicle;
         }
     }
