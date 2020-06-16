@@ -12,7 +12,7 @@ namespace Ex3.ConsoleUI
         public float ValidateEnergyLeft(string i_InputToCheck)
         {
             float energyLeft;
-            while (!float.TryParse(i_InputToCheck, out energyLeft) && (energyLeft < 0 || energyLeft > 1))
+            while (!float.TryParse(i_InputToCheck, out energyLeft) || (energyLeft < 0 || energyLeft > 1))
             {
                 Console.WriteLine("Please enter a valid value between 0 and 1");
                 i_InputToCheck = Console.ReadLine();

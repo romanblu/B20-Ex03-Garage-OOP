@@ -144,13 +144,13 @@ namespace Ex03.GarageLogic
 
         public  GarageCustomer FindVehicleInGarage(string i_LicensePlate)
         {
-            GarageCustomer customerToReturn = new GarageCustomer();
-           // customersList.Add(customerToReturn);
+            GarageCustomer customerToReturn;
             foreach(GarageCustomer customer in customersList)
             {
                 if(customer.Vehicle.LicenseNumber == i_LicensePlate)
                 {
                     customerToReturn = customer;
+                    return customerToReturn;
                 }
             }
 
