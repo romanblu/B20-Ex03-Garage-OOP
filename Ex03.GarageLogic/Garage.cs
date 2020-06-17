@@ -106,7 +106,7 @@ namespace Ex03.GarageLogic
 
                     if (gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity || gasTank.CurrentAmount + i_FuelToAdd < 0)
                     {
-                        throw new ValueOutOfRangeException("Value Out Of Range", gasTank.MaxCapacity, 0);
+                        throw new ValueOutOfRangeException(gasTank.MaxCapacity, 0);
                     }
                     else
                     {
@@ -129,7 +129,7 @@ namespace Ex03.GarageLogic
             {   
                 if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity || battery.TimeLeft + i_TimeToAdd < 0)
                 {
-                    throw new ValueOutOfRangeException("Value Out Of Range", battery.TimeCapacity, 0);
+                    throw new ValueOutOfRangeException(battery.TimeCapacity, 0);
                 }
                 else
                 {

@@ -12,8 +12,10 @@ namespace Ex3.ConsoleUI
     {
         public static void Main()
         {
-           GarageUI ui = new GarageUI();
-           ui.GarageFunctions();
+            GarageUI ui = new GarageUI();
+            ui.GarageFunctions();
+            
+            
            // eColor color = new eColor();
            // try
            // {

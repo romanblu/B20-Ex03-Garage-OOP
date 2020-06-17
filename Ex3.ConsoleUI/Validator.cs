@@ -57,8 +57,6 @@ namespace Ex3.ConsoleUI
         }
 
 
-    
-
         public Vehicle ValidateExtraDataForVehicleType( CreateNewVehicle i_Factory, eVehicleType i_VehicleType)
         {
             List<string> extraData = new List<string>();
