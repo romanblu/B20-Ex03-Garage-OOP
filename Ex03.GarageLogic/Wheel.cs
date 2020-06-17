@@ -18,7 +18,7 @@ namespace Ex03.GarageLogic
 
         public Wheel(float i_MaxAirPressure)
         {
-            this.currentAirPressure = i_MaxAirPressure; 
+            this.currentAirPressure = i_MaxAirPressure;
             this.maxAirPressure = i_MaxAirPressure;
             this.manufacturerName = "Wheeliams and sons";
         }
@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ValueOutOfRangeException((maxAirPressure-i_AirPressureToAdd) ,0); //"The air pressure exceeded the maximum"
+                throw new ValueOutOfRangeException((maxAirPressure - currentAirPressure) ,0); //"The air pressure exceeded the maximum"
 
             }
         }

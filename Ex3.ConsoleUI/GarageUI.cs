@@ -123,31 +123,27 @@ namespace Ex3.ConsoleUI
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
-          
-
+            
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             inputString = Console.ReadLine();
             if(inputString == "yes")
             { 
-                Console.WriteLine("To change air pressure to all wheels press All or press Enter to change individually");
+                Console.WriteLine("To change air pressure to all wheels enter \'All\' or press Enter to change individually");
                 inputString = Console.ReadLine();
                 if (inputString == "")
                 {
                     for(int i = 0; i < currentVehicle.Wheels.Count; i++)
                     {
                         Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
+                        inputString = Console.ReadLine();
                         float airPressure;
-                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
-                        try
+                        while(!float.TryParse(inputString, out airPressure) || airPressure <0 || airPressure > currentVehicle.Wheels[i].MaxAirPressure)
                         {
-                            currentVehicle.Wheels[i].Inflate(airPressure);
-                        }
-                        catch (ValueOutOfRangeException outOfRange)
-                        {
-                            Console.WriteLine(outOfRange.Message);
-                            Console.WriteLine("Couldn't inflate wheel");
+                            Console.WriteLine("Enter a valid input number between 0 and " + currentVehicle.Wheels[i].MaxAirPressure);
+                            inputString = Console.ReadLine();
                         }
 
+                        currentVehicle.Wheels[i].CurrentAirPressure = airPressure;
                     } 
                 }
                 else
@@ -155,20 +151,17 @@ namespace Ex3.ConsoleUI
                     if(inputString == "All")
                     {
                         Console.WriteLine("Enter air pressure value for all wheels");
+                        inputString = Console.ReadLine();
                         float airPressure;
-                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
-                        for (int i = 0; i < currentVehicle.Wheels.Count; i++)
+                        while (!float.TryParse(inputString, out airPressure) || float.Parse(inputString) < 0 || float.Parse(inputString) > currentVehicle.Wheels[0].MaxAirPressure )
                         {
-                            try
-                            {
-                                currentVehicle.Wheels[i].Inflate(airPressure);
-                            }
-                            catch (ValueOutOfRangeException outOfRange)
-                            {
-                                Console.WriteLine(outOfRange.Message);
-                                Console.WriteLine("Couldn't inflate wheel");
-                            }
-                       
+                            Console.WriteLine("Enter a valid input number between 0 and " + currentVehicle.Wheels[0].MaxAirPressure);
+                            inputString = Console.ReadLine();
+                        }
+
+                        for(int i = 0; i < currentVehicle.Wheels.Count; i++)
+                        {
+                            currentVehicle.Wheels[i].CurrentAirPressure = airPressure;
                         }
                     }
                     
@@ -178,7 +171,7 @@ namespace Ex3.ConsoleUI
 
             userVehicles.Add(currentVehicle);
             Console.WriteLine("The vehicle added successfully" );
-            //Clean screen?-------------------------------------------------------------------------------------
+            
             GarageFunctions();
         }
 
@@ -289,8 +282,8 @@ namespace Ex3.ConsoleUI
             }
             catch (ValueOutOfRangeException outOfRange)
             {
-                Console.WriteLine(outOfRange.Message);
-                Console.WriteLine("Couldn't refuel");
+                
+                Console.WriteLine("Couldn't refuel, please enter value between {0} and {1}", outOfRange.MinValueGet, outOfRange.MaxValueGet);
             }
             catch (ArgumentException error)
             {
@@ -354,28 +347,28 @@ namespace Ex3.ConsoleUI
             vehicleInfo.AppendLine("Status: " + currentCustomer.Status );// status 
             for(int i = 0; i < vehicle.Wheels.Count; i++)
             {
-                vehicleInfo.AppendFormat("Wheel #{0} -     " + Environment.NewLine, i);//chack change
-                vehicleInfo.Append("Manufacturer name: " + vehicle.Wheels[i].ManufacturerName);
-                vehicleInfo.Append(Environment.NewLine + "    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
-                vehicleInfo.Append(Environment.NewLine + "    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
-                vehicleInfo.Append(Environment.NewLine);
+                vehicleInfo.AppendFormat("Wheel #{0} -     \n" , i);//chack change
+                vehicleInfo.AppendLine("Manufacturer name: " + vehicle.Wheels[i].ManufacturerName);
+                vehicleInfo.AppendLine("    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
+                vehicleInfo.AppendLine("    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
+                vehicleInfo.AppendLine("");
             }
 
             if(currentCustomer.Vehicle.Battery != null){
-                vehicleInfo.AppendFormat("Time left: {0} hours " + Environment.NewLine, vehicle.Battery.TimeLeft);
-                vehicleInfo.AppendFormat("Time capacity: {0} hours " + Environment.NewLine, vehicle.Battery.TimeCapacity);
+                vehicleInfo.AppendFormat("Time left: {0} hours \n" , vehicle.Battery.TimeLeft);
+                vehicleInfo.AppendFormat("Time capacity: {0} hours \n" , vehicle.Battery.TimeCapacity);
             }
             else
             {
-                vehicleInfo.Append("Gas type: "+ Environment.NewLine + vehicle.GasTank.GasType);
-                vehicleInfo.AppendFormat("Gas amount: {0} liters" + Environment.NewLine,  vehicle.GasTank.CurrentAmount);
-                vehicleInfo.AppendFormat("Gas capacity: {0} liters" + Environment.NewLine, vehicle.GasTank.MaxCapacity);
+                vehicleInfo.AppendLine("Gas type: " + vehicle.GasTank.GasType);
+                vehicleInfo.AppendFormat("Gas amount: {0} liters \n" ,  vehicle.GasTank.CurrentAmount);
+                vehicleInfo.AppendFormat("Gas capacity: {0} liters \n" , vehicle.GasTank.MaxCapacity);
             }
 
             for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
                 vehicleInfo.AppendLine(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
-                vehicleInfo.Append(Environment.NewLine);
+            
             }
 
             Console.WriteLine(vehicleInfo);

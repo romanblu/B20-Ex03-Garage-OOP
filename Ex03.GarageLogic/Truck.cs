@@ -20,8 +20,8 @@ namespace Ex03.GarageLogic
             this.dangerousSubstances = i_DangerousSubstances;
             this.trunkCapacity = i_TrunkCapacity;
             base.GasTank = new GasTank(eGasType.Soler, 120);
-
-            for(int i = 0; i < 16; i++)
+            base.GasTank.CurrentAmount = base.EnergyLeft * base.GasTank.MaxCapacity;
+            for (int i = 0; i < 16; i++)
             {
                 base.Wheels.Add(new Wheel(28));
             }

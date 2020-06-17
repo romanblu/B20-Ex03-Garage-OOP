@@ -12,25 +12,34 @@ namespace Ex3.ConsoleUI
     {
         public static void Main()
         {
-            GarageUI ui = new GarageUI();
-            ui.GarageFunctions();
+            CreateNewVehicle factory = new CreateNewVehicle();
             
-            
-           // eColor color = new eColor();
-           // try
-           // {
-            //    if (!Enum.TryParse("2", out color))
-            //    {
-             //       Console.WriteLine("Failed");
-              //      throw new FormatException("Color can contain only the following values: " + ui.ListEnumOptions(color));
-             //   }
-           // }catch( FormatException e)
-           // {
-            ////    Console.WriteLine(e.Message);
-            //    Console.WriteLine("Failed");
-           // }
-          //  Console.WriteLine(color.ToString());
-          //  Console.ReadLine();
+
+            Garage garage = new Garage();
+            factory.VehicleInProduction(eVehicleType.Car, "tesla", "asd123", 0.5f);
+            List<string> extraData = new List<string>();
+            extraData.Add("Black"); extraData.Add("2");
+            Vehicle c1 = factory.FinishProduction(extraData);
+
+            factory.VehicleInProduction(eVehicleType.Car, "tesla", "123456", 0.5f);
+            extraData = new List<string>();
+            extraData.Add("White"); extraData.Add("4");
+            Vehicle c2 = factory.FinishProduction(extraData);
+
+            factory.VehicleInProduction(eVehicleType.Car, "tesla", "qwerty", 0.5f);
+            extraData = new List<string>();
+            extraData.Add("Silver"); extraData.Add("2");
+            Vehicle c3 = factory.FinishProduction(extraData);
+            garage.InsertVehicle(c1, "faggito", "123123");
+            garage.InsertVehicle(c2, "faggito1", "123123");
+            garage.InsertVehicle(c3, "faggito2", "123123");
+            GarageUI ui = new GarageUI(garage);
+            Console.WriteLine("THERE ARE {0} VEHICLES", garage.customersList.Count);
+            //ui.GarageFunctions();
+
+            Console.WriteLine("GAS AMOUNT " + c2.GasTank.CurrentAmount);
+
+            Console.ReadLine();
         }
     }
 }

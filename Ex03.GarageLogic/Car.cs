@@ -25,6 +25,7 @@ namespace Ex03.GarageLogic
             base.GasTank = new GasTank(eGasType.Octan96, 60);
             base.GasVehicle = true;
             this.color = i_CarColor;
+            base.GasTank.CurrentAmount = base.EnergyLeft * base.GasTank.MaxCapacity;
             this.amountOfDoors = i_AmountOfDoors;
             for (int i = 0; i < 4; i++)
             {

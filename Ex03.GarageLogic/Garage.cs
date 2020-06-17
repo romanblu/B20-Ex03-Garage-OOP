@@ -9,7 +9,7 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        private List<GarageCustomer> customersList = new List<GarageCustomer>();
+        public List<GarageCustomer> customersList = new List<GarageCustomer>();
 
         //1 -Method - insert a new vehicle to the garage 
         public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber)
@@ -103,14 +103,16 @@ namespace Ex03.GarageLogic
 
                 else
                 {
-
-                    if (gasTank.CurrentAmount + i_FuelToAdd > gasTank.MaxCapacity || gasTank.CurrentAmount + i_FuelToAdd < 0)
+                    if(i_FuelToAdd < 0 || i_FuelToAdd > gasTank.MaxCapacity - gasTank.CurrentAmount)
                     {
-                        throw new ValueOutOfRangeException((gasTank.MaxCapacity - i_FuelToAdd), 0);
+                        throw new ValueOutOfRangeException(gasTank.MaxCapacity - gasTank.CurrentAmount, 0);
+
                     }
+                    
                     else
                     {
                         gasTank.CurrentAmount += i_FuelToAdd;
+                        customer.Vehicle.EnergyLeft = gasTank.CurrentAmount / gasTank.MaxCapacity;
                     }
                 }
             }
@@ -127,13 +129,17 @@ namespace Ex03.GarageLogic
             Battery battery = customer.Vehicle.Battery;
             if (battery != null)
             {   
-                if (battery.TimeLeft + i_TimeToAdd > battery.TimeCapacity || battery.TimeLeft + i_TimeToAdd < 0)
+                
+                if(i_TimeToAdd < 0 || i_TimeToAdd > battery.TimeCapacity)
                 {
-                    throw new ValueOutOfRangeException((battery.TimeCapacity - i_TimeToAdd), 0);
+                   throw new ValueOutOfRangeException((battery.TimeCapacity - battery.TimeLeft), 0);
+
                 }
+
                 else
                 {
                     battery.TimeLeft += i_TimeToAdd;
+                    customer.Vehicle.EnergyLeft = battery.TimeLeft / battery.TimeCapacity;
                 }
             }
             else

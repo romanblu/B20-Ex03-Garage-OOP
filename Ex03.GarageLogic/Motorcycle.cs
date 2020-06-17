@@ -21,6 +21,7 @@ namespace Ex03.GarageLogic
             this.engineVolume = i_EngineVolume;
             base.GasVehicle = true;
             base.GasTank = new GasTank(eGasType.Octan95, 7);
+            base.GasTank.CurrentAmount = base.EnergyLeft * base.GasTank.MaxCapacity;
             for (int i = 0; i < 2; i++)
             {
                 base.Wheels.Add(new Wheel(30));

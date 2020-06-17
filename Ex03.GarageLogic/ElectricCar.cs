@@ -21,8 +21,9 @@ namespace Ex03.GarageLogic
             base.GasVehicle = false;
             this.carColor = i_CarColor;
             this.amountOfDoors = i_AmountOfDoors;
-            base.Battery = new Battery(2.1f);            
-
+            base.Battery = new Battery(2.1f);
+            base.Battery.TimeLeft = base.EnergyLeft * base.Battery.TimeCapacity;
+           
             for (int i = 0; i < 4; i++)
             {
                 base.Wheels.Add(new Wheel(32));
