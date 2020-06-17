@@ -12,10 +12,15 @@ namespace Ex3.ConsoleUI
     {
         public static void Main()
         {
-            CreateNewVehicle factory = new CreateNewVehicle();
+            Garage garage = new Garage();
+            GarageUI ui = new GarageUI(garage);
+            ui.GarageFunctions();
+
+           /* CreateNewVehicle factory = new CreateNewVehicle();
             
 
             Garage garage = new Garage();
+            
             factory.VehicleInProduction(eVehicleType.Car, "tesla", "asd123", 0.5f);
             List<string> extraData = new List<string>();
             extraData.Add("Black"); extraData.Add("2");
@@ -40,6 +45,6 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("GAS AMOUNT " + c2.GasTank.CurrentAmount);
 
             Console.ReadLine();
-        }
+        */}
     }
 }
