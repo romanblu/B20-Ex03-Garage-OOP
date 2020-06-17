@@ -117,9 +117,9 @@ namespace Ex3.ConsoleUI
             string inputString = Console.ReadLine();
             float energyLeft = validator.ValidateEnergyLeft(inputString);
 
-            Console.WriteLine("Enter vehicle type");
-            inputString = Console.ReadLine();  
-            eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(inputString);
+            Console.WriteLine("Enter the number of your vehicle type: {0} (1)Car {0} (2)Electric Car {0} (3)Motorcycle{0} (4)Electric Motorcycle{0} (5)Truck", Environment.NewLine);
+            string inputInt = Console.ReadLine();
+            eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(inputInt);
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);

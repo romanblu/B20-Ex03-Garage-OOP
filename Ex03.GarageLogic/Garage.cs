@@ -163,6 +163,6 @@ namespace Ex03.GarageLogic
     { Red, White, Black, Silver }
     public enum eLicense{ A, A1, AA, B }
     public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
-    public enum eVehicleType{ Car, ElectricCar, Motorcycle, ElectricMotorcycle, Truck }
+    public enum eVehicleType{ Car = 1, ElectricCar = 2, Motorcycle = 3, ElectricMotorcycle = 4, Truck = 5 }
 
 }
