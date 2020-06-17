@@ -72,8 +72,6 @@ namespace Ex03.GarageLogic
                     
                     readyVehicle = new Car(this.modelName, this.licenseNumber, this.energyLeft, color, numberOfDoors);
                     break;
-                    
-
                 case eVehicleType.ElectricCar:
                     if (!Enum.TryParse(i_ExtraData[1], out numberOfDoors) || !Enum.IsDefined(typeof(eDoorsAmount), numberOfDoors))
                     {

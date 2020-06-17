@@ -21,17 +21,5 @@ namespace Ex03.GarageLogic
             this.gasType = i_GasType;
             this.maxCapacity = i_MaxCapacity;
         }
-        /*
-        public bool Refill(float i_FuelAmount, eGasType i_GasType)
-        {
-            if(i_FuelAmount + this.currentAmount <= this.maxCapacity && i_GasType == this.gasType)
-            {
-                this.currentAmount += i_FuelAmount;
-                return true;
-            }
-            return false;
-        }
-        */
-
     }
 }
