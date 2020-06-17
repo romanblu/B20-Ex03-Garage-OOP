@@ -17,7 +17,7 @@ namespace Ex03.GarageLogic
         public ValueOutOfRangeException() {}
         public ValueOutOfRangeException(string message) : base(message) {}
 
-       // public ValueOutOfRangeException(string i_Message, Exception i_InnerException) : base(i_Message, i_InnerException) {}
+        public ValueOutOfRangeException(string i_Message, Exception i_InnerException) : base(i_Message, i_InnerException) {}
 
         public ValueOutOfRangeException(float i_MaxValue, float i_MinValue) : base(string.Format("The value is out of range."))
         {
@@ -26,13 +26,5 @@ namespace Ex03.GarageLogic
             this.MinValue = i_MinValue;
         }
 
-        public void throwExceptionEror(float i_CurrentValue)
-        {
-            if (i_CurrentValue < this.MinValue || i_CurrentValue > this.MaxValue)
-            {
-                throw new ValueOutOfRangeException(MaxValue, MinValue);
-            }
-
-        }
     }
 }

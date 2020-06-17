@@ -138,7 +138,16 @@ namespace Ex3.ConsoleUI
                         Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
                         float airPressure;
                         float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
-                        currentVehicle.Wheels[i].Inflate(airPressure);
+                        try
+                        {
+                            currentVehicle.Wheels[i].Inflate(airPressure);
+                        }
+                        catch (ValueOutOfRangeException outOfRange)
+                        {
+                            Console.WriteLine(outOfRange.Message);
+                            Console.WriteLine("Couldn't inflate wheel");
+                        }
+
                     } 
                 }
                 else
@@ -150,7 +159,16 @@ namespace Ex3.ConsoleUI
                         float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
                         for (int i = 0; i < currentVehicle.Wheels.Count; i++)
                         {
-                            currentVehicle.Wheels[i].Inflate(airPressure);
+                            try
+                            {
+                                currentVehicle.Wheels[i].Inflate(airPressure);
+                            }
+                            catch (ValueOutOfRangeException outOfRange)
+                            {
+                                Console.WriteLine(outOfRange.Message);
+                                Console.WriteLine("Couldn't inflate wheel");
+                            }
+                       
                         }
                     }
                     
@@ -242,7 +260,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter license number to inflate wheels");
             string licenseNumber = Console.ReadLine();
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
-            garage.InflateToMax(licenseNumber);
+            garage.InflateToMax(licenseNumber);//check
             Console.WriteLine("Wheels inflated succesfully, Press anything to get back to main screen");
             Console.ReadLine();
             GarageFunctions();
@@ -258,20 +276,20 @@ namespace Ex3.ConsoleUI
             string input = Console.ReadLine();
             eGasType gasType = validator.ValidateEnumType<eGasType>(input);
             Console.WriteLine("Enter amount to fill");
-            float amount;
+            float amountToAdd;
             input = Console.ReadLine();
-            while (!float.TryParse(input, out amount) || amount < 0)
+            while (!float.TryParse(input, out amountToAdd) || amountToAdd < 0)
             {
                 Console.WriteLine("Please enter a valid numerical value for the amount ");
                 input = Console.ReadLine();
             }
             try 
             {
-                garage.Refuel(licenseNumber, gasType, amount);
+                garage.Refuel(licenseNumber, gasType, amountToAdd);
             }
-            catch (ArgumentException e)
+            catch (ArgumentException error)
             {
-                Console.WriteLine(e.Message);
+                Console.WriteLine(error.Message);
                 Console.WriteLine("Couldnt refuel vehicle");
             }
             finally
