@@ -11,7 +11,7 @@ namespace Ex03.GarageLogic
         private float timeLeft;
         private float timeCapacity;
 
-        public float TimeLeft { get { return timeLeft; } set { timeLeft = value; } }
+        public float TimeLeft { get { return timeLeft; } set { timeLeft = value; }}
         public float TimeCapacity { get { return timeCapacity; } set { timeCapacity = value; } }
 
         public Battery(float i_TimeCapacity)

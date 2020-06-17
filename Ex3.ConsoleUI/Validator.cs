@@ -36,7 +36,7 @@ namespace Ex3.ConsoleUI
                         enumListing.Append(", ");
                     }
                 }
-
+                
                 Console.WriteLine("Wrong value please choose from the options: " + enumListing.ToString());
                 i_InputToCheck = Console.ReadLine();
             }
