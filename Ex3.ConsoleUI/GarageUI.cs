@@ -177,7 +177,7 @@ namespace Ex3.ConsoleUI
             }
 
             userVehicles.Add(currentVehicle);
-            Console.WriteLine("The vehicle added successfully" + Environment.NewLine);
+            Console.WriteLine("The vehicle added successfully" );
             //Clean screen?-------------------------------------------------------------------------------------
             GarageFunctions();
         }
@@ -201,7 +201,7 @@ namespace Ex3.ConsoleUI
                 string phoneNumber = Console.ReadLine();
                 if (garage.InsertVehicle(currentVehicle, ownerName, phoneNumber))
                 {
-                    Console.WriteLine("Vehicle was inserted successfuly" + Environment.NewLine);
+                    Console.WriteLine("Vehicle was inserted successfuly");
                     GarageFunctions();
                 }
                 else
@@ -260,7 +260,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter license number to inflate wheels");
             string licenseNumber = Console.ReadLine();
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
-            garage.InflateToMax(licenseNumber);//check
+            garage.InflateToMax(licenseNumber);
             Console.WriteLine("Wheels inflated succesfully, Press anything to get back to main screen");
             Console.ReadLine();
             GarageFunctions();
@@ -343,10 +343,10 @@ namespace Ex3.ConsoleUI
             Vehicle vehicle = currentCustomer.Vehicle;
             
             StringBuilder vehicleInfo = new StringBuilder();
-            vehicleInfo.Append("License number: "+ licenseNumber + Environment.NewLine);
-            vehicleInfo.Append("Model name: " + vehicle.Model + Environment.NewLine);// model name
-            vehicleInfo.Append("Owner name: " + currentCustomer.OwnerName + Environment.NewLine);// owner name
-            vehicleInfo.Append("Status: " + currentCustomer.Status + Environment.NewLine);// status 
+            vehicleInfo.AppendLine("License number: "+ licenseNumber );
+            vehicleInfo.AppendLine("Model name: " + vehicle.Model );// model name
+            vehicleInfo.AppendLine("Owner name: " + currentCustomer.OwnerName );// owner name
+            vehicleInfo.AppendLine("Status: " + currentCustomer.Status );// status 
             for(int i = 0; i < vehicle.Wheels.Count; i++)
             {
                 vehicleInfo.AppendFormat("Wheel #{0} -     " + Environment.NewLine, i);//chack change
