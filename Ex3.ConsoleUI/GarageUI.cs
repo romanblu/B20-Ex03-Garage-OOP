@@ -123,8 +123,26 @@ namespace Ex3.ConsoleUI
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
-          
+            ///--------change
+            
+            if(!currentVehicle.GasVehicle)
+            {
+                Console.WriteLine("Enter the cuurent amount of the battery left time");
+                inputString = Console.ReadLine();
+                float currentLeftTime;
+                float.TryParse(inputString, out currentLeftTime);//formatexception
+                try
+                {
+                    currentVehicle.Battery.TimeLeft = currentLeftTime;
+                }
+                catch (ValueOutOfRangeException outOfRange)
+                {
+                    Console.WriteLine(outOfRange.Message);
+                    Console.WriteLine("Couldn't inflate wheel");
+                }
 
+            }
+            //-------------------------end change
             Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
             inputString = Console.ReadLine();
             if(inputString == "yes")
