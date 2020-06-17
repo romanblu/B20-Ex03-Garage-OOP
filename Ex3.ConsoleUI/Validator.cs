@@ -56,6 +56,40 @@ namespace Ex3.ConsoleUI
             return currentCustomer;
         }
 
+        public float ValidateWheelInfaltion(Wheel i_Wheel, string i_AirPressure)
+        {
+            float airPressure = 0;
+            bool valid = false;
+            while (!valid )
+            {
+                valid = true;
+                
+
+                if(!float.TryParse(i_AirPressure, out airPressure))
+                {
+                    valid = false;
+                    Console.WriteLine("Enter a valid input, positive number ");
+                    i_AirPressure = Console.ReadLine();
+                }
+                else
+                {
+                    try
+                    {
+                        i_Wheel.Inflate(airPressure);
+                    }
+                    catch (ValueOutOfRangeException e)
+                    {
+                        valid = false;
+                        Console.WriteLine("Cannot inflate wheel, try again " + e.MaxValueGet);
+                        i_AirPressure = Console.ReadLine();
+                    }
+
+                }
+
+            }
+            return airPressure;
+            
+        }
 
         public Vehicle ValidateExtraDataForVehicleType( CreateNewVehicle i_Factory, eVehicleType i_VehicleType)
         {
@@ -82,8 +116,8 @@ namespace Ex3.ConsoleUI
                     Console.WriteLine(e.Message);
                     Console.WriteLine("Try again");
                     correctInput = false;
-                }  
-            
+                }
+                
             }
             return currentVehicle;
         }
