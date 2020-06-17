@@ -287,6 +287,11 @@ namespace Ex3.ConsoleUI
             {
                 garage.Refuel(licenseNumber, gasType, amountToAdd);
             }
+            catch (ValueOutOfRangeException outOfRange)
+            {
+                Console.WriteLine(outOfRange.Message);
+                Console.WriteLine("Couldn't refuel");
+            }
             catch (ArgumentException error)
             {
                 Console.WriteLine(error.Message);
