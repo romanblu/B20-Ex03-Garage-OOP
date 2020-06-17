@@ -9,9 +9,9 @@ namespace Ex03.GarageLogic
 {
     public class Garage
     {
-        public List<GarageCustomer> customersList = new List<GarageCustomer>();
+        public List<GarageCustomer> CustomersList = new List<GarageCustomer>();
 
-        //1 -Method - insert a new vehicle to the garage 
+        // 1 -Method - insert a new vehicle to the garage 
         public bool InsertVehicle(Vehicle i_Vehicle, string i_OwnerName, string i_PhoneNumber)
         {
             GarageCustomer currentCustomer = FindVehicleInGarage(i_Vehicle.LicenseNumber);
@@ -22,7 +22,7 @@ namespace Ex03.GarageLogic
                 currentCustomer.OwnerName = i_OwnerName;
                 currentCustomer.PhoneNumber = i_PhoneNumber;
                 currentCustomer.Status = eStatus.Repairing;
-                customersList.Add(currentCustomer);
+                CustomersList.Add(currentCustomer);
                 return true;
             }
             else
@@ -32,11 +32,11 @@ namespace Ex03.GarageLogic
             }
         }
 
-        //2 Method-present a list of license numbers of the vehicles in the garage
+        // 2 Method-present a list of license numbers of the vehicles in the garage
         public List<string> LicenseList()
         {
             List<string> customers = new List<string>();
-            foreach (GarageCustomer customer in customersList)
+            foreach (GarageCustomer customer in CustomersList)
             {
                 customers.Add(customer.Vehicle.LicenseNumber);
             }
@@ -48,7 +48,7 @@ namespace Ex03.GarageLogic
         {
             List<string> customers = new List<string>();
           
-            foreach (GarageCustomer customer in customersList)
+            foreach (GarageCustomer customer in CustomersList)
             {
                 if (customer.Status == i_Status)
                 {
@@ -58,7 +58,7 @@ namespace Ex03.GarageLogic
             return customers;
         }
 
-        //3 -Method - changes the status of the specific vehicle in the garage - by license plate
+        // 3 -Method - changes the status of the specific vehicle in the garage - by license plate
         public void ChangeStatus(string i_LicenseNumber, eStatus i_NewStatus)
         {
             GarageCustomer currentCustomer = FindVehicleInGarage(i_LicenseNumber);
@@ -131,8 +131,7 @@ namespace Ex03.GarageLogic
                 
                 if(i_TimeToAdd < 0 || i_TimeToAdd > battery.TimeCapacity)
                 {
-                   throw new ValueOutOfRangeException((battery.TimeCapacity - battery.TimeLeft), 0);
-
+                   throw new ValueOutOfRangeException(battery.TimeCapacity - battery.TimeLeft, 0);
                 }
 
                 else
@@ -147,10 +146,10 @@ namespace Ex03.GarageLogic
             }
         }
 
-        public  GarageCustomer FindVehicleInGarage(string i_LicensePlate)
+        public GarageCustomer FindVehicleInGarage(string i_LicensePlate)
         {
             GarageCustomer customerToReturn;
-            foreach(GarageCustomer customer in customersList)
+            foreach(GarageCustomer customer in CustomersList)
             {
                 if(customer.Vehicle.LicenseNumber == i_LicensePlate)
                 {
@@ -163,12 +162,12 @@ namespace Ex03.GarageLogic
         }
     }
 
-    public enum eStatus{ Repairing, Fixed, Paid }
-    public enum eDoorsAmount{ Two = 2, Three = 3, Four = 4, Five = 5 }
+    public enum eStatus { Repairing, Fixed, Paid }
+    public enum eDoorsAmount { Two = 2, Three = 3, Four = 4, Five = 5 }
     public enum eColor
     { Red, White, Black, Silver }
-    public enum eLicense{ A, A1, AA, B }
-    public enum eGasType{ Soler, Octan95, Octan96, Octan98 }
-    public enum eVehicleType{ Car = 1, ElectricCar = 2, Motorcycle = 3, ElectricMotorcycle = 4, Truck = 5 }
+    public enum eLicense { A, A1, AA, B }
+    public enum eGasType { Soler, Octan95, Octan96, Octan98 }
+    public enum eVehicleType { Car = 1, ElectricCar = 2, Motorcycle = 3, ElectricMotorcycle = 4, Truck = 5 }
 
 }

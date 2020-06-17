@@ -9,10 +9,10 @@ namespace Ex03.GarageLogic
     public class CreateNewVehicle
     {
         
-        string modelName;
-        string licenseNumber;
-        float energyLeft;
-        eVehicleType vehicleType;
+        private string modelName;
+        private string licenseNumber;
+        private float energyLeft;
+        private eVehicleType vehicleType;
 
         // we first start the vehicle production, then by the type of the car we will update the next data then create the vehicle
         public void VehicleInProduction(eVehicleType i_VehicleType, string i_ModelName, string i_LicenseNumber, float i_EnergyLeft)
@@ -26,7 +26,7 @@ namespace Ex03.GarageLogic
         public List<string> GetExtraData(eVehicleType i_VehicleType)
         {
             List<string> extraData = new List<string>();
-            switch (i_VehicleType){
+            switch (i_VehicleType) {
                 case eVehicleType.Car:
                     extraData.Add("Color");
                     extraData.Add("Number Of Doors");
@@ -133,6 +133,7 @@ namespace Ex03.GarageLogic
 
             for (int i = 0; i < Enum.GetNames(i_Enum.GetType()).Length; i++)
             {
+                
                 enumListing.Append(Enum.GetNames(i_Enum.GetType())[i]);
                 if (i != Enum.GetNames(i_Enum.GetType()).Length - 1)
                 {

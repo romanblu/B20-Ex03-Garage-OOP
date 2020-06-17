@@ -16,7 +16,7 @@ namespace Ex03.GarageLogic
 
         public Vehicle Vehicle { get { return vehicle; } set { vehicle = value; } }
         public string PhoneNumber { get { return this.phoneNumber; } set { phoneNumber = value; } }
-        public string OwnerName { get { return ownerName; } set { ownerName= value; } }
+        public string OwnerName { get { return ownerName; } set { ownerName = value; } }
         public eStatus Status { get { return this.status; } set { this.status = value; } }
 
         public GarageCustomer()

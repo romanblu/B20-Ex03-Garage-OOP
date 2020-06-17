@@ -14,10 +14,10 @@ namespace Ex03.GarageLogic
         public float MinValueGet { get { return MinValue; } }
 
 
-        public ValueOutOfRangeException() {}
-        public ValueOutOfRangeException(string message) : base(message) {}
+        public ValueOutOfRangeException() { }
+        public ValueOutOfRangeException(string message) : base(message) { }
 
-        public ValueOutOfRangeException(string i_Message, Exception i_InnerException) : base(i_Message, i_InnerException) {}
+        public ValueOutOfRangeException(string i_Message, Exception i_InnerException) : base(i_Message, i_InnerException) { }
 
         public ValueOutOfRangeException(float i_MaxValue, float i_MinValue) : base(string.Format("The value is out of range."))
         {

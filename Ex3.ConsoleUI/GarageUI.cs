@@ -8,19 +8,21 @@ using Ex03.GarageLogic;
 
 namespace Ex3.ConsoleUI
 {
-   public  class GarageUI
+   public class GarageUI
     {
-        Garage garage = new Garage();
-        CreateNewVehicle factory = new CreateNewVehicle();
-        List<Vehicle> userVehicles = new List<Vehicle>();
-        Validator validator = new Validator();
+        private Garage garage = new Garage();
+        private CreateNewVehicle factory = new CreateNewVehicle();
+        private List<Vehicle> userVehicles = new List<Vehicle>();
+        private Validator validator = new Validator();
 
         public GarageUI(Garage i_Garage)
         {
             this.garage = i_Garage;
         }
 
-        public GarageUI() { }
+        public GarageUI()
+        { 
+        }
 
         public void GarageFunctions()
         {
@@ -35,7 +37,6 @@ namespace Ex3.ConsoleUI
             functionsList.AppendLine("6 - Recharge electric vehicle");
             functionsList.AppendLine("7 - To get full info about your vehicle");
             Console.WriteLine(functionsList.ToString());
-
             string inputOption = Console.ReadLine();
             int option;
             if (int.TryParse(inputOption, out option))
@@ -78,10 +79,10 @@ namespace Ex3.ConsoleUI
                 GarageFunctions();
             }
         }
+
         public string ListEnumOptions(Enum i_Enum)
         {
             StringBuilder enumListing = new StringBuilder();
-
             for (int i = 0; i < Enum.GetNames(i_Enum.GetType()).Length; i++)
             {
                 enumListing.Append(Enum.GetNames(i_Enum.GetType())[i]);
@@ -90,6 +91,7 @@ namespace Ex3.ConsoleUI
                     enumListing.Append(", ");
                 }
             }
+        
             return enumListing.ToString();
         }
 
@@ -102,6 +104,7 @@ namespace Ex3.ConsoleUI
                     return vehicle;
                 }
             }
+
             return null;
         }
 
@@ -116,11 +119,9 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter energy left");
             string inputString = Console.ReadLine();
             float energyLeft = validator.ValidateEnergyLeft(inputString);
-
-            Console.WriteLine("Enter the number of your vehicle type:{0} (1) Car {0} (2) Electric Car{0} (3) Motorcycle{0} (4) Electric Motorcycle{0} (5) Truck", Environment.NewLine);
+            Console.WriteLine("Enter the your vehicle type: {0} ", ListEnumOptions(new eVehicleType()));
             inputString = Console.ReadLine();  
             eVehicleType vehicleType = validator.ValidateEnumType<eVehicleType>(inputString);
-            
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
             List<Wheel> wheels = currentVehicle.Wheels;
@@ -132,15 +133,13 @@ namespace Ex3.ConsoleUI
             }
 
             validator.ValidateWheelsPressure(wheels);
-
             userVehicles.Add(currentVehicle);
             Console.WriteLine("The vehicle added successfully" );
-            
             GarageFunctions();
         }
 
         // function #1
-        private  void AddVehicle()
+        private void AddVehicle()
         {
             Vehicle currentVehicle;
             Console.WriteLine("Enter license number");
@@ -166,6 +165,7 @@ namespace Ex3.ConsoleUI
                     Console.WriteLine("Vehicle already in the garage, updated status to Repairing");
                 }
             }
+            
             GarageFunctions();
         }
 
@@ -175,7 +175,7 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Insert the status you want to screen by, or press enter");            
             string input = Console.ReadLine();
             List<string> customers;
-            if (input.Equals(""))
+            if (input.Equals(string.Empty))
             {
                 customers = garage.LicenseList();
             }
@@ -190,13 +190,14 @@ namespace Ex3.ConsoleUI
             {
                 customersList.AppendLine(licenseNumber);
             }
+
             Console.WriteLine(customersList);
             Console.WriteLine("Press anything to get back to main screen");
             Console.ReadLine();
             GarageFunctions();
         }
 
-        //function #3
+        // function #3
         private void ChangeStatus()
         {
             Console.WriteLine("Enter license number");
@@ -235,11 +236,8 @@ namespace Ex3.ConsoleUI
                 string input = Console.ReadLine();
                 eGasType gasType = validator.ValidateEnumType<eGasType>(input);
                 Console.WriteLine("Enter amount to fill");
-                float amountToAdd;
                 input = Console.ReadLine();
-
                 validator.ValidateRefuel(gasType, input, licenseNumber, garage);
-
             }
             else
             {
@@ -254,7 +252,6 @@ namespace Ex3.ConsoleUI
         // function #6
         public void Recharge()
         {
-            
             Console.WriteLine("Enter license number to recharge");
             string licenseNumber = Console.ReadLine();
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
@@ -262,9 +259,7 @@ namespace Ex3.ConsoleUI
             {
                 Console.WriteLine("Enter number of minutes you want to recharge");
                 string input = Console.ReadLine();
-                
-                validator.ValidateRecharge(input, licenseNumber, garage);
-                
+                validator.ValidateRecharge(input, licenseNumber, garage); 
             }
             else
             {
@@ -280,43 +275,41 @@ namespace Ex3.ConsoleUI
         {
             Console.WriteLine("Enter license number to get vehicle info");
             string licenseNumber = Console.ReadLine();
-
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
-
             Vehicle vehicle = currentCustomer.Vehicle;
-            
             StringBuilder vehicleInfo = new StringBuilder();
-            vehicleInfo.AppendLine(String.Format(@"License number: {0}", licenseNumber ));
-            vehicleInfo.AppendLine(String.Format(@"Model name: {0}", vehicle.Model ));// model name
-            vehicleInfo.AppendLine(String.Format("Owner name: {0}", currentCustomer.OwnerName ));// owner name
-            vehicleInfo.AppendLine(String.Format(@"Status: {0}", currentCustomer.Status ));// status
+            vehicleInfo.AppendLine(string.Format(@"License number: {0}", licenseNumber ));
+            vehicleInfo.AppendLine(string.Format(@"Model name: {0}", vehicle.Model )); // model name
+            vehicleInfo.AppendLine(string.Format("Owner name: {0}", currentCustomer.OwnerName )); // owner name
+            vehicleInfo.AppendLine(string.Format(@"Status: {0}", currentCustomer.Status )); // status
             vehicleInfo.AppendLine();
             for(int i = 0; i < vehicle.Wheels.Count; i++)
             {
-                vehicleInfo.AppendLine(String.Format(@"Wheel #{0} -" , i));//chack change
-                vehicleInfo.AppendLine(String.Format(@"    Manufacturer name: {0}" , vehicle.Wheels[i].ManufacturerName));
-                vehicleInfo.AppendLine(String.Format(@"    Current air pressure: {0}", vehicle.Wheels[i].CurrentAirPressure));
-                vehicleInfo.AppendLine(String.Format(@"    Max air pressure: {0}", vehicle.Wheels[i].MaxAirPressure));
-                
+                vehicleInfo.AppendLine(string.Format(@"Wheel #{0} -", i)); // chack change
+                vehicleInfo.AppendLine(string.Format(@"    Manufacturer name: {0}", vehicle.Wheels[i].ManufacturerName));
+                vehicleInfo.AppendLine(string.Format(@"    Current air pressure: {0}", vehicle.Wheels[i].CurrentAirPressure));
+                vehicleInfo.AppendLine(string.Format(@"    Max air pressure: {0}", vehicle.Wheels[i].MaxAirPressure));   
             }
+
             vehicleInfo.AppendLine();
 
-            if (currentCustomer.Vehicle.Battery != null){
-                vehicleInfo.AppendLine(String.Format(@"Time left: {0} hours " , vehicle.Battery.TimeLeft));
-                vehicleInfo.AppendLine(String.Format(@"Time capacity: {0} hours " , vehicle.Battery.TimeCapacity));
+            if (currentCustomer.Vehicle.Battery != null)
+            {
+                vehicleInfo.AppendLine(string.Format(@"Time left: {0} hours ", vehicle.Battery.TimeLeft));
+                vehicleInfo.AppendLine(string.Format(@"Time capacity: {0} hours ", vehicle.Battery.TimeCapacity));
             }
             else
             {
-                vehicleInfo.AppendLine(String.Format("Gas type: {0} " , vehicle.GasTank.GasType));
-                vehicleInfo.AppendLine(String.Format(@"Gas amount: {0} liters " ,  vehicle.GasTank.CurrentAmount));
-                vehicleInfo.AppendLine(String.Format(@"Gas capacity: {0} liters " , vehicle.GasTank.MaxCapacity));
+                vehicleInfo.AppendLine(string.Format("Gas type: {0} ", vehicle.GasTank.GasType));
+                vehicleInfo.AppendLine(string.Format(@"Gas amount: {0} liters ",  vehicle.GasTank.CurrentAmount));
+                vehicleInfo.AppendLine(string.Format(@"Gas capacity: {0} liters ", vehicle.GasTank.MaxCapacity));
             }
 
             for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
-                vehicleInfo.AppendLine(String.Format(@"{0} : {1}",vehicle.ExtraTypeData.ElementAt(i).Key , vehicle.ExtraTypeData.ElementAt(i).Value));
-            
+                vehicleInfo.AppendLine(string.Format(@"{0} : {1}", vehicle.ExtraTypeData.ElementAt(i).Key, vehicle.ExtraTypeData.ElementAt(i).Value));
             }
+
             vehicleInfo.AppendLine();
             Console.WriteLine(vehicleInfo);
 
@@ -324,6 +317,5 @@ namespace Ex3.ConsoleUI
             Console.ReadLine();
             GarageFunctions();
         }
-    }
-    
+    }   
 }
