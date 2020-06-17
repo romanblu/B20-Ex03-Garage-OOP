@@ -285,10 +285,9 @@ namespace Ex3.ConsoleUI
                 
                 Console.WriteLine("Couldn't refuel, please enter value between {0} and {1}", outOfRange.MinValueGet, outOfRange.MaxValueGet);
             }
-            catch (ArgumentException error)
+            catch (ArgumentException)
             {
-                Console.WriteLine(error.Message);
-                Console.WriteLine("Couldnt refuel vehicle");
+                Console.WriteLine("You entered wrong fuel type ");
             }
             finally
             {
@@ -320,7 +319,10 @@ namespace Ex3.ConsoleUI
             catch(ArgumentException e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("Couldnt recharge vehicle");
+            }
+            catch(ValueOutOfRangeException e)
+            {
+                Console.WriteLine("You over charge the battery, please enter between {0} and {1} minutes", e.MinValueGet * 60, e.MinValueGet * 60);
             }
             finally
             {
@@ -341,36 +343,38 @@ namespace Ex3.ConsoleUI
             Vehicle vehicle = currentCustomer.Vehicle;
             
             StringBuilder vehicleInfo = new StringBuilder();
-            vehicleInfo.AppendLine("License number: "+ licenseNumber );
-            vehicleInfo.AppendLine("Model name: " + vehicle.Model );// model name
-            vehicleInfo.AppendLine("Owner name: " + currentCustomer.OwnerName );// owner name
-            vehicleInfo.AppendLine("Status: " + currentCustomer.Status );// status 
+            vehicleInfo.AppendLine(String.Format(@"License number: {0}", licenseNumber ));
+            vehicleInfo.AppendLine(String.Format(@"Model name: {0}", vehicle.Model ));// model name
+            vehicleInfo.AppendLine(String.Format("Owner name: {0}", currentCustomer.OwnerName ));// owner name
+            vehicleInfo.AppendLine(String.Format(@"Status: {0}", currentCustomer.Status ));// status
+            vehicleInfo.AppendLine();
             for(int i = 0; i < vehicle.Wheels.Count; i++)
             {
-                vehicleInfo.AppendFormat("Wheel #{0} -     \n" , i);//chack change
-                vehicleInfo.AppendLine("Manufacturer name: " + vehicle.Wheels[i].ManufacturerName);
-                vehicleInfo.AppendLine("    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
-                vehicleInfo.AppendLine("    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
-                vehicleInfo.AppendLine("");
+                vehicleInfo.AppendLine(String.Format(@"Wheel #{0} -" , i));//chack change
+                vehicleInfo.AppendLine(String.Format(@"    Manufacturer name: {0}" , vehicle.Wheels[i].ManufacturerName));
+                vehicleInfo.AppendLine(String.Format(@"    Current air pressure: {0}", vehicle.Wheels[i].CurrentAirPressure));
+                vehicleInfo.AppendLine(String.Format(@"    Max air pressure: {0}", vehicle.Wheels[i].MaxAirPressure));
+                
             }
+            vehicleInfo.AppendLine();
 
-            if(currentCustomer.Vehicle.Battery != null){
-                vehicleInfo.AppendFormat("Time left: {0} hours \n" , vehicle.Battery.TimeLeft);
-                vehicleInfo.AppendFormat("Time capacity: {0} hours \n" , vehicle.Battery.TimeCapacity);
+            if (currentCustomer.Vehicle.Battery != null){
+                vehicleInfo.AppendLine(String.Format(@"Time left: {0} hours " , vehicle.Battery.TimeLeft));
+                vehicleInfo.AppendLine(String.Format(@"Time capacity: {0} hours " , vehicle.Battery.TimeCapacity));
             }
             else
             {
-                vehicleInfo.AppendLine("Gas type: " + vehicle.GasTank.GasType);
-                vehicleInfo.AppendFormat("Gas amount: {0} liters \n" ,  vehicle.GasTank.CurrentAmount);
-                vehicleInfo.AppendFormat("Gas capacity: {0} liters \n" , vehicle.GasTank.MaxCapacity);
+                vehicleInfo.AppendLine(String.Format("Gas type: {0} " , vehicle.GasTank.GasType));
+                vehicleInfo.AppendLine(String.Format(@"Gas amount: {0} liters " ,  vehicle.GasTank.CurrentAmount));
+                vehicleInfo.AppendLine(String.Format(@"Gas capacity: {0} liters " , vehicle.GasTank.MaxCapacity));
             }
 
             for (int i = 0; i < vehicle.ExtraTypeData.Count; i++)
             {
-                vehicleInfo.AppendLine(vehicle.ExtraTypeData.ElementAt(i).Key + ": " + vehicle.ExtraTypeData.ElementAt(i).Value);
+                vehicleInfo.AppendLine(String.Format(@"{0} : {1}",vehicle.ExtraTypeData.ElementAt(i).Key , vehicle.ExtraTypeData.ElementAt(i).Value));
             
             }
-
+            vehicleInfo.AppendLine();
             Console.WriteLine(vehicleInfo);
 
             Console.WriteLine("Press anything to get back to main screen");

@@ -35,7 +35,7 @@ namespace Ex3.ConsoleUI
             garage.InsertVehicle(c3, "faggito2", "123123");
             GarageUI ui = new GarageUI(garage);
             Console.WriteLine("THERE ARE {0} VEHICLES", garage.customersList.Count);
-            //ui.GarageFunctions();
+            ui.GarageFunctions();
 
             Console.WriteLine("GAS AMOUNT " + c2.GasTank.CurrentAmount);
 
