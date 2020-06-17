@@ -123,51 +123,15 @@ namespace Ex3.ConsoleUI
             
             factory.VehicleInProduction(vehicleType, modelName, licenseNumber, energyLeft);
             currentVehicle = validator.ValidateExtraDataForVehicleType(factory, vehicleType);
-            
-            Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
-            inputString = Console.ReadLine();
-            if(inputString == "yes")
-            { 
-                Console.WriteLine("To change air pressure to all wheels enter \'All\' or press Enter to change individually");
-                inputString = Console.ReadLine();
-                if (inputString == "")
-                {
-                    for(int i = 0; i < currentVehicle.Wheels.Count; i++)
-                    {
-                        Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
-                        inputString = Console.ReadLine();
-                        float airPressure;
-                        while(!float.TryParse(inputString, out airPressure) || airPressure <0 || airPressure > currentVehicle.Wheels[i].MaxAirPressure)
-                        {
-                            Console.WriteLine("Enter a valid input number between 0 and " + currentVehicle.Wheels[i].MaxAirPressure);
-                            inputString = Console.ReadLine();
-                        }
-
-                        currentVehicle.Wheels[i].CurrentAirPressure = airPressure;
-                    } 
-                }
-                else
-                {
-                    if(inputString == "All")
-                    {
-                        Console.WriteLine("Enter air pressure value for all wheels");
-                        inputString = Console.ReadLine();
-                        float airPressure;
-                        while (!float.TryParse(inputString, out airPressure) || float.Parse(inputString) < 0 || float.Parse(inputString) > currentVehicle.Wheels[0].MaxAirPressure )
-                        {
-                            Console.WriteLine("Enter a valid input number between 0 and " + currentVehicle.Wheels[0].MaxAirPressure);
-                            inputString = Console.ReadLine();
-                        }
-
-                        for(int i = 0; i < currentVehicle.Wheels.Count; i++)
-                        {
-                            currentVehicle.Wheels[i].CurrentAirPressure = airPressure;
-                        }
-                    }
-                    
-                }
-
+            List<Wheel> wheels = currentVehicle.Wheels;
+            Console.WriteLine("Enter wheels manufacturer or leave at default");
+            string wheelsManufacturer = Console.ReadLine();
+            for(int i = 0; i < wheels.Count; i++)
+            {
+                currentVehicle.Wheels[i].ManufacturerName = wheelsManufacturer;
             }
+
+            validator.ValidateWheelsPressure(wheels);
 
             userVehicles.Add(currentVehicle);
             Console.WriteLine("The vehicle added successfully" );
@@ -184,7 +148,7 @@ namespace Ex3.ConsoleUI
             currentVehicle = GetUserVehicle(licenseNumber);
             if (currentVehicle == null)
             {
-                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it" + Environment.NewLine);
+                Console.WriteLine("You didnt create vehicle with such license number, press 0 and create it ");
             }
             else
             {
@@ -282,7 +246,6 @@ namespace Ex3.ConsoleUI
                 Console.WriteLine("Cannot refuel an electric vehicle");
             }
 
-
             Console.WriteLine("Press anything to get back to main screen");
             Console.ReadLine();
             GarageFunctions();
@@ -299,7 +262,7 @@ namespace Ex3.ConsoleUI
             {
                 Console.WriteLine("Enter number of minutes you want to recharge");
                 string input = Console.ReadLine();
-                int numberOfMinutes;
+                
                 validator.ValidateRecharge(input, licenseNumber, garage);
                 
             }

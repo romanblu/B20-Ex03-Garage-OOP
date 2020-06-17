@@ -10,6 +10,57 @@ namespace Ex3.ConsoleUI
     public class Validator
     {
 
+        public void ValidateWheelsPressure(List<Wheel> i_Wheels)
+        {
+
+            Console.WriteLine("All wheels inflated to the max, enter \"yes\" if you want to change the pressure or enter to leave it at max");
+            string inputString = Console.ReadLine();
+            if (inputString == "yes")
+            {
+                Console.WriteLine("To change air pressure to all wheels enter \'All\' or press Enter to change individually");
+                inputString = Console.ReadLine();
+                if (inputString == "")
+                {
+                    for (int i = 0; i < i_Wheels.Count; i++)
+                    {
+                        Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
+                        inputString = Console.ReadLine();
+                        float airPressure;
+                        while (!float.TryParse(inputString, out airPressure) || airPressure < 0 || airPressure > i_Wheels[i].MaxAirPressure)
+                        {
+                            Console.WriteLine("Enter a valid input number between 0 and " + i_Wheels[i].MaxAirPressure);
+                            inputString = Console.ReadLine();
+                        }
+
+                        i_Wheels[i].CurrentAirPressure = airPressure;
+                    }
+                }
+                else
+                {
+                    if (inputString == "All")
+                    {
+                        Console.WriteLine("Enter air pressure value for all wheels");
+                        inputString = Console.ReadLine();
+                        float airPressure;
+                        while (!float.TryParse(inputString, out airPressure) || float.Parse(inputString) < 0 || float.Parse(inputString) > i_Wheels[0].MaxAirPressure)
+                        {
+                            Console.WriteLine("Enter a valid input number between 0 and " + i_Wheels[0].MaxAirPressure);
+                            inputString = Console.ReadLine();
+                        }
+
+                        for (int i = 0; i < i_Wheels.Count; i++)
+                        {
+                            i_Wheels[i].CurrentAirPressure = airPressure;
+                        }
+                    }
+
+                }
+
+            }
+
+        }
+
+
         public float ValidateEnergyLeft(string i_InputToCheck)
         {
             float energyLeft;
@@ -125,6 +176,7 @@ namespace Ex3.ConsoleUI
 
         public void ValidateRefuel(eGasType i_GasType, string i_FuelAmount, string i_LicenseNumber, Garage i_Garage)
         {
+
             float amountToAdd;
             bool valid = false;
             while (!valid)
