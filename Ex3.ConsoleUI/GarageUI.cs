@@ -265,67 +265,47 @@ namespace Ex3.ConsoleUI
             Console.WriteLine("Enter license number to refuel");
             string licenseNumber = Console.ReadLine();
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
-            Console.WriteLine("Enter fuel type");
-            string input = Console.ReadLine();
-            eGasType gasType = validator.ValidateEnumType<eGasType>(input);
-            Console.WriteLine("Enter amount to fill");
-            float amountToAdd;
-            input = Console.ReadLine();
-            while (!float.TryParse(input, out amountToAdd) || amountToAdd < 0)
+            if (currentCustomer.Vehicle.GasVehicle)
             {
-                Console.WriteLine("Please enter a valid numerical value for the amount ");
+                Console.WriteLine("Enter fuel type");
+                string input = Console.ReadLine();
+                eGasType gasType = validator.ValidateEnumType<eGasType>(input);
+                Console.WriteLine("Enter amount to fill");
+                float amountToAdd;
                 input = Console.ReadLine();
+
+                validator.ValidateRefuel(gasType, input, licenseNumber, garage);
+
             }
-            try 
+            else
             {
-                garage.Refuel(licenseNumber, gasType, amountToAdd);
+                Console.WriteLine("Cannot refuel an electric vehicle");
             }
-            catch (ValueOutOfRangeException outOfRange)
-            {
-                
-                Console.WriteLine("Couldn't refuel, please enter value between {0} and {1}", outOfRange.MinValueGet, outOfRange.MaxValueGet);
-            }
-            catch (ArgumentException)
-            {
-                Console.WriteLine("You entered wrong fuel type ");
-            }
-            finally
-            {
-                Console.WriteLine("Press anything to get back to main screen");
-                Console.ReadLine();
-                GarageFunctions();
-            }
+
+
+            Console.WriteLine("Press anything to get back to main screen");
+            Console.ReadLine();
+            GarageFunctions();
         }
 
         // function #6
         public void Recharge()
         {
+            
             Console.WriteLine("Enter license number to recharge");
             string licenseNumber = Console.ReadLine();
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
-            Console.WriteLine("Enter number of minutes you want to recharge");
-            int numberOfMinutes;
-            string input = Console.ReadLine();
-            while (!int.TryParse(input, out numberOfMinutes) || numberOfMinutes < 0)
+            if (!currentCustomer.Vehicle.GasVehicle)
             {
-                Console.WriteLine("Enter valid integer");
-                input = Console.ReadLine();
+                Console.WriteLine("Enter number of minutes you want to recharge");
+                string input = Console.ReadLine();
+                int numberOfMinutes;
+                validator.ValidateRecharge(input, licenseNumber, garage);
+                
             }
-
-            try
+            else
             {
-                garage.Recharge(licenseNumber, (float)numberOfMinutes / 60);
-            }
-            catch(ArgumentException e)
-            {
-                Console.WriteLine(e.Message);
-            }
-            catch(ValueOutOfRangeException e)
-            {
-                Console.WriteLine("You over charge the battery, please enter between {0} and {1} minutes", e.MinValueGet * 60, e.MinValueGet * 60);
-            }
-            finally
-            {
+                Console.WriteLine("Cannot recharge gas vehicle");
                 Console.WriteLine("Press anything to get back to main screen");
                 Console.ReadLine();
                 GarageFunctions();
