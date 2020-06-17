@@ -21,13 +21,11 @@ namespace Ex03.GarageLogic
             base.GasVehicle = false;
             this.licenseType = i_LicenseType;
             this.engineVolume = i_EngineVolume;
-
             for (int i = 0; i < 2; i++)
             {
                 base.Wheels.Add(new Wheel(30));
             }
         }
-
 
     }
 }

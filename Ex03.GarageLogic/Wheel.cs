@@ -32,7 +32,7 @@ namespace Ex03.GarageLogic
             }
             else
             {
-                throw new ValueOutOfRangeException((maxAirPressure-i_AirPressureToAdd) ,0); //"The air pressure exceeded the maximum"
+                throw new ValueOutOfRangeException((maxAirPressure-i_AirPressureToAdd) ,0); 
 
             }
         }

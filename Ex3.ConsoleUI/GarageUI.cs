@@ -24,7 +24,7 @@ namespace Ex3.ConsoleUI
 
         public void GarageFunctions()
         {
-            Console.WriteLine("Welcome, please choose you option from the list below:");
+            Console.WriteLine("Hello, please choose you option from the list below:");
             StringBuilder functionsList = new StringBuilder();
             functionsList.AppendLine("0 - Create you vehicle ");
             functionsList.AppendLine("1 - to enter your car to the garage");
@@ -105,7 +105,7 @@ namespace Ex3.ConsoleUI
             return null;
         }
 
-        // function #0
+        // Method #0
         public void CreateVehicle()
         {
             Vehicle currentVehicle;
@@ -137,7 +137,7 @@ namespace Ex3.ConsoleUI
                     {
                         Console.WriteLine("Enter air pressure value for wheel #{0}", i + 1);
                         float airPressure;
-                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
+                        float.TryParse(Console.ReadLine(), out airPressure);//formatexception
                         try
                         {
                             currentVehicle.Wheels[i].Inflate(airPressure);
@@ -156,7 +156,7 @@ namespace Ex3.ConsoleUI
                     {
                         Console.WriteLine("Enter air pressure value for all wheels");
                         float airPressure;
-                        float.TryParse(Console.ReadLine(), out airPressure);// formatexcecption?
+                        float.TryParse(Console.ReadLine(), out airPressure);
                         for (int i = 0; i < currentVehicle.Wheels.Count; i++)
                         {
                             try
@@ -178,12 +178,11 @@ namespace Ex3.ConsoleUI
 
             userVehicles.Add(currentVehicle);
             Console.WriteLine("The vehicle added successfully" + Environment.NewLine);
-            //Clean screen?-------------------------------------------------------------------------------------
             GarageFunctions();
         }
 
-        // function #1
-        private  void AddVehicle()
+        // Method #1
+        private void AddVehicle()
         {
             Vehicle currentVehicle;
             Console.WriteLine("Enter license number");
@@ -212,7 +211,7 @@ namespace Ex3.ConsoleUI
             GarageFunctions();
         }
 
-        // function #2 
+        // Method #2 
         private void ShowVehicles()
         {
             Console.WriteLine("Insert the status you want to screen by, or press enter");            
@@ -239,7 +238,7 @@ namespace Ex3.ConsoleUI
             GarageFunctions();
         }
 
-        //function #3
+        //Method #3
         private void ChangeStatus()
         {
             Console.WriteLine("Enter license number");
@@ -253,20 +252,20 @@ namespace Ex3.ConsoleUI
             Console.ReadLine();
             GarageFunctions();
         }
-            
-        // function #4
+
+        // Method #4
         private void InflateWheelsToMax()
         {
             Console.WriteLine("Enter license number to inflate wheels");
             string licenseNumber = Console.ReadLine();
             GarageCustomer currentCustomer = validator.ValidateVehicleInGarage(licenseNumber, garage);
-            garage.InflateToMax(licenseNumber);//check
+            garage.InflateToMax(licenseNumber);
             Console.WriteLine("Wheels inflated succesfully, Press anything to get back to main screen");
             Console.ReadLine();
             GarageFunctions();
         }
 
-        // function #5 
+        // Method #5 
         public void Refuel()
         {
             Console.WriteLine("Enter license number to refuel");
@@ -305,7 +304,7 @@ namespace Ex3.ConsoleUI
             }
         }
 
-        // function #6
+        // Method #6
         public void Recharge()
         {
             Console.WriteLine("Enter license number to recharge");
@@ -337,7 +336,7 @@ namespace Ex3.ConsoleUI
             }
         }
 
-        // function #7 
+        // Method #7 
         public void ShowInfo()
         {
             Console.WriteLine("Enter license number to get vehicle info");
@@ -354,7 +353,7 @@ namespace Ex3.ConsoleUI
             vehicleInfo.Append("Status: " + currentCustomer.Status + Environment.NewLine);// status 
             for(int i = 0; i < vehicle.Wheels.Count; i++)
             {
-                vehicleInfo.AppendFormat("Wheel #{0} -     " + Environment.NewLine, i);//chack change
+                vehicleInfo.AppendFormat("Wheel #{0} -     " + Environment.NewLine, i);
                 vehicleInfo.Append("Manufacturer name: " + vehicle.Wheels[i].ManufacturerName);
                 vehicleInfo.Append(Environment.NewLine + "    Current air pressure: " + vehicle.Wheels[i].CurrentAirPressure);
                 vehicleInfo.Append(Environment.NewLine + "    Max air pressure: " + vehicle.Wheels[i].MaxAirPressure);
